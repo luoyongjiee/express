@@ -16,11 +16,6 @@ public class ExpressController {
         return new ModelAndView("/express/index");
     }
 
-    @RequestMapping("info")
-    @ResponseBody
-    public Object info(String test){
-        return "中华"+test;
-    }
 
     /**
      * 寄件页面
