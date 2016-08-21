@@ -1,0 +1,41 @@
+*{margin: 0px;padding: 0px;}
+body{background-color: #f5f5f5;}
+.header{border-bottom: 1px solid #e1e1e1;margin: 0px;padding: 0px;}
+.header-title{height: 48px;width: 100%;position: relative;display: inline-block;}
+.header-title .left img{height:18px; position: relative;float: left;display: inline-block;top:15px; margin-left:10px;}
+.header-title h1{font-size: 18px;font-weight: bold; position: relative;float: left;margin: 0px;padding: 0px;line-height: 48px;margin-left:10px;}
+
+/*info title*/
+
+.title-info span{font-size: 16px;font-weight: bold; position: relative;margin: 0px;padding: 0px;
+    line-height: 48px;margin-left:10px;}
+.title-info .row{padding-left: 30px}
+
+/*code*/
+.code{padding:0px 10px;margin: 0px;height: 55px;margin-top: 10px;}
+.code-info{height: 55px;border: 1px solid #cccccc;border-radius: 5px;background-color: #ffffff;}
+.code-title{width: 80px;}
+.code-title h2{margin: 0px;margin-left: 10px; font-size: 16px;float: left;line-height: 55px;color: #061c29;}
+.code-num{padding-left:80px;height: 45px;margin-top: 10px;}
+.code-num input{height: 35px;border: 0px;box-shadow: none;font-size: 16px;color:#b2b2b2;}
+
+/*username*/
+.username{padding:0px 10px;margin: 0px;margin-top: 10px;}
+.username-info{height: 55px;border: 1px solid #cccccc;border-radius: 5px;background-color: #ffffff;}
+.username-logo{height: 55px;width: 80px; position: relative;float: left;}
+.username-logo h2{margin: 0px;margin-left: 10px; font-size: 16px;float: left;line-height: 55px;color: #061c29;}
+.username-num{padding-left:80px;height: 45px;margin-top: 10px;padding-right: 50px;}
+.username-num input{height: 35px;border: 0px;box-shadow: none;font-size: 16px;color:#b2b2b2;}
+.username-num textarea{height: 65px;border: 0px;box-shadow: none;font-size: 16px;color:#b2b2b2;}
+
+.address{padding:0px 10px;margin: 0px;margin-top: 10px;}
+.address-info{border: 1px solid #cccccc;border-radius: 5px;background-color: #ffffff;}
+.address-logo{width: 80px; position: relative;float: left;}
+.address-logo h2{margin: 0px;margin-left: 10px; font-size: 16px;float: left;line-height: 55px;color: #061c29;}
+.address-num{padding-left:80px;height: auto;margin-top: 10px;padding-right: 50px;}
+.address-num textarea{border: 0px;box-shadow: none;font-size: 16px;color:#b2b2b2;width: 100%}
+
+/*submit-btn-info*/
+.submit-btn{padding: 0px 10px;margin: 0px;height: 50px;margin-top:15px;}
+.submit-btn-info{height: 50px;border: 1px solid #cccccc;border-radius: 5px;background-color:#ff0000;line-height: 50px;text-align: center;}
+.submit-btn-info a{font-size: 20px;color: #ffffff;}

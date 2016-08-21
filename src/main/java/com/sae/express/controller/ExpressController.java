@@ -9,7 +9,6 @@ import org.springframework.web.servlet.ModelAndView;
  * Created by luoqi on 2016-08-14.
  */
 @Controller
-@RequestMapping("express")
 public class ExpressController {
 
     @RequestMapping("main")
@@ -21,5 +20,44 @@ public class ExpressController {
     @ResponseBody
     public Object info(String test){
         return "中华"+test;
+    }
+
+    /**
+     * 寄件页面
+     * @return
+     */
+    @RequestMapping("toSend")
+    public String toSend(){
+
+        return "/express/send";
+    }
+
+    /**
+     * 取件页面
+     * @return
+     */
+    @RequestMapping("toPinkUp")
+    public String toPinkUp(){
+
+        return "/express/pick_up";
+    }
+
+    /**
+     * 查询页面
+     * @return
+     */
+    @RequestMapping("toQuery")
+    public String toQuery(){
+
+        return "/express/query";
+    }
+    /**
+     * 反馈页面
+     * @return
+     */
+    @RequestMapping("toFeedback")
+    public String toFeedback(){
+
+        return "/express/feedback";
     }
 }
