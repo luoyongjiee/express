@@ -1,7 +1,7 @@
 package com.sae.express.service.impl;
 
 import com.sae.express.service.CommonService;
-import com.sae.express.util.StringTools;
+import com.sae.express.util.tool.StringTools;
 import com.sae.express.util.crypto.SHA1;
 import org.springframework.stereotype.Service;
 

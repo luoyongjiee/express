@@ -1,4 +1,4 @@
-package com.sae.express.util;
+package com.sae.express.util.tool;
 
 /**
  * Created by luoqi on 2016-08-09.
