@@ -1,49 +1,67 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Administrator
-  Date: 2016/8/21
-  Time: 13:08
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html>
 <html>
 <head>
+    <title>查询</title>
     <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>查询页面</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/lib/bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/lib/bootstrap/bootstrap-theme.min.css">
-    <script src="${pageContext.request.contextPath}/lib/jquery/jquery-1.11.3.min.js"></script>
-    <script src="${pageContext.request.contextPath}/lib/bootstrap/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/pick_up.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="description" content="weui">
+
+
+    <link rel="stylesheet" href="//cdn.bootcss.com/weui/0.4.3/style/weui.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/jquery-weui/0.8.0/css/jquery-weui.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/demos.css">
+
 </head>
-<body>
-<div class="container">
-    <%--header--%>
-    <div class="col-xs-12 header">
-        <div class="header-title">
-            <a href=""><span class="left"><img></span></a>
-            <h1>查询</h1>
+
+<body ontouchstart>
+
+<div class="weui_search_bar" id="search_bar">
+
+    <form class="weui_search_outer" action="${pageContext.request.contextPath}/getSendInfoModel" method="post">
+        <div class="weui_search_inner">
+            <i class="weui_icon_search"></i>
+            <input type="search" class="weui_search_input" id="searchInput" name="searchInput" placeholder="单号 收件人姓名 寄件人名字" required/>
+            <a href="javascript:" class="weui_icon_clear" id="search_clear"></a>
         </div>
-    </div>
-    <!-- start 寄件人信息-->
-    <div class="" style="padding-top: 30%;">
-        <div class="row">
-            <div class="col-xs-12 username">
-                <div class="username-info">
-                    <div class="username-logo"><h2>姓名：</h2></div>
-                    <div class="username-num"><input type="input" class="form-control" placeholder="请输入您姓名"></div>
-                    <div class="username-logo-yc"></div>
+        <label for="searchInput" class="weui_search_text" id="search_text">
+            <i class="weui_icon_search"></i>
+            <span>单号 收件人姓名 寄件人名字</span>
+        </label>
+    </form>
+    <a href="javascript:" class="weui_search_cancel" id="search_cancel">取消</a>
+</div>
+
+<c:if test="${sendInfoModelList != null}">
+    <c:forEach items="${sendInfoModelList}" var="sendInfoModel">
+        <a href="${pageContext.request.contextPath}/getSendDetail?id=${sendInfoModel.id}">
+        <div class="weui_cells">
+            <div class="weui_cell">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <p>单号:${sendInfoModel.id}</p>
+                </div>
+                <div class="weui_cell_ft">
+                        寄：${sendInfoModel.senderPhone}-${sendInfoModel.senderName}
                 </div>
             </div>
         </div>
-    </div>
-    <div class="col-xs-12 submit-btn" >
-        <div class="submit-btn-info">
-            <a>查询</a>
-        </div>
-    </div>
-</div>
+        </a>
+    </c:forEach>
+</c:if>
+
+<script src="//cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/jquery-weui/0.8.0/js/jquery-weui.min.js"></script>
+<script src="${pageContext.request.contextPath}/lib/fastclick.js"></script>
+<script>
+    $(function() {
+        FastClick.attach(document.body);
+    });
+</script>
+
+
 </body>
 </html>

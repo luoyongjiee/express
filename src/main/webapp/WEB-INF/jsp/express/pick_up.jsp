@@ -16,6 +16,11 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/lib/bootstrap/bootstrap-theme.min.css">
     <script src="${pageContext.request.contextPath}/lib/jquery/jquery-1.11.3.min.js"></script>
     <script src="${pageContext.request.contextPath}/lib/bootstrap/js/bootstrap.min.js"></script>
+
+
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/lib/weui.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/jquery-weui.css">
+
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/pick_up.css">
 </head>
 <body>

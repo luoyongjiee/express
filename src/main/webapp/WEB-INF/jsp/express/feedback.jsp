@@ -34,6 +34,10 @@
             <h1>反馈</h1>
         </div>
     </div>
+
+        <form action="${pageContext.request.contextPath}/addFeedback" method="post" id="test">
+
+
     <!-- start 寄件人信息-->
     <div class="" style="padding-top: 30%;">
         <span>服务反馈</span>
@@ -41,7 +45,7 @@
             <div class="col-xs-12 address">
                 <div class="address-info">
                     <div class="freeback-num">
-                        <textarea class="form-control" placeholder="请输入您建议" rows="10" ></textarea>
+                        <textarea class="form-control" name="content" placeholder="请输入您建议" rows="10" ></textarea>
                     </div>
                     <div class="address-logo-xs"></div>
                 </div>
@@ -51,8 +55,10 @@
     <div class="col-xs-12 submit-btn" >
         <div class="submit-btn-info">
             <a>提交</a>
+            <input type="submit" value="提交" id="btn"/>
         </div>
     </div>
+        </form>
 </div>
 </body>
 </html>

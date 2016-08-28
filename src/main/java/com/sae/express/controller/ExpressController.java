@@ -1,9 +1,18 @@
 package com.sae.express.controller;
 
+import com.sae.express.dao.model.SendInfoModel;
+import com.sae.express.service.ExpressService;
+import com.sae.express.util.tool.StringTools;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+
+import java.util.List;
 
 /**
  * Created by luoqi on 2016-08-14.
@@ -11,48 +20,55 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class ExpressController {
 
-    @RequestMapping("main")
-    public Object index(){
-        return new ModelAndView("/express/index");
+    @Autowired
+    private ExpressService expressService;
+
+
+    @RequestMapping("/path/{folder}/{file}")
+    public Object index(@PathVariable("folder") String folder,@PathVariable("file") String file  ){
+        return new ModelAndView("/"+folder+"/"+file);
     }
 
 
-    /**
-     * 寄件页面
-     * @return
-     */
-    @RequestMapping("toSend")
-    public String toSend(){
-
-        return "/express/send";
+    @RequestMapping("addSend")
+    @ResponseBody
+    public String addSend(SendInfoModel sendInfo,HttpServletRequest request){
+        return expressService.addSend(sendInfo).getId().toString();
     }
 
-    /**
-     * 取件页面
-     * @return
-     */
-    @RequestMapping("toPinkUp")
-    public String toPinkUp(){
-
-        return "/express/pick_up";
+    @RequestMapping("addSendMsg")
+    public String addSendMsg(String id,HttpServletRequest request){
+        SendInfoModel sendInfo = expressService.getSendInfoModelById(id);
+        request.setAttribute("sendInfo",sendInfo);
+        return "/express/msg";
     }
 
-    /**
-     * 查询页面
-     * @return
-     */
-    @RequestMapping("toQuery")
-    public String toQuery(){
+    @RequestMapping("addFeedback")
+    @ResponseBody
+    public Object addFeedback(String content) {
+
+        return content;
+    }
+
+
+    @RequestMapping("getSendInfoModel")
+    public String getSendInfoModel(String searchInput,HttpServletRequest request){
+
+        List<SendInfoModel> sendInfoModelList = null;
+        if(StringTools.isNotBlank(searchInput)){
+            sendInfoModelList =  expressService.getSendInfoModel(searchInput);
+        }
+
+        request.setAttribute("sendInfoModelList",sendInfoModelList);
 
         return "/express/query";
     }
-    /**
-     * 反馈页面
-     * @return
-     */
-    @RequestMapping("toFeedback")
-    public String toFeedback(){
 
-        return "/express/feedback";
+    @RequestMapping("getSendDetail")
+    public String getSendDetail(String id,HttpServletRequest request){
+        SendInfoModel sendInfo = expressService.getSendInfoModelById(id);
+        request.setAttribute("sendInfo",sendInfo);
+        return "/express/sendDetail";
     }
+
 }

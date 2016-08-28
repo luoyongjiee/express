@@ -6,13 +6,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.web.HttpEncodingProperties;
 import org.springframework.boot.context.web.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.web.filter.CharacterEncodingFilter;
 
 /**
  * Created by luoqi on 2016-08-06.
  */
 @SpringBootApplication
-//@ImportResource("")
+@ImportResource("classpath*:/mybatis.xml")
 public class ExpressApplication extends SpringBootServletInitializer {
 
 
@@ -20,14 +21,13 @@ public class ExpressApplication extends SpringBootServletInitializer {
         SpringApplication.run(ExpressApplication.class, args);
     }
 
-    @Autowired
-    private HttpEncodingProperties httpEncodingProperties;
 
-    @Bean
+
+  /*  @Bean
     public CharacterEncodingFilter characterEncodingFilter() {
         CharacterEncodingFilter filter = new CharacterEncodingFilter();
-        filter.setEncoding(this.httpEncodingProperties.getCharset().name());
-        filter.setForceEncoding(this.httpEncodingProperties.isForce());
+        filter.setEncoding("UTF-8");
+        filter.setForceEncoding(true);
         return filter;
-    }
+    }*/
 }
