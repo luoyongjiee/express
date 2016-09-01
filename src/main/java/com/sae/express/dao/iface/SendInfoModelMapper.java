@@ -4,6 +4,7 @@ import com.sae.express.dao.model.SendInfoModel;
 import com.sae.express.dao.model.SendInfoModelExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.session.RowBounds;
 
 public interface SendInfoModelMapper {
     int countByExample(SendInfoModelExample example);
@@ -15,6 +16,8 @@ public interface SendInfoModelMapper {
     int insert(SendInfoModel record);
 
     int insertSelective(SendInfoModel record);
+
+    List<SendInfoModel> selectByExampleWithRowbounds(SendInfoModelExample example, RowBounds rowBounds);
 
     List<SendInfoModel> selectByExample(SendInfoModelExample example);
 
