@@ -11,12 +11,31 @@
 
 
 
-    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+    <!--<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
           destroy-method="close">
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
         <property name="url" value="jdbc:mysql://igptgfhetuqg.rds.sae.sina.com.cn:10099/express" />
         <property name="username" value="express" />
         <property name="password" value="luo_123456" />
+        &lt;!&ndash; 初始化连接大小 &ndash;&gt;
+        <property name="initialSize" value="5"></property>
+        &lt;!&ndash; 连接池最大数量 &ndash;&gt;
+        <property name="maxActive" value="20"></property>
+        &lt;!&ndash; 连接池最大空闲 &ndash;&gt;
+        <property name="maxIdle" value="10"></property>
+        &lt;!&ndash; 连接池最小空闲 &ndash;&gt;
+        <property name="minIdle" value="5"></property>
+        &lt;!&ndash; 获取连接最大等待时间 &ndash;&gt;
+        <property name="maxWait" value="60000"></property>
+    </bean>
+-->
+
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+          destroy-method="close">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <property name="url" value="jdbc:mysql://localhost:3306/express" />
+        <property name="username" value="root" />
+        <property name="password" value="root" />
         <!-- 初始化连接大小 -->
         <property name="initialSize" value="5"></property>
         <!-- 连接池最大数量 -->
@@ -28,6 +47,8 @@
         <!-- 获取连接最大等待时间 -->
         <property name="maxWait" value="60000"></property>
     </bean>
+
+
 
 
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">

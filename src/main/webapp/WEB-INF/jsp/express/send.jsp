@@ -37,7 +37,7 @@
   <div class="weui_cell">
     <div class="weui_cell_hd"><label class="weui_label">电话</label></div>
     <div class="weui_cell_bd weui_cell_primary">
-      <input class="weui_input" type="text" id="senderPhone" name="senderPhone" placeholder="请输入电话">
+      <input class="weui_input" type="number" id="senderPhone" name="senderPhone" placeholder="请输入电话">
     </div>
   </div>
 
@@ -55,7 +55,7 @@
   <div class="weui_cell">
     <div class="weui_cell_hd"><label class="weui_label">宿舍号</label></div>
     <div class="weui_cell_bd weui_cell_primary">
-      <input class="weui_input" type="text" id="senderRoomNum" name="senderRoomNum" placeholder="宿舍号">
+      <input class="weui_input" type="number" id="senderRoomNum" name="senderRoomNum" placeholder="宿舍号">
     </div>
   </div>
 
@@ -74,7 +74,7 @@
   <div class="weui_cell">
     <div class="weui_cell_hd"><label class="weui_label">电话</label></div>
     <div class="weui_cell_bd weui_cell_primary">
-      <input class="weui_input" type="text" id="receiverPhone" name="receiverPhone" placeholder="请输入收件人电话">
+      <input class="weui_input" type="number" id="receiverPhone" name="receiverPhone" placeholder="请输入收件人电话">
     </div>
   </div>
 
