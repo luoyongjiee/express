@@ -5,7 +5,7 @@
     <classPathEntry location="./lib/mysql-connector-java-5.1.37.jar" />
     <context id="Mysql" defaultModelType="flat" targetRuntime="MyBatis3">
 
-        <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"></plugin>
+        <plugin type="com.xxg.mybatis.plugins.MySQLLimitPlugin"></plugin>
         <!-- 注释-->
         <commentGenerator>
             <property name="suppressAllComments" value="true" />
