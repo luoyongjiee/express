@@ -16,11 +16,17 @@ public class FeedbackController {
     @Autowired
     private FeedbackService feedbackService;
 
-    @RequestMapping(value = "/feedback/addFeddback")
+    @RequestMapping("/feedback/addFeddback")
     @ResponseBody
     public Object addFeedback(FeedbackModel feedbackModel){
       return feedbackService.addFeedback(feedbackModel);
     }
 
+
+    @RequestMapping("/feedback/listFeedback")
+    @ResponseBody
+    public Object listFeedback(Integer offset,Integer limit){
+        return feedbackService.listFeedback(offset, limit);
+    }
 
 }
