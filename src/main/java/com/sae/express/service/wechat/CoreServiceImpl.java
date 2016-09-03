@@ -1,7 +1,7 @@
 package com.sae.express.service.wechat;
 
 import com.sae.express.dao.form.response.TextMessage;
-import com.sae.express.dao.iface.WeChatPlatformMapper;
+import com.sae.express.dao.iface.WechatPlatformMapper;
 import com.sae.express.dao.model.wechat.WeChatUnionUser;
 import com.sae.express.util.wechat.EmojiExchangeUtil;
 import com.sae.express.util.wechat.MessageUtil;
@@ -30,7 +30,7 @@ public class CoreServiceImpl implements CoreService {
     private static Logger log = LoggerFactory.getLogger(CoreServiceImpl.class);
 
     @Autowired
-    private WeChatPlatformMapper sendInfoModelMapper;
+    private WechatPlatformMapper wechatPlatformMapper;
 
     /**
      * 监听用户输入消息，并回复响应信息
@@ -106,8 +106,8 @@ public class CoreServiceImpl implements CoreService {
                 		    String unionId = eventKey.substring(eventKey.indexOf("_")+1, eventKey.length());
                     */
                     //TODO 通过openID从数据库中获取accesstoken
-                    String accessToken= sendInfoModelMapper.getAccessTokenById("wxde02f58dc6d9ea18").getAccess_token();
-
+                 //   String accessToken= wechatPlatformMapper.selectByPrimaryKey(wxde02f58dc6d9ea18);
+                    String accessToken = null;
                     //TODO  根据token和openId获取用户基本信息
                     WeChatUnionUser unionUser = WeChatUtil.getWeiXinUnionUser(accessToken, fromUserName);
                     if (unionUser != null) {

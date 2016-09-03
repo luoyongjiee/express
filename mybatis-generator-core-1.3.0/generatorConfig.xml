@@ -44,7 +44,9 @@
        <!-- <table  tableName="send_info" domainObjectName="SendInfoModel" />-->
 
         <!--<table  tableName="send_info" domainObjectName="SendInfoModel" />-->
-        <table  tableName="pick_up" domainObjectName="PickUpModel" />
-        <table  tableName="feedback" domainObjectName="FeedbackModel" />
+       <!-- <table  tableName="pick_up" domainObjectName="PickUpModel" />
+        <table  tableName="feedback" domainObjectName="FeedbackModel" />-->
+        <table  tableName="wechat_platform" domainObjectName="WechatPlatform" />
+
     </context>
 </generatorConfiguration>

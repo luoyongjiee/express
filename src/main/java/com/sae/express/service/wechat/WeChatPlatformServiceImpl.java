@@ -1,6 +1,7 @@
 package com.sae.express.service.wechat;
 
-import com.sae.express.dao.iface.WeChatPlatformMapper;
+
+import com.sae.express.dao.iface.WechatPlatformMapper;
 import com.sae.express.dao.model.wechat.AccessToken;
 import com.sae.express.dao.model.wechat.WeChatPlatform;
 import com.sae.express.service.wechat.WeChatPlatformService;
@@ -15,10 +16,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class WeChatPlatformServiceImpl implements WeChatPlatformService {
     @Autowired
-    private WeChatPlatformMapper sendInfoModelMapper;
+    private WechatPlatformMapper wechatPlatformMapper;
 
     public WeChatPlatform getWeChatPlatform(String id){
-        return sendInfoModelMapper.getById(id);
+       /* return wechatPlatformMapper.getById(id);*/
+        return null;
     }
 
     /**
@@ -27,7 +29,8 @@ public class WeChatPlatformServiceImpl implements WeChatPlatformService {
      * @return
      */
     public WeChatPlatform getAccessTokenById(String openId){
-        return sendInfoModelMapper.getAccessTokenById(openId);
+        /*return wechatPlatformMapper.getAccessTokenById(openId);*/
+        return null;
     }
 
     /**
@@ -36,25 +39,28 @@ public class WeChatPlatformServiceImpl implements WeChatPlatformService {
      * @return
      */
     public WeChatPlatform getWeChatPlatformByAppId(String appid){
-        WeChatPlatform WeChatPlatform = sendInfoModelMapper.getById(appid);
+        /*WeChatPlatform WeChatPlatform = wechatPlatformMapper.getById(appid);
         if(WeChatPlatform == null){
             //TODO PUBLIC_APP_SECRET替换
             AccessToken accessToken = WeChatUtil.getAccessToken(appid,"PUBLIC_APP_SECRET");
             WeChatPlatform = new WeChatPlatform();
             WeChatPlatform.setAppId(appid);
             WeChatPlatform.setAccess_token(accessToken.getToken());
-            sendInfoModelMapper.save(WeChatPlatform);
+           *//* wechatPlatformMapper.save(WeChatPlatform);*//*
         }
-        return WeChatPlatform;
+        return WeChatPlatform;*/
+        return null;
     }
 
     public boolean updateWeChatPlatform(WeChatPlatform WeChatPlatform){
-        return sendInfoModelMapper.update(WeChatPlatform);
+       /* return wechatPlatformMapper.update(WeChatPlatform);*/
+        return true;
     }
 
     public boolean saveWeChatPlatform(WeChatPlatform WeChatPlatform){
-        WeChatPlatform.setCreateTime(System.currentTimeMillis());
-        return sendInfoModelMapper.save(WeChatPlatform);
+        /*WeChatPlatform.setCreateTime(System.currentTimeMillis());
+        return wechatPlatformMapper.save(WeChatPlatform);*/
+        return false;
     }
 
 }

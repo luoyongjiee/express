@@ -43,13 +43,6 @@ public class ExpressController {
         return "/express/msg";
     }
 
-    @RequestMapping("addFeedback")
-    @ResponseBody
-    public Object addFeedback(String content) {
-
-        return content;
-    }
-
 
     @RequestMapping("getSendInfoModel")
     public String getSendInfoModel(String searchInput,HttpServletRequest request){

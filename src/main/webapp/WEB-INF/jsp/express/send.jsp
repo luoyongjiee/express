@@ -159,7 +159,7 @@
                 return false;
             }
 
-            console.log("start");
+
             $.ajax({
                 type: "post",
                 url: "${pageContext.request.contextPath}/addSend",
@@ -174,7 +174,7 @@
 
 
             $.showLoading("正在提交订单...");
-            console.log("end");
+
 
         });
     });
