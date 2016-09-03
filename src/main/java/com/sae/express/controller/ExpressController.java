@@ -25,8 +25,8 @@ public class ExpressController {
 
 
     @RequestMapping("/path/{folder}/{file}")
-    public Object index(@PathVariable("folder") String folder,@PathVariable("file") String file  ){
-        return new ModelAndView("/"+folder+"/"+file);
+    public String path(@PathVariable("folder") String folder,@PathVariable("file") String file  ){
+        return "/"+folder+"/"+file;
     }
 
 

@@ -45,9 +45,14 @@
     <div class="weui_cell_hd"><label class="weui_label">宿舍栋数</label></div>
     <div class="weui_cell_bd weui_cell_primary">
       <select class="weui_select" name="senderBuilderNum" id="senderBuilderNum">
-        <option selected="" value="-1">选择</option>
-        <option value="1">1栋</option>
-        <option value="2">2栋</option>
+          <option selected="" value="-1">选择</option>
+          <option value="1">6栋</option>
+          <option value="2">7栋</option>
+          <option value="1">8栋</option>
+          <option value="2">9栋</option>
+          <option value="1">10栋</option>
+          <option value="2">11栋</option>
+          <option value="2">12栋</option>
       </select>
     </div>
   </div>
