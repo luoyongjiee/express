@@ -48,4 +48,8 @@ public class ExpressServiceImpl implements ExpressService {
 
         return sendInfoModelMapper.selectByExample(example);
     }
+
+    public List<SendInfoModel> getSendInfoModelPage(SendInfoModelExample example){
+        return sendInfoModelMapper.selectByExample(example);
+    }
 }

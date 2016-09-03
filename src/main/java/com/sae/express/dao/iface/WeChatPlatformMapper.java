@@ -2,8 +2,9 @@ package com.sae.express.dao.iface;
 
 import com.sae.express.dao.model.WechatPlatform;
 import com.sae.express.dao.model.WechatPlatformExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface WechatPlatformMapper {
     int countByExample(WechatPlatformExample example);

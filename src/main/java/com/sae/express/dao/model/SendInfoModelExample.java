@@ -15,8 +15,22 @@ public class SendInfoModelExample {
 
     private Integer offset;
 
+    private String search;
     public SendInfoModelExample() {
         oredCriteria = new ArrayList<Criteria>();
+    }
+    public SendInfoModelExample(String search,Integer limit,Integer offset) {
+        this.limit=limit;
+        this.offset=offset;
+        oredCriteria = new ArrayList<Criteria>();
+    }
+
+    public String getSearch() {
+        return search;
+    }
+
+    public void setSearch(String search) {
+        this.search = search;
     }
 
     public void setOrderByClause(String orderByClause) {

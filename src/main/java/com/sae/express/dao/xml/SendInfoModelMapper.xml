@@ -99,6 +99,35 @@
       </if>
     </if>
   </select>
+
+  <!--搜索列表-->
+  <select id="searchByExample" resultMap="BaseResultMap" parameterType="com.sae.express.dao.model.SendInfoModelExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from send_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="search != null" >
+     where  receiver_name LIKE ${search} OR senderName LIKE ${search} OR id  LIKE ${search}
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null" >
+      <if test="offset != null" >
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null" >
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+
+
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />

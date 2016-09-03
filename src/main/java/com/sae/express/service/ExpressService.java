@@ -1,6 +1,7 @@
 package com.sae.express.service;
 
 import com.sae.express.dao.model.SendInfoModel;
+import com.sae.express.dao.model.SendInfoModelExample;
 
 import java.util.List;
 
@@ -13,4 +14,6 @@ public interface ExpressService {
    SendInfoModel getSendInfoModelById(String id);
 
    List<SendInfoModel> getSendInfoModel(String searchInfo);
+
+   List<SendInfoModel> getSendInfoModelPage(SendInfoModelExample example);
 }
