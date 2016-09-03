@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sae.express.dao.iface.WeChatPlatformMapper" >
+  <resultMap id="BaseResultMap" type="com.sae.express.dao.model.wechat.WeChatPlatform" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="appId" property="appId" jdbcType="VARCHAR" />
+    <result column="appSecret" property="appSecret" jdbcType="VARCHAR" />
+    <result column="access_token" property="access_token" jdbcType="VARCHAR" />
+    <result column="jsapi_ticket" property="jsapi_ticket" jdbcType="VARCHAR" />
+    <result column="createTime" property="createTime" jdbcType="VARCHAR" />
+  </resultMap>
+  <!-- getById-->
+  <select id="getById" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from wechat_platform
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+
+  <!-- save-->
+  <insert id="save" parameterType="com.sae.express.dao.model.wechat.WeChatPlatform" >
+    insert into wechat_platform (id, appId, appSecret,
+    access_token, jsapi_ticket, createTime
+    )
+    values (#{id,jdbcType=INTEGER}, #{appId,jdbcType=VARCHAR}, #{appSecret,jdbcType=VARCHAR},
+    #{access_token,jdbcType=VARCHAR}, #{jsapi_ticket,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}
+    )
+  </insert>
+
+  <!-- update-->
+  <update id="update" parameterType="com.sae.express.dao.model.wechat.WeChatPlatform" >
+    update wechat_platform
+    set appId = #{appId,jdbcType=VARCHAR},
+    appSecret = #{appSecret,jdbcType=VARCHAR},
+    access_token = #{access_token,jdbcType=VARCHAR},
+    jsapi_ticket = #{jsapi_ticket,jdbcType=VARCHAR},
+    createTime = #{createTime,jdbcType=VARCHAR},
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <!-- getAccessTokenById TODO -->
+  <select id="getAccessTokenById" resultMap="BaseResultMap" parameterType="com.sae.express.dao.model.wechat.WeChatPlatform" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="wechat_platform" />
+    from wechat_platform
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+</mapper>
