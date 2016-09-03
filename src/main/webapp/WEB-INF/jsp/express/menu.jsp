@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <html>
 <head>
-  <title>消息</title>
+  <title>菜单</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
@@ -20,106 +20,36 @@
 
 <body ontouchstart>
 
----
-layout: demos
----
 <div class="weui_grids">
-  <a href="javascript:;" class="weui_grid js_grid" data-id="button">
-    <div class="weui_grid_icon">
-      <img src="{{ "${pageContext.request.contextPath}/images/icon_nav_button.png" | prepend: site.baseurl }}" alt="">
-    </div>
-    <p class="weui_grid_label">
-      Button
-    </p>
-  </a>
-  <a href="javascript:;" class="weui_grid js_grid" data-id="cell">
-    <div class="weui_grid_icon">
-      <img src="{{ "${pageContext.request.contextPath}/images/icon_nav_cell.png" | prepend: site.baseurl }}" alt="">
-    </div>
-    <p class="weui_grid_label">
-      Cell
-    </p>
-  </a>
+
   <a href="javascript:;" class="weui_grid js_grid" data-id="toast">
     <div class="weui_grid_icon">
-      <img src="{{ "${pageContext.request.contextPath}/images/icon_nav_toast.png" | prepend: site.baseurl }}" alt="">
+      <img src="${pageContext.request.contextPath}/images/icon_nav_cell.png" alt="">
     </div>
     <p class="weui_grid_label">
-      Toast
+      寄件列表
     </p>
   </a>
-  <a href="javascript:;" class="weui_grid js_grid" data-id="dialog">
+
+  <a href="javascript:;" class="weui_grid js_grid" data-id="toast">
     <div class="weui_grid_icon">
-      <img src="{{ "${pageContext.request.contextPath}/images/icon_nav_dialog.png" | prepend: site.baseurl }}" alt="">
+      <img src="${pageContext.request.contextPath}/images/icon_nav_cell.png" alt="">
     </div>
     <p class="weui_grid_label">
-      Dialog
+      取件列表
     </p>
   </a>
-  <a href="javascript:;" class="weui_grid js_grid" data-id="progress">
+
+  <a href="javascript:;" class="weui_grid js_grid" data-id="toast">
     <div class="weui_grid_icon">
-      <img src="{{ "${pageContext.request.contextPath}/images/icon_nav_progress.png" | prepend: site.baseurl }}" alt="">
+      <img src="${pageContext.request.contextPath}/images/icon_nav_cell.png" alt="">
     </div>
     <p class="weui_grid_label">
-      Progress
+      反馈列表
     </p>
   </a>
-  <a href="javascript:;" class="weui_grid js_grid" data-id="msg">
-    <div class="weui_grid_icon">
-      <img src="{{ "${pageContext.request.contextPath}/images/icon_nav_msg.png" | prepend: site.baseurl }}" alt="">
-    </div>
-    <p class="weui_grid_label">
-      Msg
-    </p>
-  </a>
-  <a href="javascript:;" class="weui_grid js_grid" data-id="article">
-    <div class="weui_grid_icon">
-      <img src="{{ "${pageContext.request.contextPath}/images/icon_nav_article.png" | prepend: site.baseurl }}" alt="">
-    </div>
-    <p class="weui_grid_label">
-      Article
-    </p>
-  </a>
-  <a href="javascript:;" class="weui_grid js_grid" data-id="actionsheet">
-    <div class="weui_grid_icon">
-      <img src="{{ "${pageContext.request.contextPath}/images/icon_nav_actionSheet.png" | prepend: site.baseurl }}" alt="">
-    </div>
-    <p class="weui_grid_label">
-      ActionSheet
-    </p>
-  </a>
-  <a href="javascript:;" class="weui_grid js_grid" data-id="icons">
-    <div class="weui_grid_icon">
-      <img src="{{ "${pageContext.request.contextPath}/images/icon_nav_icons.png" | prepend: site.baseurl }}" alt="">
-    </div>
-    <p class="weui_grid_label">
-      Icons
-    </p>
-  </a>
-  <a href="javascript:;" class="weui_grid js_grid">
-    <div class="weui_grid_icon">
-      <img src="{{ "${pageContext.request.contextPath}/images/icon_nav_panel.png" | prepend: site.baseurl }}" alt="">
-    </div>
-    <p class="weui_grid_label">
-      Panel
-    </p>
-  </a>
-  <a href="javascript:;" class="weui_grid js_grid">
-    <div class="weui_grid_icon">
-      <img src="{{ "${pageContext.request.contextPath}/images/icon_nav_tab.png" | prepend: site.baseurl }}" alt="">
-    </div>
-    <p class="weui_grid_label">
-      Tabbar
-    </p>
-  </a>
-  <a href="javascript:;" class="weui_grid js_grid">
-    <div class="weui_grid_icon">
-      <img src="{{ "${pageContext.request.contextPath}/images/icon_nav_search_bar.png" | prepend: site.baseurl }}" alt="">
-    </div>
-    <p class="weui_grid_label">
-      SearchBar
-    </p>
-  </a>
+
+
 </div>
 
 
