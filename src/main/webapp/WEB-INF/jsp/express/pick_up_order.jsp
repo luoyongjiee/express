@@ -69,21 +69,21 @@
   <div class="weui_cell">
     <div class="weui_cell_hd"><label class="weui_label">姓名</label></div>
     <div class="weui_cell_bd weui_cell_primary">
-      <input class="weui_input" type="tel" id="senderName" name="senderName" placeholder="请输入姓名">
+      <input class="weui_input user_name" type="text"  placeholder="请输入姓名">
     </div>
   </div>
 
   <div class="weui_cell">
     <div class="weui_cell_hd"><label class="weui_label">电话</label></div>
     <div class="weui_cell_bd weui_cell_primary">
-      <input class="weui_input" type="tel" id="senderPhone" name="senderPhone" placeholder="请输入电话">
+      <input class="weui_input user_phone" type="text" placeholder="请输入电话">
     </div>
   </div>
 
   <div class="weui_cell ">
     <div class="weui_cell_hd"><label class="weui_label">栋数</label></div>
     <div class="weui_cell_bd weui_cell_primary">
-      <select class="" name="senderBuilderNum" id="senderBuilderNum">
+      <select class="builder_num"  >
         <option selected="" value="0">选择</option>
         <option value="1">1栋</option>
         <option value="2">2栋</option>
@@ -94,7 +94,7 @@
   <div class="weui_cell">
     <div class="weui_cell_hd"><label class="weui_label">宿舍号</label></div>
     <div class="weui_cell_bd weui_cell_primary">
-      <input class="weui_input" type="tel" id="senderRoomNum" name="senderRoomNum" placeholder="宿舍号">
+      <input class="weui_input room_num" type="number" placeholder="宿舍号">
     </div>
   </div>
 
@@ -102,10 +102,10 @@
     <div class="clearfix basic">
       <p class="tt" style="border-top: 15px solid #d9d9d9;">收件信息</p>
      <div class="pickup div1">
-      <ul class="toplist">
-        <li class="clearfix">
-          <div>编号：<input type="text" class="" name="" placeholder="请输入快递号"></div>
-          <div>快递：<select class="" name="" >
+      <ul class="toplist pick_up_model_i">
+        <li class="clearfix ">
+          <div>编号：<input type="text" class="code" name="" placeholder="请输入快递号"></div>
+          <div>快递：<select class="" name="express" class="express" >
                             <option selected="" value="0">选择</option>
                             <option value="1">快递一</option>
                             <option value="2">快递二</option>
@@ -115,8 +115,8 @@
 
         </li>
         <li class="clearfix">
-          <div>件数：<input type="number" class="" name="" placeholder="请输入件数"></div>
-          <div>时间：<input type="datetime" class="" name="" placeholder="请选择时间"></div>
+          <div>件数：<input type="number" class="count" placeholder="请输入件数"></div>
+          <div>时间：<input type="datetime-local" class="pickUpTime" placeholder="请选择时间"></div>
         </li>
       </ul>
       <p class="tt" style="border-top: 1px solid #d9d9d9;"></p>
@@ -145,16 +145,46 @@
 var classnum=1;
   $(function(){
     $("#showTooltips").click(function() {
-      var tel = $('#tel').val();
-      var code = $('#code').val();
-      if(!tel || !/1[3|4|5|7|8]\d{9}/.test(tel)) $.toptip('请输入手机号');
-      else if(!code || !/\d{6}/.test(code)) $.toptip('请输入六位手机验证码');
-      else {
-          var pickUpModelListJson="";
+        var user_name = $('.user_name').val();
+        var tel = $('.user_phone').val();
+        if(!tel || !/1[3|4|5|7|8]\d{9}/.test(tel)){//else if(!code || !/\d{6}/.test(code)) $.toptip('请输入六位手机验证码');
+          $.toptip('请输入手机号');
+        } else {
+            var pickUpModel ;
+            var pickUpModelOrder = new Array();
+            var user_name = $('.user_name').val();
+            var user_phone = $('.user_phone').val();
+            var builderNum = $('.builder_num').val();
+            var roomNum = $('.room_num').val();
+
+            var pickUserJson= {
+                userName : user_name,
+                userPhone : user_phone,
+                builderNum : builderNum,
+                roomNum : roomNum
+            };
+            $(".pick_up_model_i").each(function() {
+                //var id = $(this).next("input").val();
+                var count = $(this).find('.count').val();
+                var express = $(this).find('.express').val();
+                var code = $(this).find('.code').val();
+                var pickUpTime = $(this).find('.pickUpTime').val();
+                //var userId = $("#no_" + id).val();
+                //alert(count);
+                pickUpModel = {
+                    count : count,
+                    express : express,
+                    code : code,
+                    pickUpTime : pickUpTime
+                };
+                pickUpModelOrder.push(pickUpModel);
+            });
+
+          var pickUpModelListJson=JSON.stringify(pickUpModelOrder);
           $.ajax({
             type: "post",
-            url: "${pageContext.request.contextPath}/query/sendList",
-            data: {"pickUpModelJson":pickUpModelJson},
+            url: "${pageContext.request.contextPath}/insert/pickUpOrder",
+            data: {"pickUpModelListJson":pickUpModelListJson,"pickUserJson":JSON.stringify(pickUserJson)},
             dataType: "json",
             success: function(data){
               $.toptip('提交成功', 'success');
@@ -167,10 +197,10 @@ var classnum=1;
     $('.add').click(function(){
               //=Number($(this).attr('datatype'));
      $('.basic').append('<div class="pickup div'+(classnum+1)+'">'+
-             ' <ul class="toplist 2">'+
-               '  <li class="clearfix">'+
-                '   <div>编号：<input type="text" class="" name=""></div>'+
-                '<div>快递：<select class="" name="" >'+
+             ' <ul class="toplist pick_up_model_i">'+
+               '  <li class="clearfix ">'+
+                '   <div>编号：<input type="text" class="code" name=""></div>'+
+                '<div>快递：<select class="express"  >'+
         '  <option selected="" value="0">选择</option>'+
         '  <option value="1">快递一</option>'+
         '  <option value="2">快递二</option>'+
@@ -178,8 +208,8 @@ var classnum=1;
         '       </div>'+
                 '       </li>'+
                '       <li class="clearfix">'+
-                '       <div>件数：<input type="number" class="" name=""></div>'+
-                ' <div>时间：<input type="datetime" class="" name=""></div>'+
+                '       <div>件数：<input type="number" class="count"></div>'+
+                ' <div>时间：<input type="datetime-local" class="pickUpTime" ></div>'+
                 ' </li>'+
                '</ul>'+
       ' <p class="tt" style="border-top: 1px solid #d9d9d9;"></p>'+
@@ -187,7 +217,6 @@ var classnum=1;
       $('.add').attr("datatype",(classnum+1));
       classnum=classnum+1;
       $('.clearfix').trigger("create");
-
     });
 
 

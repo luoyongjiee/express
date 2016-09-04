@@ -1,11 +1,11 @@
 package com.sae.express.controller;
 
+import com.sae.express.dao.model.CustomInfo;
 import com.sae.express.dao.model.PickUpModel;
 import com.sae.express.dao.model.PickUpModelExample;
-import com.sae.express.dao.model.SendInfoModel;
-import com.sae.express.dao.model.SendInfoModelExample;
 import com.sae.express.service.ExpressService;
-import net.sf.json.util.JSONUtils;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,21 +32,31 @@ public class ReceiptController {
      * 进入收件订单页面
      * @return
      */
-    @RequestMapping("insert/pick_up_order")
+    @RequestMapping("insert/pickUpOrder")
     public String insertPickUpList(){
         return "/express/pick_up_order";
     }
 
     /**
      * 添加收件订单
-     * @param pickUpModel
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "insert/pick_up_order" ,method = RequestMethod.POST)
-    public String insertPickUpList(PickUpModel pickUpModel,String pickUpModelListJson){
-        //TODO pickUpModelJson转对象
-        expressService.insertSend(pickUpModel);
+    @RequestMapping(value = "insert/pickUpOrder" ,method = RequestMethod.POST)
+    public String insertPickUpList(String pickUpModelListJson,String pickUserJson){
+        JSONArray jsonArray = JSONArray.fromObject(pickUpModelListJson);
+        JSONObject jsonObject = JSONObject.fromObject(pickUserJson);
+
+        List<PickUpModel>  pickUpModellist = (List<PickUpModel>)JSONArray.toCollection(jsonArray, PickUpModel.class);
+        CustomInfo customInfo = (CustomInfo)JSONObject.toBean(jsonObject, CustomInfo.class);
+
+        PickUpModel pickUpModel;
+        for (int i=0;i<pickUpModellist.size();i++){
+            pickUpModel=pickUpModellist.get(i);
+            if (pickUpModel!=null)
+                expressService.insertSend(pickUpModel);
+       }
+
         return "/express/pick_up_order";
     }
 
