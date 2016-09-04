@@ -62,4 +62,10 @@ public class ExpressServiceImpl implements ExpressService {
     public List<PickUpModel> getPickUpModelPage(PickUpModelExample example){
         return pickUpModelMapper.selectByExample(example);
     }
+    public PickUpModel insertSend(PickUpModel pickUpModel) {
+        pickUpModel.setCreateTime(new Date());
+        pickUpModel.setUpdateTime(new Date());
+        pickUpModelMapper.insertSelective(pickUpModel);
+        return pickUpModel;
+    }
 }

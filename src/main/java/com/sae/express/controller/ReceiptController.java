@@ -5,6 +5,7 @@ import com.sae.express.dao.model.PickUpModelExample;
 import com.sae.express.dao.model.SendInfoModel;
 import com.sae.express.dao.model.SendInfoModelExample;
 import com.sae.express.service.ExpressService;
+import net.sf.json.util.JSONUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,13 +28,27 @@ public class ReceiptController {
     private ExpressService expressService;
 
 
-    @RequestMapping("query/pickup")
-    public String queryPickUpList(String searchInput, Model model){
-        //model.addAttribute("receipt",expressService.getSendInfoModelPage(new SendInfoModelExample(searchInput,10,0)));
-        return "/express/pickUp";
+    /**
+     * 进入收件订单页面
+     * @return
+     */
+    @RequestMapping("insert/pick_up_order")
+    public String insertPickUpList(){
+        return "/express/pick_up_order";
     }
 
-
+    /**
+     * 添加收件订单
+     * @param pickUpModel
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "insert/pick_up_order" ,method = RequestMethod.POST)
+    public String insertPickUpList(PickUpModel pickUpModel,String pickUpModelListJson){
+        //TODO pickUpModelJson转对象
+        expressService.insertSend(pickUpModel);
+        return "/express/pick_up_order";
+    }
 
     /**
      * 初始化收件列表
