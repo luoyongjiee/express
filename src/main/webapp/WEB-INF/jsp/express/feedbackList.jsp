@@ -26,7 +26,7 @@
 
     <div class="weui-infinite-scroll" id="scroll">
       <div class="infinite-preloader"></div>
-        正在加载
+        <span class="load_info">正在加载</span>
     </div>
 <script src="//cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/jquery-weui/0.8.0/js/jquery-weui.min.js"></script>
@@ -56,7 +56,7 @@
         })
 
         if(param.offset>data.count ){
-          $("#scroll").html("已经加载完毕");
+            $('.load_info').html("已加载全部");
         }
         param.offset = param.offset + param.limit;
       },
@@ -106,7 +106,7 @@
 
  var showList = {
    getDiv: function (param, title, content) {
-     var html = "<a href='#'>"
+     var html = "<a href='${pageContext.request.contextPath}/feedback/showFeedback?id="+param+"'>"
              + "<div class=\"weui_cells\">"
              + "<div class=\"weui_cell\">"
              + "<div class=\"weui_cell_bd weui_cell_primary\">"

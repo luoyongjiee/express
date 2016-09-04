@@ -14,4 +14,6 @@ public interface FeedbackService {
     List<FeedbackModel> listFeedback(Integer offset,Integer limit);
 
     int countFeedback();
+
+    FeedbackModel getFeedbackModel(Integer id);
 }

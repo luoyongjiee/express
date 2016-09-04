@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -35,6 +36,13 @@ public class FeedbackController {
         result.put("list",feedbackService.listFeedback(offset, limit));
         result.put("count",feedbackService.countFeedback());
         return result;
+    }
+
+    @RequestMapping("/feedback/showFeedback")
+    public String showFeedback(Integer id,HttpServletRequest request){
+
+        request.setAttribute("feedback",feedbackService.getFeedbackModel(id));
+        return "/express/feedbackDetail";
     }
 
 }

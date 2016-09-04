@@ -35,4 +35,8 @@ public class FeedbackServiceImpl implements FeedbackService{
     public int countFeedback(){
         return feedbackModelMapper.countByExample(null);
     }
+
+    public FeedbackModel getFeedbackModel(Integer id){
+        return feedbackModelMapper.selectByPrimaryKey(id);
+    }
 }

@@ -32,8 +32,8 @@ public class ExpressController {
 
     @RequestMapping("addSend")
     @ResponseBody
-    public String addSend(SendInfoModel sendInfo,HttpServletRequest request){
-        return expressService.addSend(sendInfo).getId().toString();
+    public Object addSend(SendInfoModel sendInfo,HttpServletRequest request){
+        return expressService.addSend(sendInfo);
     }
 
     @RequestMapping("addSendMsg")
