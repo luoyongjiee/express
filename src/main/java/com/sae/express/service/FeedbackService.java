@@ -12,4 +12,6 @@ public interface FeedbackService {
     int addFeedback(FeedbackModel feedbackModel);
 
     List<FeedbackModel> listFeedback(Integer offset,Integer limit);
+
+    int countFeedback();
 }

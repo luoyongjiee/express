@@ -32,4 +32,7 @@ public class FeedbackServiceImpl implements FeedbackService{
         return feedbackModelMapper.selectByExample(example);
     }
 
+    public int countFeedback(){
+        return feedbackModelMapper.countByExample(null);
+    }
 }

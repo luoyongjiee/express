@@ -20,21 +20,13 @@
 
 <body ontouchstart>
 
-    <a href="${pageContext.request.contextPath}/getSendDetail?id=${sendInfoModel.id}">
-      <div class="weui_cells">
-        <div class="weui_cell">
-          <div class="weui_cell_bd weui_cell_primary">
-            <p></p>
-          </div>
-          <div class="weui_cell_ft">
-          </div>
-        </div>
-      </div>
-    </a>
+    <div id="showInfo">
 
-    <div class="weui-infinite-scroll">
+    </div>
+
+    <div class="weui-infinite-scroll" id="scroll">
       <div class="infinite-preloader"></div>
-      正在加载
+        正在加载
     </div>
 <script src="//cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/jquery-weui/0.8.0/js/jquery-weui.min.js"></script>
@@ -46,28 +38,119 @@
 </script>
 
 <script>
-  var loading = false;
-  var offset = 0;
-  var page = 1;
-  $(document.body).infinite().on("infinite", function() {
-    if(loading) return;
-    loading = true;
+  $(document).ready(function(){
 
     $.ajax({
       type: "post",
       url: "${pageContext.request.contextPath}/feedback/listFeedback",
-      data: {"offset":offset,"limit":10},
+      data: {"offset":param.offset,"limit":param.limit},
       dataType: "json",
       success: function(data){
-        loading = false;
-        offset = page * 10 -1;
-        page = page + 1;
+        param.loading = false;
+
+        $.each(data.list,function(i,obj){
+          var content = obj.content;
+           if(content.length > 10)
+             content = content.substring(0,10)+"...";
+          $("#showInfo").append(showList.getDiv(obj.id,obj.id,content));
+        })
+
+        if(param.offset>data.count ){
+          $("#scroll").html("已经加载完毕");
+        }
+        param.offset = param.offset + param.limit;
       },
       complete:function(request,status){
 
       }});
 
+
+    $(document.body).infinite().on("infinite", function() {
+      if(param.loading) return;
+      param.loading = true;
+
+      $.ajax({
+        type: "post",
+        url: "${pageContext.request.contextPath}/feedback/listFeedback",
+        data: {"offset":param.offset,"limit":param.limit},
+        dataType: "json",
+        success: function(data){
+          param.loading = false;
+
+          $.each(data.list,function(i,obj){
+            var content = obj.content;
+            if(content.length > 10)
+              content = content.substring(0,10)+"...";
+            $("#showInfo").append(showList.getDiv(obj.id,obj.id,content));
+          })
+
+          if(param.offset>data.count ){
+            $("#scroll").html("已经加载完毕");
+          }
+
+          param.offset = param.offset + param.limit;
+        },
+        complete:function(request,status){
+
+        }});
+
+    });
+
   });
+
+ var param = {
+   "loading":false,
+   "offset":0,
+   "limit":10
+ }
+
+ var showList = {
+   getDiv: function (param, title, content) {
+     var html = "<a href='#'>"
+             + "<div class=\"weui_cells\">"
+             + "<div class=\"weui_cell\">"
+             + "<div class=\"weui_cell_bd weui_cell_primary\">"
+             + "<p>" + title + "</p>"
+             + "</div>"
+             + "<div class=\"weui_cell_ft\">"
+             + content
+             + "</div>"
+             + "</div>"
+             + "</div>"
+             + "</a>";
+
+     return html;
+   },
+   format:function(time, format){
+    var t = new Date(time);
+    var tf = function(i){return (i < 10 ? '0' : '') + i};
+     return format.replace(/yyyy|MM|dd|HH|mm|ss/g, function(a){
+       switch(a){
+         case 'yyyy':
+           return tf(t.getFullYear());
+           break;
+         case 'MM':
+           return tf(t.getMonth() + 1);
+           break;
+         case 'mm':
+           return tf(t.getMinutes());
+           break;
+         case 'dd':
+           return tf(t.getDate());
+           break;
+         case 'HH':
+           return tf(t.getHours());
+           break;
+         case 'ss':
+           return tf(t.getSeconds());
+           break;
+       }
+     });
+
+  }
+
+ }
+
 </script>
 </body>
 </html>
