@@ -1,6 +1,9 @@
 package com.sae.express.service.impl;
 
+import com.sae.express.dao.iface.PickUpModelMapper;
 import com.sae.express.dao.iface.SendInfoModelMapper;
+import com.sae.express.dao.model.PickUpModel;
+import com.sae.express.dao.model.PickUpModelExample;
 import com.sae.express.dao.model.SendInfoModel;
 import com.sae.express.dao.model.SendInfoModelExample;
 import com.sae.express.service.ExpressService;
@@ -20,6 +23,9 @@ public class ExpressServiceImpl implements ExpressService {
 
     @Autowired
     private SendInfoModelMapper sendInfoModelMapper;
+
+    @Autowired
+    private PickUpModelMapper pickUpModelMapper;
 
     public SendInfoModel addSend(SendInfoModel sendInfo) {
         sendInfo.setStatus(Integer.valueOf(0));
@@ -51,5 +57,9 @@ public class ExpressServiceImpl implements ExpressService {
 
     public List<SendInfoModel> getSendInfoModelPage(SendInfoModelExample example){
         return sendInfoModelMapper.selectByExample(example);
+    }
+
+    public List<PickUpModel> getPickUpModelPage(PickUpModelExample example){
+        return pickUpModelMapper.selectByExample(example);
     }
 }

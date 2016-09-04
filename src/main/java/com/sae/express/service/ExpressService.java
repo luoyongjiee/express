@@ -1,5 +1,7 @@
 package com.sae.express.service;
 
+import com.sae.express.dao.model.PickUpModel;
+import com.sae.express.dao.model.PickUpModelExample;
 import com.sae.express.dao.model.SendInfoModel;
 import com.sae.express.dao.model.SendInfoModelExample;
 
@@ -16,4 +18,6 @@ public interface ExpressService {
    List<SendInfoModel> getSendInfoModel(String searchInfo);
 
    List<SendInfoModel> getSendInfoModelPage(SendInfoModelExample example);
+
+   List<PickUpModel> getPickUpModelPage(PickUpModelExample example);
 }

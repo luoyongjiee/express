@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>寄件列表</title>
+    <title>收件列表</title>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -53,17 +53,16 @@
     <a href="javascript:" class="weui_search_cancel" id="search_cancel">取消</a>
 </div>
 <div id="list">
-<c:if test="${sendList != null&&sendList.size()>0}">
-    ${sendList.size()}
-    <c:forEach items="${sendList}" var="sendInfoModel">
-        <a href="${pageContext.request.contextPath}/getSendDetail?id=${sendInfoModel.id}">
+<c:if test="${receiptList != null&&receiptList.size()>0}">
+    <c:forEach items="${receiptList}" var="pickUpModel">
+        <a href="${pageContext.request.contextPath}/getSendDetail?id=${pickUpModel.id}">
         <div class="weui_cells">
             <div class="weui_cell">
                 <div class="weui_cell_bd weui_cell_primary">
-                    <p>单号:${sendInfoModel.id}</p>
+                    <p>单号:${pickUpModel.id}</p>
                 </div>
                 <div class="weui_cell_ft">
-                        寄：${sendInfoModel.senderPhone}-${sendInfoModel.senderName}
+                        寄：${pickUpModel.count}-${pickUpModel.express}
                 </div>
             </div>
         </div>
@@ -72,11 +71,10 @@
 </c:if>
 </div>
 <div class="weui-infinite-scroll">
-<c:if test="${sendList != null&&sendList.size()>0}">
-    <div class="infinite-preloader"></div>
-    <span class="load_info">正在加载</span>
-</c:if>
-<c:if test="${sendList == null || sendList.size()<=0}">
+    <c:if test="${receiptList != null&&receiptList.size()>0}">
+        <div class="infinite-preloader"></div>
+        <span class="load_info">正在加载</span>
+    </c:if><c:if test="${receiptList == null||receiptList.size()<=0}">
     <span class="load_info">没有数据</span>
 </c:if>
 </div>
@@ -98,7 +96,7 @@
         loading = true;
         $.ajax({
             type: "post",
-            url: "${pageContext.request.contextPath}/query/sendList",
+            url: "${pageContext.request.contextPath}/query/receiptList",
             data: {"offset":offset,"limit":10,"search":search},
             dataType: "json",
             success: function(data){
@@ -118,7 +116,7 @@
                             '<p>单号:'+data[i].id+'</p>'+
                             ' </div>'+
                             '<div class="weui_cell_ft">'+
-                            '寄'+data[i].senderPhone+'-'+data[i].senderName+
+                            '寄'+data[i].count+'-'+data[i].express+
                             ' </div>'+
                             '</div>'+
                             '</div>'+
