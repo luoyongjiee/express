@@ -32,6 +32,8 @@ public class CoreServiceImpl implements CoreService {
     @Autowired
     private WechatPlatformMapper wechatPlatformMapper;
 
+    private static final String[] KEYWORD = {"快","快件","接单","件","单","接","时间","时","间","快","快递","取件","取","间"};
+
     /**
      * 监听用户输入消息，并回复响应信息
      * @param request
@@ -41,7 +43,7 @@ public class CoreServiceImpl implements CoreService {
         String respMessage = null;
         try {
             // 默认返回的文本消息内容
-            String respContent = "请求处理异常，请稍候尝试！";
+            String respContent = "您好，我们的联系方式：微信:--,手机：--！";
             Map<String, String> requestMap = MessageUtil.parseXml(request);// xml请求解析
             String fromUserName = requestMap.get("FromUserName"); // 发送方帐号（open_id）
             String toUserName = requestMap.get("ToUserName"); // 公众帐号
@@ -60,7 +62,7 @@ public class CoreServiceImpl implements CoreService {
             // 文本消息
             if (msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_TEXT)) {
                 //respContent = "您发送的是文本消息！";
-                if (content.contains("时间")||content.contains("派件")||content.contains("快递")){
+                if (contain(content)){
                     respContent="周一至周日上午接单时间为：11:30—13:00\n" +
                             "下午接单时间为：16:40—18:00\n" +
                             "上午派件时间为：13:00后\n" +
@@ -72,22 +74,22 @@ public class CoreServiceImpl implements CoreService {
             }
             // 图片消息
             else if (msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_IMAGE)) {
-                respContent = "您发送的是图片消息！";
+               /* respContent = "您发送的是图片消息！";*/
                 return null;
             }
             // 地理位置消息
             else if (msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_LOCATION)) {
-                respContent = "您发送的是地理位置消息！";
+               /* respContent = "您发送的是地理位置消息！";*/
                 return null;
             }
             // 链接消息
             else if (msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_LINK)) {
-                respContent = "您发送的是链接消息！";
+               /* respContent = "您发送的是链接消息！";*/
                 return null;
             }
             // 音频消息
             else if (msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_VOICE)) {
-                respContent = "您发送的是音频消息！";
+               /* respContent = "您发送的是音频消息！";*/
                 return null;
             }
             // 事件推送
@@ -150,5 +152,12 @@ public class CoreServiceImpl implements CoreService {
         }
 
         return respMessage;
+    }
+
+    private boolean contain(String content){
+        for(String word:KEYWORD){
+            content.contains(word);
+        }
+        return false;
     }
 }

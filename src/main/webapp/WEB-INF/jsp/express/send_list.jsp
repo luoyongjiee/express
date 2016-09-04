@@ -90,8 +90,7 @@
 </script>
 <script>
     var loading = false;
-    var offset = 11;
-    var page = 2;
+    var offset = 10;
     var search= $("#searchInput").val();
     $(document.body).infinite().on("infinite", function() {
         if(loading) return;
@@ -102,12 +101,11 @@
             data: {"offset":offset,"limit":10,"search":search},
             dataType: "json",
             success: function(data){
-                offset = page * 10 +1;
-                page = page + 1;
+                offset = offset+10;
                 if(data.length<=0){
                     loading = false;
                     $('.infinite-preloader').hide();
-                    $('.load_info').html("已加载全部")
+                    $('.load_info').html("已加载全部");
                     return;
                 }
                 for(var i = 0; i < data.length; i++){
@@ -127,7 +125,7 @@
                 loading = false;
             },
             complete:function(request,status){
-                $.hideLoading();
+
             }});
     });
 </script>

@@ -59,7 +59,7 @@ public class WeChatController {
      * @param response
      * @throws IOException
      */
-    @RequestMapping(value = "wechat/accessWeChat",method = RequestMethod.POST)
+    @RequestMapping(value = "wechat",method = RequestMethod.POST)
     public void accessWeChatPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         // 将请求、响应的编码均设置为UTF-8（防止中文乱码）
@@ -78,7 +78,7 @@ public class WeChatController {
 
 
     @ResponseBody
-    @RequestMapping(value="wechat")
+    @RequestMapping(value="wechat",method = RequestMethod.GET)
     public Object wechat(String signature,String timestamp,String nonce,String echostr){
 
         return "wechat";

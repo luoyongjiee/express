@@ -56,6 +56,7 @@ public class ExpressServiceImpl implements ExpressService {
     }
 
     public List<SendInfoModel> getSendInfoModelPage(SendInfoModelExample example){
+        example.setOrderByClause("create_time desc");
         return sendInfoModelMapper.selectByExample(example);
     }
 
