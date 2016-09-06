@@ -36,7 +36,7 @@
 }
 </style>
 <body ontouchstart>
-
+<%--
 <div class="weui_search_bar" id="search_bar">
 
     <form class="weui_search_outer" action="${pageContext.request.contextPath}/query/sendList" method="get">
@@ -51,10 +51,10 @@
         </label>
     </form>
     <a href="javascript:" class="weui_search_cancel" id="search_cancel">取消</a>
-</div>
+</div>--%>
 <div id="list">
 <c:if test="${sendList != null&&sendList.size()>0}">
-    ${sendList.size()}
+   <%-- ${sendList.size()}--%>
     <c:forEach items="${sendList}" var="sendInfoModel">
         <a href="${pageContext.request.contextPath}/getSendDetail?id=${sendInfoModel.id}">
         <div class="weui_cells">

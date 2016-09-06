@@ -144,7 +144,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.sae.express.dao.model.SendInfoModel" >
+  <insert id="insert" parameterType="com.sae.express.dao.model.SendInfoModel" useGeneratedKeys="true" keyProperty="id">
     insert into send_info (id, user_id, sender_name, 
       sender_phone, sender_room_num, sender_builder_num, 
       receiver_name, receiver_phone, receiver_address, 
@@ -156,7 +156,7 @@
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.sae.express.dao.model.SendInfoModel" >
+  <insert id="insertSelective" parameterType="com.sae.express.dao.model.SendInfoModel" useGeneratedKeys="true" keyProperty="id">
     insert into send_info
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

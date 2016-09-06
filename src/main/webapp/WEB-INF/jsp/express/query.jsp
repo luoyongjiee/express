@@ -20,9 +20,10 @@
 
 <body ontouchstart>
 
-<div class="weui_search_bar" id="search_bar">
+<div class="weui_search_bar"  id="search_bar">
 
-    <form class="weui_search_outer" action="${pageContext.request.contextPath}/getSendInfoModel" method="post">
+    <form class="weui_search_outer"  action="${pageContext.request.contextPath}/getSendInfoModel" method="post">
+
         <div class="weui_search_inner">
             <i class="weui_icon_search"></i>
             <input type="search" class="weui_search_input" id="searchInput" name="searchInput" placeholder="单号 收件人姓名 寄件人名字" required/>
@@ -32,8 +33,9 @@
             <i class="weui_icon_search"></i>
             <span>单号 收件人姓名 寄件人名字</span>
         </label>
-    </form>
-    <a href="javascript:" class="weui_search_cancel" id="search_cancel">取消</a>
+
+        <a href="javascript:" class="weui_search_cancel" id="search_cancel">取消</a>
+ </form>
 </div>
 
 <c:if test="${sendInfoModelList != null}">

@@ -45,9 +45,8 @@
         <property name="minIdle" value="5"></property>
         &lt;!&ndash; 获取连接最大等待时间 &ndash;&gt;
         <property name="maxWait" value="60000"></property>
-    </bean>-->
-
-
+    </bean>
+-->
 
 
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">

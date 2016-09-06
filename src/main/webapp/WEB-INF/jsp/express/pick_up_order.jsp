@@ -83,10 +83,15 @@
   <div class="weui_cell ">
     <div class="weui_cell_hd"><label class="weui_label">栋数</label></div>
     <div class="weui_cell_bd weui_cell_primary">
-      <select class="builder_num"  >
-        <option selected="" value="0">选择</option>
-        <option value="1">1栋</option>
-        <option value="2">2栋</option>
+      <select class="builder_num weui_select"  >
+          <option selected="" value="0">选择</option>
+          <option value="1">6栋</option>
+          <option value="2">7栋</option>
+          <option value="1">8栋</option>
+          <option value="2">9栋</option>
+          <option value="1">10栋</option>
+          <option value="2">11栋</option>
+          <option value="2">12栋</option>
       </select>
     </div>
   </div>
@@ -106,10 +111,19 @@
         <li class="clearfix ">
           <div>编号：<input type="text" class="code" name="" placeholder="请输入快递号"></div>
           <div>快递：<select class="" name="express" class="express" >
-                            <option selected="" value="0">选择</option>
-                            <option value="1">快递一</option>
-                            <option value="2">快递二</option>
-                          </select><span class="remove" datatype="1" onclick="removefun(1)"></span>
+              <option selected="" value="0">选择</option>
+              <option value="1">中通快递</option>
+              <option value="2">圆通快递</option>
+              <option value="3">申通快递</option>
+              <option value="4">韵达快递</option>
+              <option value="5">顺丰快递</option>
+              <option value="6">邮政快递</option>
+              <option value="7">优速快递</option>
+              <option value="8">天猫</option>
+              <option value="9">京东</option>
+              <option value="10">百世汇通</option>
+              <option value="11">国通快递</option>
+          </select><span class="remove" datatype="1" onclick="removefun(1)"></span>
 
           </div>
 

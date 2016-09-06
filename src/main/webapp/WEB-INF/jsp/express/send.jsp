@@ -166,7 +166,7 @@
                 data: obj,
                 dataType: "json",
                 success: function(data){
-                    window.location.href = "${pageContext.request.contextPath}/addSendMsg?id="+data;
+                    window.location.href = "${pageContext.request.contextPath}/addSendMsg?id="+data.id;
                 },
                 complete:function(request,status){
                     $.hideLoading();
