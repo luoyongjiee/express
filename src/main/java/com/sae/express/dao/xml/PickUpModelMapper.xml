@@ -5,11 +5,10 @@
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="express" property="express" jdbcType="VARCHAR" />
     <result column="count" property="count" jdbcType="INTEGER" />
-    <result column="code" property="code" jdbcType="VARCHAR" />
-    <result column="pick_up_time" property="pickUpTime" jdbcType="TIMESTAMP" />
+    <result column="express_code" property="code" jdbcType="VARCHAR" />
+    <result column="express_date" property="pickUpTime" jdbcType="TIMESTAMP" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
-    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
-    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="pick_up_id" property="userId" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -70,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, express, count, code, pick_up_time, create_time, update_time, user_id
+    id, express, count, express_code, express_date, create_time, pick_up_id
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.sae.express.dao.model.PickUpModelExample" >
     select
@@ -78,7 +77,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from pick_up
+    from pick_up_info
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -97,29 +96,28 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from pick_up
+    from pick_up_info
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from pick_up
+    delete from pick_up_info
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.sae.express.dao.model.PickUpModelExample" >
-    delete from pick_up
+    delete from pick_up_info
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.sae.express.dao.model.PickUpModel" >
-    insert into pick_up (id, express, count, 
-      code, pick_up_time, create_time, 
-      update_time, user_id)
+    insert into pick_up_info (id, express, count,
+      express_code, express_date, create_time, pick_up_id)
     values (#{id,jdbcType=INTEGER}, #{express,jdbcType=VARCHAR}, #{count,jdbcType=INTEGER}, 
       #{code,jdbcType=VARCHAR}, #{pickUpTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, 
       #{updateTime,jdbcType=TIMESTAMP}, #{userId,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.sae.express.dao.model.PickUpModel" >
-    insert into pick_up
+    insert into pick_up_info
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -131,19 +129,17 @@
         count,
       </if>
       <if test="code != null" >
-        code,
+        express_code,
       </if>
       <if test="pickUpTime != null" >
-        pick_up_time,
+        express_date,
       </if>
       <if test="createTime != null" >
         create_time,
       </if>
-      <if test="updateTime != null" >
-        update_time,
-      </if>
+
       <if test="userId != null" >
-        user_id,
+        pick_up_id,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -174,13 +170,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.sae.express.dao.model.PickUpModelExample" resultType="java.lang.Integer" >
-    select count(*) from pick_up
+    select count(*) from pick_up_info
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update pick_up
+    update pick_up_info
     <set >
       <if test="record.id != null" >
         id = #{record.id,jdbcType=INTEGER},
@@ -192,19 +188,17 @@
         count = #{record.count,jdbcType=INTEGER},
       </if>
       <if test="record.code != null" >
-        code = #{record.code,jdbcType=VARCHAR},
+        express_code = #{record.code,jdbcType=VARCHAR},
       </if>
       <if test="record.pickUpTime != null" >
-        pick_up_time = #{record.pickUpTime,jdbcType=TIMESTAMP},
+        express_date = #{record.pickUpTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.createTime != null" >
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.updateTime != null" >
-        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
-      </if>
+
       <if test="record.userId != null" >
-        user_id = #{record.userId,jdbcType=VARCHAR},
+        pick_up_id = #{record.userId,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -212,21 +206,20 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update pick_up
+    update pick_up_info
     set id = #{record.id,jdbcType=INTEGER},
       express = #{record.express,jdbcType=VARCHAR},
       count = #{record.count,jdbcType=INTEGER},
-      code = #{record.code,jdbcType=VARCHAR},
-      pick_up_time = #{record.pickUpTime,jdbcType=TIMESTAMP},
+    express_code = #{record.code,jdbcType=VARCHAR},
+    express_date = #{record.pickUpTime,jdbcType=TIMESTAMP},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
-      user_id = #{record.userId,jdbcType=VARCHAR}
+      pick_up_id = #{record.userId,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.sae.express.dao.model.PickUpModel" >
-    update pick_up
+    update pick_up_info
     <set >
       <if test="express != null" >
         express = #{express,jdbcType=VARCHAR},
@@ -235,32 +228,29 @@
         count = #{count,jdbcType=INTEGER},
       </if>
       <if test="code != null" >
-        code = #{code,jdbcType=VARCHAR},
+        express_code = #{code,jdbcType=VARCHAR},
       </if>
       <if test="pickUpTime != null" >
-        pick_up_time = #{pickUpTime,jdbcType=TIMESTAMP},
+        express_code = #{pickUpTime,jdbcType=TIMESTAMP},
       </if>
       <if test="createTime != null" >
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="updateTime != null" >
-        update_time = #{updateTime,jdbcType=TIMESTAMP},
-      </if>
+
       <if test="userId != null" >
-        user_id = #{userId,jdbcType=VARCHAR},
+        pick_up_id = #{userId,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.sae.express.dao.model.PickUpModel" >
-    update pick_up
+    update pick_up_info
     set express = #{express,jdbcType=VARCHAR},
       count = #{count,jdbcType=INTEGER},
-      code = #{code,jdbcType=VARCHAR},
-      pick_up_time = #{pickUpTime,jdbcType=TIMESTAMP},
+      express_code = #{code,jdbcType=VARCHAR},
+      express_code = #{pickUpTime,jdbcType=TIMESTAMP},
       create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP},
-      user_id = #{userId,jdbcType=VARCHAR}
+      pick_up_id = #{userId,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -1,9 +1,6 @@
 package com.sae.express.service;
 
-import com.sae.express.dao.model.PickUpModel;
-import com.sae.express.dao.model.PickUpModelExample;
-import com.sae.express.dao.model.SendInfoModel;
-import com.sae.express.dao.model.SendInfoModelExample;
+import com.sae.express.dao.model.*;
 
 import java.util.List;
 
@@ -19,6 +16,8 @@ public interface ExpressService {
 
    List<SendInfoModel> getSendInfoModelPage(SendInfoModelExample example);
 
-   PickUpModel insertSend(PickUpModel pickUpModel);
+   PickUpModel insertPickUpModel(PickUpModel pickUpModel);
    List<PickUpModel> getPickUpModelPage(PickUpModelExample example);
+
+   PickUp insertPickUp(PickUp pickUp);
 }

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sae.express.dao.iface.PickUpMapper" >
+  <resultMap id="BaseResultMap" type="com.sae.express.dao.model.PickUp" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="INTEGER" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="building_num" property="buildingNum" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="createTime" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="building_code" property="buildingCode" jdbcType="VARCHAR" />
+  </resultMap>
+<!--插入记录-->
+  <insert id="insertSelective" parameterType="com.sae.express.dao.model.PickUp" >
+    insert into pick_up
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="buildingNum != null" >
+        building_num,
+      </if>
+      <if test="buildingCode != null" >
+        building_code,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingNum != null" >
+        #{buildingNum,jdbcType=INTEGER},
+      </if>
+      <if test="buildingCode != null" >
+        #{buildingCode,jdbcType=VARCHAR},
+      </if>
+
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,11 +1,9 @@
 package com.sae.express.service.impl;
 
+import com.sae.express.dao.iface.PickUpMapper;
 import com.sae.express.dao.iface.PickUpModelMapper;
 import com.sae.express.dao.iface.SendInfoModelMapper;
-import com.sae.express.dao.model.PickUpModel;
-import com.sae.express.dao.model.PickUpModelExample;
-import com.sae.express.dao.model.SendInfoModel;
-import com.sae.express.dao.model.SendInfoModelExample;
+import com.sae.express.dao.model.*;
 import com.sae.express.service.ExpressService;
 import com.sae.express.util.tool.StringTools;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +24,8 @@ public class ExpressServiceImpl implements ExpressService {
 
     @Autowired
     private PickUpModelMapper pickUpModelMapper;
+    @Autowired
+    private PickUpMapper pickUpMapper;
 
     public SendInfoModel addSend(SendInfoModel sendInfo) {
         sendInfo.setStatus(Integer.valueOf(0));
@@ -63,10 +63,16 @@ public class ExpressServiceImpl implements ExpressService {
     public List<PickUpModel> getPickUpModelPage(PickUpModelExample example){
         return pickUpModelMapper.selectByExample(example);
     }
-    public PickUpModel insertSend(PickUpModel pickUpModel) {
+    public PickUpModel insertPickUpModel(PickUpModel pickUpModel) {
         pickUpModel.setCreateTime(new Date());
         pickUpModel.setUpdateTime(new Date());
         pickUpModelMapper.insertSelective(pickUpModel);
         return pickUpModel;
     }
+    public PickUp insertPickUp(PickUp pickUp) {
+        pickUp.setCreateTime(new Date());
+        pickUpMapper.insertSelective(pickUp);
+        return pickUp;
+    }
+
 }

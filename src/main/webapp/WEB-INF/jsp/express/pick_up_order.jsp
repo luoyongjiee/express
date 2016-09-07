@@ -173,9 +173,9 @@ var classnum=1;
 
             var pickUserJson= {
                 userName : user_name,
-                userPhone : user_phone,
+                phone : user_phone,
                 builderNum : builderNum,
-                roomNum : roomNum
+                builderCode : roomNum
             };
             $(".pick_up_model_i").each(function() {
                 //var id = $(this).next("input").val();

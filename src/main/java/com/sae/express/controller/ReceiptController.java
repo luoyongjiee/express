@@ -1,6 +1,6 @@
 package com.sae.express.controller;
 
-import com.sae.express.dao.model.CustomInfo;
+import com.sae.express.dao.model.PickUp;
 import com.sae.express.dao.model.PickUpModel;
 import com.sae.express.dao.model.PickUpModelExample;
 import com.sae.express.service.ExpressService;
@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -48,13 +49,16 @@ public class ReceiptController {
         JSONObject jsonObject = JSONObject.fromObject(pickUserJson);
 
         List<PickUpModel>  pickUpModellist = (List<PickUpModel>)JSONArray.toCollection(jsonArray, PickUpModel.class);
-        CustomInfo customInfo = (CustomInfo)JSONObject.toBean(jsonObject, CustomInfo.class);
+        PickUp pickUp = (PickUp)JSONObject.toBean(jsonObject, PickUp.class);
+
+        //录入用户信息
+        expressService.insertPickUp(pickUp);
 
         PickUpModel pickUpModel;
         for (int i=0;i<pickUpModellist.size();i++){
             pickUpModel=pickUpModellist.get(i);
-            if (pickUpModel!=null)
-                expressService.insertSend(pickUpModel);
+            if (pickUpModel!=null)//录入用户收件单信息
+                expressService.insertPickUpModel(pickUpModel);
        }
 
         return "/express/pick_up_order";
