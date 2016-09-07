@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : mysql
-Source Server Version : 50172
-Source Host           : localhost:3306
-Source Database       : express
+Source Server         : 192.168.9.224
+Source Server Version : 50622
+Source Host           : 192.168.9.224:3306
+Source Database       : zipkin
 
 Target Server Type    : MYSQL
-Target Server Version : 50172
+Target Server Version : 50622
 File Encoding         : 65001
 
-Date: 2016-09-03 14:30:48
+Date: 2016-09-07 20:11:47
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -21,12 +21,11 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `pick_up`;
 CREATE TABLE `pick_up` (
   `id` int(11) NOT NULL,
-  `express` varchar(2) DEFAULT NULL COMMENT '快递',
-  `count` int(11) DEFAULT NULL COMMENT '数目',
-  `code` varchar(100) DEFAULT NULL COMMENT '编号',
-  `pick_up_time` datetime DEFAULT NULL,
+  `user_name` varchar(50) DEFAULT NULL COMMENT '用户名称',
+  `phone` varchar(20) DEFAULT NULL COMMENT '手机',
+  `building_num` varchar(2) DEFAULT NULL COMMENT '宿舍栋数',
+  `building_code` varchar(10) DEFAULT NULL COMMENT '宿舍号',
   `create_time` datetime DEFAULT NULL,
-  `update_time` datetime DEFAULT NULL,
   `user_id` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

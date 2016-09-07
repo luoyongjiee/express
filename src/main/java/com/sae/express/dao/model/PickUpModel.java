@@ -5,17 +5,15 @@ import java.util.Date;
 public class PickUpModel {
     private Integer id;
 
-    private String express;
+    private String userName;
 
-    private Integer count;
+    private String phone;
 
-    private String code;
+    private String buildingNum;
 
-    private Date pickUpTime;
+    private String buildingCode;
 
     private Date createTime;
-
-    private Date updateTime;
 
     private String userId;
 
@@ -27,36 +25,36 @@ public class PickUpModel {
         this.id = id;
     }
 
-    public String getExpress() {
-        return express;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setExpress(String express) {
-        this.express = express == null ? null : express.trim();
+    public void setUserName(String userName) {
+        this.userName = userName == null ? null : userName.trim();
     }
 
-    public Integer getCount() {
-        return count;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setCount(Integer count) {
-        this.count = count;
+    public void setPhone(String phone) {
+        this.phone = phone == null ? null : phone.trim();
     }
 
-    public String getCode() {
-        return code;
+    public String getBuildingNum() {
+        return buildingNum;
     }
 
-    public void setCode(String code) {
-        this.code = code == null ? null : code.trim();
+    public void setBuildingNum(String buildingNum) {
+        this.buildingNum = buildingNum == null ? null : buildingNum.trim();
     }
 
-    public Date getPickUpTime() {
-        return pickUpTime;
+    public String getBuildingCode() {
+        return buildingCode;
     }
 
-    public void setPickUpTime(Date pickUpTime) {
-        this.pickUpTime = pickUpTime;
+    public void setBuildingCode(String buildingCode) {
+        this.buildingCode = buildingCode == null ? null : buildingCode.trim();
     }
 
     public Date getCreateTime() {
@@ -65,14 +63,6 @@ public class PickUpModel {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
     }
 
     public String getUserId() {
