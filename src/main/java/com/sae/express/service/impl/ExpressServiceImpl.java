@@ -1,5 +1,6 @@
 package com.sae.express.service.impl;
 
+import com.sae.express.dao.iface.PickUpInfoModelMapper;
 import com.sae.express.dao.iface.PickUpMapper;
 import com.sae.express.dao.iface.PickUpModelMapper;
 import com.sae.express.dao.iface.SendInfoModelMapper;
@@ -24,6 +25,10 @@ public class ExpressServiceImpl implements ExpressService {
 
     @Autowired
     private PickUpModelMapper pickUpModelMapper;
+
+    @Autowired
+    private PickUpInfoModelMapper pickUpInfoModelMapper;
+
     @Autowired
     private PickUpMapper pickUpMapper;
 
@@ -65,10 +70,17 @@ public class ExpressServiceImpl implements ExpressService {
     }
     public PickUpModel insertPickUpModel(PickUpModel pickUpModel) {
         pickUpModel.setCreateTime(new Date());
-        pickUpModel.setUpdateTime(new Date());
         pickUpModelMapper.insertSelective(pickUpModel);
         return pickUpModel;
     }
+
+    public PickUpInfoModel insertPickUpInfoModel(PickUpInfoModel pickUpInfoModel){
+        pickUpInfoModel.setCreateTime(new Date());
+        pickUpInfoModelMapper.insertSelective(pickUpInfoModel);
+        return pickUpInfoModel;
+    }
+
+
     public PickUp insertPickUp(PickUp pickUp) {
         pickUp.setCreateTime(new Date());
         pickUpMapper.insertSelective(pickUp);

@@ -1,6 +1,7 @@
 package com.sae.express.controller;
 
 import com.sae.express.dao.model.PickUp;
+import com.sae.express.dao.model.PickUpInfoModel;
 import com.sae.express.dao.model.PickUpModel;
 import com.sae.express.dao.model.PickUpModelExample;
 import com.sae.express.service.ExpressService;
@@ -48,17 +49,20 @@ public class ReceiptController {
         JSONArray jsonArray = JSONArray.fromObject(pickUpModelListJson);
         JSONObject jsonObject = JSONObject.fromObject(pickUserJson);
 
-        List<PickUpModel>  pickUpModellist = (List<PickUpModel>)JSONArray.toCollection(jsonArray, PickUpModel.class);
+        List<PickUpInfoModel>  pickUpModellist = (List<PickUpInfoModel>)JSONArray.toCollection(jsonArray, PickUpInfoModel.class);
         PickUp pickUp = (PickUp)JSONObject.toBean(jsonObject, PickUp.class);
 
         //录入用户信息
-        expressService.insertPickUp(pickUp);
+        PickUp pickUp2=expressService.insertPickUp(pickUp);
 
-        PickUpModel pickUpModel;
+        PickUpInfoModel pickUpInfoModel;
         for (int i=0;i<pickUpModellist.size();i++){
-            pickUpModel=pickUpModellist.get(i);
-            if (pickUpModel!=null)//录入用户收件单信息
-                expressService.insertPickUpModel(pickUpModel);
+            pickUpInfoModel=pickUpModellist.get(i);
+            if (pickUpInfoModel!=null){
+                //录入用户收件单信息
+                pickUpInfoModel.setPickUpId(pickUp2.getId());
+                expressService.insertPickUpInfoModel(pickUpInfoModel);
+            }
        }
 
         return "/express/pick_up_order";

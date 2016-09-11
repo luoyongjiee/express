@@ -7,7 +7,7 @@ import java.util.Date;
  * @Date ： 2016/9/4. 19:21
  */
 public class PickUp {
-    private String id;
+    private Integer id;
     //private String openId;//如果没有微信授权则没用
     private String userName ;
     private String phone ;
@@ -16,11 +16,11 @@ public class PickUp {
     private String userId ;
     private Date createTime;
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

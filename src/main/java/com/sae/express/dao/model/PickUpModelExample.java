@@ -18,7 +18,11 @@ public class PickUpModelExample {
     public PickUpModelExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
-
+    public PickUpModelExample(Integer limit,Integer offset) {
+        oredCriteria = new ArrayList<Criteria>();
+        this.limit=limit;
+        this.offset=offset;
+    }
     public void setOrderByClause(String orderByClause) {
         this.orderByClause = orderByClause;
     }

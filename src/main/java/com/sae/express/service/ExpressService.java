@@ -17,6 +17,9 @@ public interface ExpressService {
    List<SendInfoModel> getSendInfoModelPage(SendInfoModelExample example);
 
    PickUpModel insertPickUpModel(PickUpModel pickUpModel);
+
+   PickUpInfoModel insertPickUpInfoModel(PickUpInfoModel pickUpInfoModel);
+
    List<PickUpModel> getPickUpModelPage(PickUpModelExample example);
 
    PickUp insertPickUp(PickUp pickUp);

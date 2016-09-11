@@ -62,7 +62,7 @@
                     <p>单号:${pickUpModel.id}</p>
                 </div>
                 <div class="weui_cell_ft">
-                        寄：${pickUpModel.count}-${pickUpModel.express}
+                        寄：${pickUpModel.phone}-${pickUpModel.userName}
                 </div>
             </div>
         </div>

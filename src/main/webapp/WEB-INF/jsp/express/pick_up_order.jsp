@@ -174,8 +174,8 @@ var classnum=1;
             var pickUserJson= {
                 userName : user_name,
                 phone : user_phone,
-                builderNum : builderNum,
-                builderCode : roomNum
+                buildingNum : builderNum,
+                buildingCode : roomNum
             };
             $(".pick_up_model_i").each(function() {
                 //var id = $(this).next("input").val();
@@ -188,8 +188,8 @@ var classnum=1;
                 pickUpModel = {
                     count : count,
                     express : express,
-                    code : code,
-                    pickUpTime : pickUpTime
+                    expressCode : code,
+                    expressDate : pickUpTime
                 };
                 pickUpModelOrder.push(pickUpModel);
             });
