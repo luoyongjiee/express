@@ -186,6 +186,16 @@ var classnum=1;
                 var express = $(this).find('.express').val();
                 var code = $(this).find('.code').val();
                 var pickUpTime = $(this).find('.pickUpTime').val();
+                if(count==''||typeof(count)=='undefined'){
+                    $.toptip("件数不能为空！");
+                } else if(express==''||typeof(express)=='undefined'){
+                    $.toptip("快递公司不能为空！");
+                } else if(code==''||typeof(code)=='undefined'){
+                    $.toptip("编号不能为空！");
+                } else if(pickUpTime==''||typeof(pickUpTime)=='undefined'){
+                    $.toptip("日期不能为空！");
+                }
+
                 //var userId = $("#no_" + id).val();
                 //alert(count);
                 pickUpModel = {
@@ -199,15 +209,17 @@ var classnum=1;
 
           var pickUpModelListJson=JSON.stringify(pickUpModelOrder);
           $.ajax({
-            type: "post",
-            url: "${pageContext.request.contextPath}/insert/pickUpOrder",
-            data: {"pickUpModelListJson":pickUpModelListJson,"pickUserJson":JSON.stringify(pickUserJson)},
-            dataType: "json",
-            success: function(data){
-              $.toptip('提交成功', 'success');
-              //loading = false;
-            },
+             type: "post",
+             url: "${pageContext.request.contextPath}/insert/pickUpOrder",
+             data: {"pickUpModelListJson":pickUpModelListJson,"pickUserJson":JSON.stringify(pickUserJson)},
+             dataType: "json",
+              success: function(data){
+                  $.toptip('提交成功', 'success');
+                  window.location.href="${pageContext.request.contextPath}/query/receiptList"
+              },
               complete:function(request,status){
+                  $.toptip('提交成功', 'success');
+                  window.location.href="${pageContext.request.contextPath}/query/receiptList"
               }
           });
       }
@@ -229,7 +241,7 @@ var classnum=1;
                 '       </li>'+
                '       <li class="clearfix">'+
                 '       <div>件数：<input type="number" class="count"></div>'+
-                ' <div>时间：<input type="text" class="pickUpTime"  style="width: 130px" ></div>'+
+                ' <div>时间：<input type="text" class="pickUpTime"  style="width: 130px" placeholder="输入收件时间"></div>'+
                 ' </li>'+
                '</ul>'+
       ' <p class="tt" style="border-top: 1px solid #d9d9d9;"></p>'+
