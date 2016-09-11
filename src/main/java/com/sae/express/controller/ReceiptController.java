@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -61,11 +63,15 @@ public class ReceiptController {
             if (pickUpInfoModel!=null){
                 //录入用户收件单信息
                 pickUpInfoModel.setPickUpId(pickUp2.getId());
+                try {
+                    pickUpInfoModel.setExpressDate(new SimpleDateFormat("yyyy-MM-dd HH-mm").parse(pickUpInfoModel.getExpressDateStr()));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
                 expressService.insertPickUpInfoModel(pickUpInfoModel);
             }
        }
-
-        return "/express/pick_up_order";
+        return "success";
     }
 
     /**

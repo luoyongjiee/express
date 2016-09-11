@@ -130,7 +130,10 @@
         </li>
         <li class="clearfix">
           <div>件数：<input type="number" class="count" placeholder="请输入件数"></div>
-          <div>时间：<input type="datetime-local" class="pickUpTime" placeholder="请选择时间"></div>
+          <div>时间：
+              <input type="text" class="pickUpTime"  style="width: 130px" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH-mm'});">
+             <%-- <input type="datetime-local" class="pickUpTime" placeholder="请选择时间">--%>
+          </div>
         </li>
       </ul>
       <p class="tt" style="border-top: 1px solid #d9d9d9;"></p>
@@ -189,7 +192,7 @@ var classnum=1;
                     count : count,
                     express : express,
                     expressCode : code,
-                    expressDate : pickUpTime
+                    expressDateStr : pickUpTime
                 };
                 pickUpModelOrder.push(pickUpModel);
             });
@@ -202,11 +205,14 @@ var classnum=1;
             dataType: "json",
             success: function(data){
               $.toptip('提交成功', 'success');
-              loading = false;
+              //loading = false;
             },
+              complete:function(request,status){
+              }
           });
       }
     });
+
 
     $('.add').click(function(){
               //=Number($(this).attr('datatype'));
@@ -223,14 +229,18 @@ var classnum=1;
                 '       </li>'+
                '       <li class="clearfix">'+
                 '       <div>件数：<input type="number" class="count"></div>'+
-                ' <div>时间：<input type="datetime-local" class="pickUpTime" ></div>'+
+                ' <div>时间：<input type="text" class="pickUpTime"  style="width: 130px" ></div>'+
                 ' </li>'+
                '</ul>'+
       ' <p class="tt" style="border-top: 1px solid #d9d9d9;"></p>'+
       ' </div>');
+
       $('.add').attr("datatype",(classnum+1));
       classnum=classnum+1;
       $('.clearfix').trigger("create");
+        $('.pickUpTime').click(function(){
+            WdatePicker({dateFmt:'yyyy-MM-dd HH-mm'});
+        });
     });
 
 
@@ -244,6 +254,7 @@ function removefun(classnum){
   }
 }
 </script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/lib/My97DatePicker/WdatePicker.js"></script>
 
 <script type="text/javascript">
 

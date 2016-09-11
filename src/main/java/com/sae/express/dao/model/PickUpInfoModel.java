@@ -14,6 +14,7 @@ public class PickUpInfoModel {
     private Integer count;
 
     private Date expressDate;
+    private String expressDateStr;
 
     private Date createTime;
 
@@ -71,5 +72,13 @@ public class PickUpInfoModel {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public String getExpressDateStr() {
+        return expressDateStr;
+    }
+
+    public void setExpressDateStr(String expressDateStr) {
+        this.expressDateStr = expressDateStr;
     }
 }
