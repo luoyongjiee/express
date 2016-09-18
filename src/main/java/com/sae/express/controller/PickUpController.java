@@ -61,6 +61,7 @@ public class PickUpController {
 
         model.addAttribute("pickUpInfoList",pickUpModellist);
         model.addAttribute("pickUp",pickUp);
+        model.addAttribute("showMsg",true);
 
         return "pick_up_success";
     }

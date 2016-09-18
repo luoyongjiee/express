@@ -59,6 +59,14 @@
 </head>
 
 <body ontouchstart>
+<c:if test="${showMsg}">
+  <div class="weui_msg">
+    <div class="weui_icon_area"><i class="weui_icon_success weui_icon_msg"></i></div>
+    <div class="weui_text_area">
+      <h2 class="weui_msg_title">添加取订单成功</h2>
+    </div>
+  </div>
+</c:if>
 
 
 <header class='demos-header'>
@@ -67,89 +75,102 @@
 
 <div class="weui_cells weui_cells_form">
   <div class="weui_cell">
+    <div class="weui_cell_hd"><label class="weui_label">订单号</label></div>
+    <div class="weui_cell_bd weui_cell_primary">
+      <input class="weui_input id" type="text"  placeholder="请输入订单号" value="${pickUp.id}">
+    </div>
+  </div>
+
+  <div class="weui_cell">
     <div class="weui_cell_hd"><label class="weui_label">姓名</label></div>
     <div class="weui_cell_bd weui_cell_primary">
-      <input class="weui_input user_name" type="text"  placeholder="请输入姓名">
+      <input class="weui_input user_name" type="text"  placeholder="请输入姓名" value="${pickUp.userName}">
     </div>
   </div>
 
   <div class="weui_cell">
     <div class="weui_cell_hd"><label class="weui_label">电话</label></div>
     <div class="weui_cell_bd weui_cell_primary">
-      <input class="weui_input user_phone" type="text" placeholder="请输入电话">
+      <input class="weui_input user_phone" type="text" placeholder="请输入电话" value="${pickUp.phone}">
     </div>
   </div>
 
   <div class="weui_cell ">
     <div class="weui_cell_hd"><label class="weui_label">栋数</label></div>
     <div class="weui_cell_bd weui_cell_primary">
-      <select class="builder_num weui_select"  >
-        <option selected="" value="0">选择</option>
-        <option value="1">6栋</option>
-        <option value="2">7栋</option>
-        <option value="1">8栋</option>
-        <option value="2">9栋</option>
-        <option value="1">10栋</option>
-        <option value="2">11栋</option>
-        <option value="2">12栋</option>
-      </select>
+      <input class="weui_input buildingNum" type="text" placeholder="请输入栋数" value="${pickUp.buildingNum}">
     </div>
   </div>
 
   <div class="weui_cell">
     <div class="weui_cell_hd"><label class="weui_label">宿舍号</label></div>
     <div class="weui_cell_bd weui_cell_primary">
-      <input class="weui_input room_num" type="number" placeholder="宿舍号">
+      <input class="weui_input room_num" type="number" placeholder="宿舍号" value="${pickUp.buildingCode}">
     </div>
   </div>
 
-  <div class="box" style="padding: 0 5px;">
-    <div class="clearfix basic">
-      <p class="tt" style="border-top: 15px solid #d9d9d9;">收件信息</p>
-      <div class="pickup div1">
-        <ul class="toplist pick_up_model_i">
-          <li class="clearfix ">
-            <div>编号：<input type="text" class="code" name="" placeholder="请输入快递号"></div>
-            <div>快递：<select  name="express" class="express" >
-              <option selected="" value="0">选择</option>
-              <option value="1">中通快递</option>
-              <option value="2">圆通快递</option>
-              <option value="3">申通快递</option>
-              <option value="4">韵达快递</option>
-              <option value="5">顺丰快递</option>
-              <option value="6">邮政快递</option>
-              <option value="7">优速快递</option>
-              <option value="8">天猫</option>
-              <option value="9">京东</option>
-              <option value="10">百世汇通</option>
-              <option value="11">国通快递</option>
-            </select><span class="remove" datatype="1" onclick="removefun(1)"></span>
-
-            </div>
-
-          </li>
-          <li class="clearfix">
-            <div>件数：<input type="number" class="count" placeholder="请输入件数"></div>
-            <div>时间：
-              <input type="text" class="pickUpTime"  style="width: 130px" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH-mm'});">
-              <%-- <input type="datetime-local" class="pickUpTime" placeholder="请选择时间">--%>
-            </div>
-          </li>
-        </ul>
-        <p class="tt" style="border-top: 1px solid #d9d9d9;"></p>
-      </div>
-
+  <div class="weui_cell">
+    <div class="weui_cell_bd weui_cell_primary">
+      <p>创建时间</p>
     </div>
-    <span class="add" datatype="1"></span>
-
+    <div class="weui_cell_ft">
+      <fmt:formatDate value="${pickUp.createTime}" pattern="yyyy-MM-dd HH:mm:ss" />
+    </div>
   </div>
-</div>
 
 
-<div class="weui_btn_area">
-  <a class="weui_btn weui_btn_primary" href="javascript:" id="showTooltips">提交订单</a>
-</div>
-</div>
+  <c:if test="${pickUpInfoList != null}">
+    <c:forEach items="${pickUpInfoList}" var="pickUpInfo">
+        <div class="weui_progress">
+          <div class="weui_progress_bar">
+            <div class="weui_progress_inner_bar js_progress" style="width: 100%;"></div>
+          </div>
+          <a href="javascript:;" class="weui_progress_opr">
+            <i class="weui_icon_cancel"></i>
+          </a>
+        </div>
+
+        <div class="weui_cell">
+          <div class="weui_cell_hd"><label class="weui_label">编号</label></div>
+          <div class="weui_cell_bd weui_cell_primary">
+            <input class="weui_input room_num" type="number" placeholder="编号" value="${pickUpInfo.expressCode}">
+          </div>
+        </div>
+
+        <div class="weui_cell">
+          <div class="weui_cell_hd"><label class="weui_label">快递</label></div>
+          <div class="weui_cell_bd weui_cell_primary">
+            <input class="weui_input room_num" type="number" placeholder="快递" value="${pickUpInfo.expressCode}">
+          </div>
+        </div>
+
+        <div class="weui_cell">
+          <div class="weui_cell_hd"><label class="weui_label">件数</label></div>
+          <div class="weui_cell_bd weui_cell_primary">
+            <input class="weui_input room_num" type="number" placeholder="件数" value="${pickUpInfo.count}">
+          </div>
+        </div>
+
+        <div class="weui_cell">
+          <div class="weui_cell_bd weui_cell_primary">
+            <p>时间</p>
+          </div>
+          <div class="weui_cell_ft">
+            <fmt:formatDate value="${pickUpInfo.expressDate}" pattern="yyyy-MM-dd HH:mm:ss" />
+          </div>
+        </div>
+
+        <div class="weui_progress">
+          <div class="weui_progress_bar">
+            <div class="weui_progress_inner_bar js_progress" style="width: 100%;"></div>
+          </div>
+          <a href="javascript:;" class="weui_progress_opr">
+            <i class="weui_icon_cancel"></i>
+          </a>
+        </div>
+    </c:forEach>
+  </c:if>
+
 
 <script src="${pageContext.request.contextPath}/lib/jquery-2.1.4.js"></script>
 <script src="${pageContext.request.contextPath}/lib/fastclick.js"></script>
