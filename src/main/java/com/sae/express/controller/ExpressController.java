@@ -61,7 +61,7 @@ public class ExpressController {
     public String getSendDetail(String id,HttpServletRequest request){
         SendInfoModel sendInfo = expressService.getSendInfoModelById(id);
         request.setAttribute("sendInfo",sendInfo);
-        return "/express/sendDetail";
+        return "/express/send_detail";
     }
 
 }

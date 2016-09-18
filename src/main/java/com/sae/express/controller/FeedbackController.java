@@ -42,7 +42,7 @@ public class FeedbackController {
     public String showFeedback(Integer id,HttpServletRequest request){
 
         request.setAttribute("feedback",feedbackService.getFeedbackModel(id));
-        return "/express/feedbackDetail";
+        return "/express/feedback_detail";
     }
 
 }
