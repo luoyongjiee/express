@@ -216,14 +216,14 @@ var classnum=1;
              data: {"pickUpModelListJson":pickUpModelListJson,"pickUserJson":JSON.stringify(pickUserJson)},
              dataType: "json",
               success: function(data){
-                  $.toptip('提交成功', 'success');
                   window.location.href="${pageContext.request.contextPath}/query/receiptList"
               },
               complete:function(request,status){
-                  $.toptip('提交成功', 'success');
-                  window.location.href="${pageContext.request.contextPath}/query/receiptList"
+                  $.hideLoading();
               }
           });
+
+            $.showLoading("正在提交订单...");
       }
     });
 

@@ -8,18 +8,12 @@ import com.sae.express.dao.model.PickUpModelExample;
 import com.sae.express.service.ExpressService;
 import com.sae.express.util.tool.DateTool;
 import com.sae.express.util.wechat.GsonUtil;
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -29,7 +23,7 @@ import java.util.List;
  * 收件
  */
 @Controller
-public class ReceiptController {
+public class PickUpController {
 
     @Autowired
     private ExpressService expressService;
@@ -52,7 +46,7 @@ public class ReceiptController {
      */
     @ResponseBody
     @RequestMapping(value = "insert/pickUpOrder", method = RequestMethod.POST)
-    public String insertPickUpList(String pickUpModelListJson, String pickUserJson) {
+    public String insertPickUpList(String pickUpModelListJson, String pickUserJson,Model model) {
 
         List<PickUpInfoModel> pickUpModellist = GsonUtil.fromJson(pickUpModelListJson, new TypeToken<List<PickUpInfoModel>>(){}.getType());
         PickUp pickUp = GsonUtil.fromJson(pickUserJson, PickUp.class);
@@ -64,7 +58,11 @@ public class ReceiptController {
             pickUpInfoModel.setExpressDate(DateTool.parse(pickUpInfoModel.getExpressDateStr(), DateTool.YYYY_MM_DD_HH_MM));
             expressService.insertPickUpInfoModel(pickUpInfoModel);
         }
-        return "success";
+
+        model.addAttribute("pickUpInfoList",pickUpModellist);
+        model.addAttribute("pickUp",pickUp);
+
+        return "pick_up_success";
     }
 
     /**
