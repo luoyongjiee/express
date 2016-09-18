@@ -110,7 +110,7 @@
       <ul class="toplist pick_up_model_i">
         <li class="clearfix ">
           <div>编号：<input type="text" class="code" name="" placeholder="请输入快递号"></div>
-          <div>快递：<select class="" name="express" class="express" >
+          <div>快递：<select  name="express" class="express" >
               <option selected="" value="0">选择</option>
               <option value="1">中通快递</option>
               <option value="2">圆通快递</option>
@@ -183,12 +183,14 @@ var classnum=1;
             $(".pick_up_model_i").each(function() {
                 //var id = $(this).next("input").val();
                 var count = $(this).find('.count').val();
-                var express = $(this).find('.express').val();
+                var express = $(this).find('.express').find("option:selected").val();
                 var code = $(this).find('.code').val();
                 var pickUpTime = $(this).find('.pickUpTime').val();
+
+
                 if(count==''||typeof(count)=='undefined'){
                     $.toptip("件数不能为空！");
-                } else if(express==''||typeof(express)=='undefined'){
+                } else if(express=='0'||express == 0){
                     $.toptip("快递公司不能为空！");
                 } else if(code==''||typeof(code)=='undefined'){
                     $.toptip("编号不能为空！");
