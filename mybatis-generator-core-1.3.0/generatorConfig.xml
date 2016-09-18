@@ -47,6 +47,6 @@
        <!-- <table  tableName="pick_up" domainObjectName="PickUpModel" />
         <table  tableName="feedback" domainObjectName="FeedbackModel" />-->
         <table  tableName="pick_up" domainObjectName="PickUpModel" />
-        <table  tableName="pick_up_info" domainObjectName="PickUpInfoModel" />
+       <!-- <table  tableName="pick_up_info" domainObjectName="PickUpInfoModel" />-->
     </context>
 </generatorConfiguration>

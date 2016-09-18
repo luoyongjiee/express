@@ -12,7 +12,7 @@ public class GsonUtil {
 		return gson.toJson(obj, type);		
 	}		
 	
-	public static Object fromJson(String str,Type type){
+	public static <T> T fromJson(String str,Type type){
 		return gson.fromJson(str, type);
 	}
 }  
