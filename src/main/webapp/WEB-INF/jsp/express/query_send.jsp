@@ -47,7 +47,7 @@
                     <p>单号:${sendInfoModel.id}</p>
                 </div>
                 <div class="weui_cell_ft">
-                        寄：${sendInfoModel.senderPhone}-${sendInfoModel.senderName}
+                        寄件：${sendInfoModel.senderPhone}-${sendInfoModel.senderName}
                 </div>
             </div>
         </div>

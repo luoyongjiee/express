@@ -1,12 +1,13 @@
 package com.sae.express.controller;
 
 import com.google.gson.reflect.TypeToken;
-import com.sae.express.dao.model.PickUp;
+
 import com.sae.express.dao.model.PickUpInfoModel;
 import com.sae.express.dao.model.PickUpModel;
 import com.sae.express.dao.model.PickUpModelExample;
-import com.sae.express.service.ExpressService;
+import com.sae.express.service.PickUpService;
 import com.sae.express.util.tool.DateTool;
+import com.sae.express.util.tool.StringTools;
 import com.sae.express.util.wechat.GsonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +15,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author： Administrator
@@ -25,71 +31,90 @@ import java.util.List;
 @Controller
 public class PickUpController {
 
-    @Autowired
-    private ExpressService expressService;
+    private static Map<String,String> expressMap = new HashMap<String, String>();
 
+    static {
 
-    /**
-     * 进入收件订单页面
-     *
-     * @return
-     */
-    @RequestMapping("insert/pickUpOrder")
-    public String insertPickUpList() {
-        return "/express/pick_up_order";
+        List<String> expressList = Arrays.asList("中通快递","圆通快递","申通快递","韵达快递","顺丰快递","邮政快递","优速快递","天猫","京东","百世汇通","国通快递");
+        for(int i = 0; i < expressList.size();i++){
+            expressMap.put(String.valueOf(i),expressList.get(i));
+        }
     }
 
-    /**
-     * 添加收件订单
-     *
-     * @return
-     */
-    @ResponseBody
+    @Autowired
+    private PickUpService pickUpService;
+
+
+
     @RequestMapping(value = "insert/pickUpOrder", method = RequestMethod.POST)
-    public String insertPickUpList(String pickUpModelListJson, String pickUserJson,Model model) {
+    @ResponseBody
+    public Object insertPickUpList(String pickUpModelListJson, String pickUserJson,Model model) {
 
         List<PickUpInfoModel> pickUpModellist = GsonUtil.fromJson(pickUpModelListJson, new TypeToken<List<PickUpInfoModel>>(){}.getType());
-        PickUp pickUp = GsonUtil.fromJson(pickUserJson, PickUp.class);
+        PickUpModel pickUp = GsonUtil.fromJson(pickUserJson, PickUpModel.class);
         //录入用户信息
-        pickUp = expressService.insertPickUp(pickUp);
+        pickUp = pickUpService.insertPickUpModel(pickUp);
         for (PickUpInfoModel pickUpInfoModel : pickUpModellist) {
             //录入用户收件单信息
             pickUpInfoModel.setPickUpId(pickUp.getId());
             pickUpInfoModel.setExpressDate(DateTool.parse(pickUpInfoModel.getExpressDateStr(), DateTool.YYYY_MM_DD_HH_MM));
-            expressService.insertPickUpInfoModel(pickUpInfoModel);
+            pickUpService.insertPickUpInfoModel(pickUpInfoModel);
         }
 
-        model.addAttribute("pickUpInfoList",pickUpModellist);
-        model.addAttribute("pickUp",pickUp);
-        model.addAttribute("showMsg",true);
 
-        return "pick_up_success";
+
+        return pickUp.getId();
     }
 
-    /**
-     * 初始化收件列表
-     *
-     * @param searchInput
-     * @param model
-     * @return
-     */
-    @RequestMapping("query/receiptList")
-    public String querySendList(String searchInput, Model model) {
-      /*  PickUpModelExample examplenew PickUpModelExample();
-        model.addAttribute("receiptList", expressService.getPickUpModelPage());
-        return "/express/receipt_list";*/
-        return null;
+
+    @RequestMapping(value = "pickUp/Detail")
+    public String showPickUpDetail(Integer id,Model model,Boolean showMsg){
+        List<PickUpInfoModel> pickUpInfoModelList = pickUpService.getPickUpInfoModelList(id);
+        model.addAttribute("pickUpInfoList",pickUpInfoModelList);
+        model.addAttribute("pickUp",pickUpService.getPickUpModelById(id));
+
+        if(pickUpInfoModelList != null){
+            for(PickUpInfoModel pickUpInfoModel:pickUpInfoModelList){
+                pickUpInfoModel.setExpress(expressMap.get(pickUpInfoModel.getExpress()));
+            }
+        }
+
+        if(showMsg != null){
+            model.addAttribute("showMsg",false);
+        }else{
+            model.addAttribute("showMsg",true);
+        }
+
+        return "/express/pick_up_detail";
     }
 
-    /**
-     * 异步获取收件列表
-     *
-     * @param example
-     * @return
-     */
+
+    @RequestMapping("pickUp/getPickUpModel")
+    public Object getPickUpModel(String searchInput,HttpServletRequest request){
+        List<PickUpModel> pickUpModelList = pickUpService.getPickUpModel(searchInput);
+
+        if(StringTools.isNotBlank(searchInput)){
+            pickUpModelList = pickUpService.getPickUpModel(searchInput);
+        }
+        request.setAttribute("pickUpList",pickUpModelList);
+        return "/express/query_pick_up";
+
+    }
+
+
+    @RequestMapping("pickUp/pick_up_list")
+    public String queryPickUpList(Model model) {
+        model.addAttribute("pickUpList", pickUpService.getPickUpModelPage(0,10));
+        return "/express/pick_up_list";
+
+    }
+
+
     @ResponseBody
-    @RequestMapping(value = "query/receiptList", method = RequestMethod.POST)
-    public List<PickUpModel> querySendListPage(PickUpModelExample example) {
-        return expressService.getPickUpModelPage(example);
+    @RequestMapping(value = "pickUp/page", method = RequestMethod.POST)
+    public Object queryPickUpListPage(Integer offset,Integer limit) {
+        return pickUpService.getPickUpModelPage(offset,limit);
     }
+
+
 }

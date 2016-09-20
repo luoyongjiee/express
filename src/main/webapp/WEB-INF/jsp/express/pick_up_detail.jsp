@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <html>
 <head>
   <title>取件下单</title>
@@ -110,15 +111,14 @@
   </div>
 
   <div class="weui_cell">
+    <div class="weui_cell_hd"><label class="weui_label">创建时间</label></div>
+
     <div class="weui_cell_bd weui_cell_primary">
-      <p>创建时间</p>
-    </div>
-    <div class="weui_cell_ft">
       <fmt:formatDate value="${pickUp.createTime}" pattern="yyyy-MM-dd HH:mm:ss" />
     </div>
   </div>
 
-
+<br>
   <c:if test="${pickUpInfoList != null}">
     <c:forEach items="${pickUpInfoList}" var="pickUpInfo">
         <div class="weui_progress">
@@ -140,25 +140,25 @@
         <div class="weui_cell">
           <div class="weui_cell_hd"><label class="weui_label">快递</label></div>
           <div class="weui_cell_bd weui_cell_primary">
-            <input class="weui_input room_num" type="number" placeholder="快递" value="${pickUpInfo.expressCode}">
+            <input class="weui_input room_num" type="text" placeholder="快递" value="${pickUpInfo.express}">
           </div>
         </div>
 
         <div class="weui_cell">
           <div class="weui_cell_hd"><label class="weui_label">件数</label></div>
           <div class="weui_cell_bd weui_cell_primary">
-            <input class="weui_input room_num" type="number" placeholder="件数" value="${pickUpInfo.count}">
+            <input class="weui_input room_num" type="text" placeholder="件数" value="${pickUpInfo.count}">
           </div>
         </div>
 
+
         <div class="weui_cell">
+          <div class="weui_cell_hd"><label class="weui_label">时间</label></div>
           <div class="weui_cell_bd weui_cell_primary">
-            <p>时间</p>
-          </div>
-          <div class="weui_cell_ft">
             <fmt:formatDate value="${pickUpInfo.expressDate}" pattern="yyyy-MM-dd HH:mm:ss" />
           </div>
         </div>
+
 
         <div class="weui_progress">
           <div class="weui_progress_bar">
@@ -171,6 +171,7 @@
     </c:forEach>
   </c:if>
 
+  <br>
 
 <script src="${pageContext.request.contextPath}/lib/jquery-2.1.4.js"></script>
 <script src="${pageContext.request.contextPath}/lib/fastclick.js"></script>

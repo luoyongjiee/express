@@ -31,7 +31,7 @@
     </p>
   </a>
 
-  <a href="javascript:;" class="weui_grid js_grid" data-id="toast">
+  <a href="${pageContext.request.contextPath}/pickUp/pick_up_list" class="weui_grid js_grid" data-id="toast">
     <div class="weui_grid_icon">
       <img src="${pageContext.request.contextPath}/images/icon_nav_cell.png" alt="">
     </div>
@@ -40,7 +40,7 @@
     </p>
   </a>
 
-  <a href="${pageContext.request.contextPath}/path/express/feedbackList;" class="weui_grid js_grid" data-id="toast">
+  <a href="${pageContext.request.contextPath}/path/express/feedback_list;" class="weui_grid js_grid" data-id="toast">
     <div class="weui_grid_icon">
       <img src="${pageContext.request.contextPath}/images/icon_nav_cell.png" alt="">
     </div>

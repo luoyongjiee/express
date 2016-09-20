@@ -216,7 +216,8 @@ var classnum=1;
              data: {"pickUpModelListJson":pickUpModelListJson,"pickUserJson":JSON.stringify(pickUserJson)},
              dataType: "json",
               success: function(data){
-                  window.location.href="${pageContext.request.contextPath}/query/receiptList"
+
+                  window.location.href="${pageContext.request.contextPath}/pickUp/Detail?id="+data;
               },
               complete:function(request,status){
                   $.hideLoading();

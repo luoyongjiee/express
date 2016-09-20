@@ -2,6 +2,7 @@ package com.sae.express.controller;
 
 import com.sae.express.dao.model.SendInfoModel;
 import com.sae.express.service.ExpressService;
+import com.sae.express.service.PickUpService;
 import com.sae.express.util.tool.StringTools;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,9 @@ public class ExpressController {
 
     @Autowired
     private ExpressService expressService;
+
+    @Autowired
+    private PickUpService pickUpService;
 
 
     @RequestMapping("/path/{folder}/{file}")
@@ -54,13 +58,15 @@ public class ExpressController {
 
         request.setAttribute("sendInfoModelList",sendInfoModelList);
 
-        return "/express/query";
+        return "/express/query_send";
     }
 
     @RequestMapping("getSendDetail")
     public String getSendDetail(String id,HttpServletRequest request){
         SendInfoModel sendInfo = expressService.getSendInfoModelById(id);
         request.setAttribute("sendInfo",sendInfo);
+
+
         return "/express/send_detail";
     }
 

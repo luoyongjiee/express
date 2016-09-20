@@ -37,32 +37,18 @@
 </style>
 <body ontouchstart>
 
-<div class="weui_search_bar" id="search_bar">
 
-    <form class="weui_search_outer" action="${pageContext.request.contextPath}/query/sendList" method="get">
-        <div class="weui_search_inner">
-            <i class="weui_icon_search"></i>
-            <input type="search" class="weui_search_input" id="searchInput" name="searchInput" placeholder="单号 收件人姓名 寄件人名字" required/>
-            <a href="javascript:" class="weui_icon_clear" id="search_clear"></a>
-        </div>
-        <label for="searchInput" class="weui_search_text" id="search_text">
-            <i class="weui_icon_search"></i>
-            <span>单号 收件人姓名 寄件人名字</span>
-        </label>
-    </form>
-    <a href="javascript:" class="weui_search_cancel" id="search_cancel">取消</a>
-</div>
 <div id="list">
-<c:if test="${receiptList != null&&receiptList.size()>0}">
-    <c:forEach items="${receiptList}" var="pickUpModel">
-        <a href="${pageContext.request.contextPath}/getSendDetail?id=${pickUpModel.id}">
+<c:if test="${pickUpList != null&&pickUpList.size()>0}">
+    <c:forEach items="${pickUpList}" var="pickUpModel">
+        <a href="${pageContext.request.contextPath}/pickUp/Detail?id=${pickUpModel.id}&showMsg=false">
         <div class="weui_cells">
             <div class="weui_cell">
                 <div class="weui_cell_bd weui_cell_primary">
-                    <p>单号:${pickUpModel.id}</p>
+                    <p>下单号:${pickUpModel.id}</p>
                 </div>
                 <div class="weui_cell_ft">
-                        寄：${pickUpModel.phone}-${pickUpModel.userName}
+                        收件：${pickUpModel.phone}-${pickUpModel.userName}
                 </div>
             </div>
         </div>
@@ -71,12 +57,13 @@
 </c:if>
 </div>
 <div class="weui-infinite-scroll">
-    <c:if test="${receiptList != null&&receiptList.size()>0}">
+    <c:if test="${pickUpList != null&&pickUpList.size()>0}">
         <div class="infinite-preloader"></div>
         <span class="load_info">正在加载</span>
-    </c:if><c:if test="${receiptList == null||receiptList.size()<=0}">
+    </c:if>
+    <c:if test="${pickUpList == null||pickUpList.size()<=0}">
     <span class="load_info">没有数据</span>
-</c:if>
+    </c:if>
 </div>
 <script src="//cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/jquery-weui/0.8.0/js/jquery-weui.min.js"></script>
@@ -88,35 +75,33 @@
 </script>
 <script>
     var loading = false;
-    var offset = 11;
-    var page = 2;
-    var search= $("#searchInput").val();
+    var offset = 10;
     $(document.body).infinite().on("infinite", function() {
         if(loading) return;
         loading = true;
         $.ajax({
             type: "post",
-            url: "${pageContext.request.contextPath}/query/receiptList",
-            data: {"offset":offset,"limit":10,"search":search},
+            url: "${pageContext.request.contextPath}/pickUp/page",
+            data: {"offset":offset,"limit":10},
             dataType: "json",
             success: function(data){
-                offset = page * 10 +1;
-                page = page + 1;
-                if(data.length<=0){
+                offset = offset + 10;
+
+                if(data == null || data.length<=0){
                     loading = false;
                     $('.infinite-preloader').hide();
                     $('.load_info').html("已加载全部")
                     return;
                 }
                 for(var i = 0; i < data.length; i++){
-                    $("#list").append('<a href="${pageContext.request.contextPath}/getSendDetail?id='+data[i].id+'">'+
+                    $("#list").append('<a href="${pageContext.request.contextPath}/pickUp/Detail?showMsg=false&id='+data[i].id+'">'+
                             ' <div class="weui_cells">'+
                             '<div class="weui_cell">'+
                             '<div class="weui_cell_bd weui_cell_primary">'+
-                            '<p>单号:'+data[i].id+'</p>'+
+                            '<p>下单号:'+data[i].id+'</p>'+
                             ' </div>'+
                             '<div class="weui_cell_ft">'+
-                            '寄'+data[i].count+'-'+data[i].express+
+                            '收件：'+data[i].phone+'-'+data[i].userName+
                             ' </div>'+
                             '</div>'+
                             '</div>'+
