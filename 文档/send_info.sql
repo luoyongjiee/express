@@ -22,7 +22,7 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `send_info`;
 CREATE TABLE `send_info` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` varchar(30) DEFAULT NULL COMMENT '用户id',
+  `user_id` varchar(50) DEFAULT NULL COMMENT '用户id',
   `sender_name` varchar(20) DEFAULT NULL COMMENT '寄件人姓名',
   `sender_phone` varchar(20) DEFAULT NULL COMMENT '寄件人电话',
   `sender_room_num` varchar(10) DEFAULT NULL COMMENT '寄件人宿舍号',

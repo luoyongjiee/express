@@ -41,12 +41,13 @@
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
+        <table  tableName="user_info" domainObjectName="UserInfoModel" />
        <!-- <table  tableName="send_info" domainObjectName="SendInfoModel" />-->
 
         <!--<table  tableName="send_info" domainObjectName="SendInfoModel" />-->
        <!-- <table  tableName="pick_up" domainObjectName="PickUpModel" />
         <table  tableName="feedback" domainObjectName="FeedbackModel" />-->
-        <table  tableName="pick_up" domainObjectName="PickUpModel" />
+       <!-- <table  tableName="pick_up" domainObjectName="PickUpModel" />-->
        <!-- <table  tableName="pick_up_info" domainObjectName="PickUpInfoModel" />-->
     </context>
 </generatorConfiguration>

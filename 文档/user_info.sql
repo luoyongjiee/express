@@ -10,19 +10,21 @@ Target Server Type    : MYSQL
 Target Server Version : 50172
 File Encoding         : 65001
 
-Date: 2016-09-03 14:30:36
+Date: 2016-09-21 22:48:18
 */
 
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
--- Table structure for feedback
+-- Table structure for user_info
 -- ----------------------------
-DROP TABLE IF EXISTS `feedback`;
-CREATE TABLE `feedback` (
+DROP TABLE IF EXISTS `user_info`;
+CREATE TABLE `user_info` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` varchar(50) DEFAULT NULL COMMENT '用户id',
-  `content` varchar(255) DEFAULT NULL COMMENT '反馈内容',
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `openid` int(11) DEFAULT NULL COMMENT '用户的唯一标识',
+  `phone` varchar(20) DEFAULT NULL COMMENT '手机',
+  `building_num` varchar(2) DEFAULT NULL COMMENT '宿舍栋数',
+  `building_code` varchar(10) DEFAULT NULL COMMENT '宿舍号',
+  `address` varchar(200) DEFAULT NULL COMMENT '地址',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

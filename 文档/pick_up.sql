@@ -26,6 +26,6 @@ CREATE TABLE `pick_up` (
   `building_num` varchar(2) DEFAULT NULL COMMENT '宿舍栋数',
   `building_code` varchar(10) DEFAULT NULL COMMENT '宿舍号',
   `create_time` datetime DEFAULT NULL,
-  `user_id` varchar(20) DEFAULT NULL,
+  `user_id` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
