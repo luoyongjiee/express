@@ -1,7 +1,7 @@
 package com.sae.express.service.wechat;
 
 import com.sae.express.dao.form.response.TextMessage;
-import com.sae.express.dao.iface.WechatPlatformMapper;
+import com.sae.express.dao.iface.WeChatPlatformMapper;
 import com.sae.express.dao.model.wechat.WeChatUnionUser;
 import com.sae.express.util.wechat.EmojiExchangeUtil;
 import com.sae.express.util.wechat.MessageUtil;
@@ -30,7 +30,7 @@ public class CoreServiceImpl implements CoreService {
     private static Logger log = LoggerFactory.getLogger(CoreServiceImpl.class);
 
     @Autowired
-    private WechatPlatformMapper wechatPlatformMapper;
+    private WeChatPlatformMapper wechatPlatformMapper;
 
     private static final String[] KEYWORD = {"快","快件","接单","件","单","接","时间","时","间","快","快递","取件","取","间"};
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.sae.express.dao.iface.WechatPlatformMapper" >
+<mapper namespace="com.sae.express.dao.iface.WeChatPlatformMapper" >
   <resultMap id="BaseResultMap" type="com.sae.express.dao.model.WechatPlatform" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="app_id" property="appId" jdbcType="VARCHAR" />

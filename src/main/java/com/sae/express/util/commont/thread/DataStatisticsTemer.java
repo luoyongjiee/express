@@ -49,9 +49,10 @@ public class DataStatisticsTemer {
                     log.info("获取成功：APP_ID" + weChatPlatform.getAppId() + "-->>accessToken:" + accessToken.getToken());
                     weChatPlatform.setAccess_token(accessToken.getToken());
                     weChatPlatform.setCreateTime(nowtime);
-                    if (!weChatPlatformService.updateWeChatPlatform(weChatPlatform)) {
-                        weChatPlatformService.saveWeChatPlatform(weChatPlatform);
-                    }
+                    weChatPlatformService.modifyWeChatPlatform(weChatPlatform);
+                    /*if (!weChatPlatformService.modifyWeChatPlatform(weChatPlatform)) {
+                        weChatPlatformService.insertWeChatPlatform(weChatPlatform);
+                    }*/
                 } else {
                     log.error("获取失败：APP_ID" + weChatPlatform.getAppId());
                 }
@@ -68,16 +69,15 @@ public class DataStatisticsTemer {
                     weChatPlatform.setJsapi_ticket(jsapiTicket.getTicket());
                     log.info("获取成功：PUBLIC_APP_ID" + weChatPlatform.getAppId() + "-->>jsapiTicket:" + jsapiTicket.getTicket());
                     weChatPlatform.setCreateTime(nowtime);
-                    if (!weChatPlatformService.updateWeChatPlatform(weChatPlatform)) {
+                    weChatPlatformService.modifyWeChatPlatform(weChatPlatform);
+                    /*if (!weChatPlatformService.updateWeChatPlatform(weChatPlatform)) {
                         weChatPlatformService.saveWeChatPlatform(weChatPlatform);
-                    }
+                    }*/
 
                 } else {
                     log.error("获取失败：PUBLIC_APP_ID" + weChatPlatform.getAppId());
                 }
             }
-
-            ;
         }, time, 2 * 55 * 60 * 1000);// 这里设定将延时2个小时固定执行
     }
 

@@ -268,7 +268,10 @@ public class UserInfoModelExample {
             addCriterion("openid =", value, "openid");
             return (Criteria) this;
         }
-
+        public Criteria andOpenidEqualTo(String value) {
+            addCriterion("openid =", value, "openid");
+            return (Criteria) this;
+        }
         public Criteria andOpenidNotEqualTo(Integer value) {
             addCriterion("openid <>", value, "openid");
             return (Criteria) this;

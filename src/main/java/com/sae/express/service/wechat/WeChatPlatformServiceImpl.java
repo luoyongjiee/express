@@ -1,13 +1,13 @@
 package com.sae.express.service.wechat;
 
 
-import com.sae.express.dao.iface.WechatPlatformMapper;
-import com.sae.express.dao.model.wechat.AccessToken;
+import com.sae.express.dao.iface.WeChatPlatformMapper;
 import com.sae.express.dao.model.wechat.WeChatPlatform;
-import com.sae.express.service.wechat.WeChatPlatformService;
-import com.sae.express.util.wechat.WeChatUtil;
+import com.sae.express.dao.model.wechat.WeChatPlatformExample;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Created by Administrator on 2016/9/3.
@@ -15,52 +15,38 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class WeChatPlatformServiceImpl implements WeChatPlatformService {
-    @Autowired
-    private WechatPlatformMapper wechatPlatformMapper;
 
-    public WeChatPlatform getWeChatPlatform(String id){
-       /* return wechatPlatformMapper.getById(id);*/
-        return null;
+    @Autowired
+    private WeChatPlatformMapper wechatPlatformMapper;
+
+    public WeChatPlatform insertWeChatPlatform(WeChatPlatform weChatPlatform) {
+        wechatPlatformMapper.insertSelective(weChatPlatform);
+        return weChatPlatform;
     }
 
     /**
-     * 获取accessToken
-     * @param openId
+     * 更新公众号信息
+     *
+     * @param weChatPlatform
      * @return
      */
-    public WeChatPlatform getAccessTokenById(String openId){
-        /*return wechatPlatformMapper.getAccessTokenById(openId);*/
-        return null;
+    public WeChatPlatform modifyWeChatPlatform(WeChatPlatform weChatPlatform) {
+        wechatPlatformMapper.updateByPrimaryKey(weChatPlatform);
+        return weChatPlatform;
     }
 
     /**
-     * 获取公众号信息
+     * 根据appid 查询公众号信息
+     *
      * @param appid
      * @return
      */
-    public WeChatPlatform getWeChatPlatformByAppId(String appid){
-        /*WeChatPlatform WeChatPlatform = wechatPlatformMapper.getById(appid);
-        if(WeChatPlatform == null){
-            //TODO PUBLIC_APP_SECRET替换
-            AccessToken accessToken = WeChatUtil.getAccessToken(appid,"PUBLIC_APP_SECRET");
-            WeChatPlatform = new WeChatPlatform();
-            WeChatPlatform.setAppId(appid);
-            WeChatPlatform.setAccess_token(accessToken.getToken());
-           *//* wechatPlatformMapper.save(WeChatPlatform);*//*
-        }
-        return WeChatPlatform;*/
-        return null;
+    public WeChatPlatform getWeChatPlatformByAppid(String appid) {
+        WeChatPlatformExample example = new WeChatPlatformExample();
+        WeChatPlatformExample.Criteria criteria = example.createCriteria();
+        criteria.andAppIdEqualTo(appid);
+        //wechatPlatformMapper.selectByappid(appid);
+        List<WeChatPlatform> weChatPlatforms = wechatPlatformMapper.selectByExample(example);
+        return weChatPlatforms.isEmpty() ? null : weChatPlatforms.get(0);
     }
-
-    public boolean updateWeChatPlatform(WeChatPlatform WeChatPlatform){
-       /* return wechatPlatformMapper.update(WeChatPlatform);*/
-        return true;
-    }
-
-    public boolean saveWeChatPlatform(WeChatPlatform WeChatPlatform){
-        /*WeChatPlatform.setCreateTime(System.currentTimeMillis());
-        return wechatPlatformMapper.save(WeChatPlatform);*/
-        return false;
-    }
-
 }

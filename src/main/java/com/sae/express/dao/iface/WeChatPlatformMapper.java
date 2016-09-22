@@ -2,30 +2,33 @@ package com.sae.express.dao.iface;
 
 import com.sae.express.dao.model.WechatPlatform;
 import com.sae.express.dao.model.WechatPlatformExample;
+import com.sae.express.dao.model.wechat.WeChatPlatform;
+import com.sae.express.dao.model.wechat.WeChatPlatformExample;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-public interface WechatPlatformMapper {
-    int countByExample(WechatPlatformExample example);
+public interface WeChatPlatformMapper {
+    int countByExample(WeChatPlatformExample example);
 
-    int deleteByExample(WechatPlatformExample example);
+    int deleteByExample(WeChatPlatformExample example);
 
     int deleteByPrimaryKey(Integer id);
 
-    int insert(WechatPlatform record);
+    int insert(WeChatPlatform record);
 
-    int insertSelective(WechatPlatform record);
+    int insertSelective(WeChatPlatform record);
 
-    List<WechatPlatform> selectByExample(WechatPlatformExample example);
+    List<WeChatPlatform> selectByExample(WeChatPlatformExample example);
 
-    WechatPlatform selectByPrimaryKey(Integer id);
+    WeChatPlatform selectByPrimaryKey(Integer id);
+    WeChatPlatform selectByappid(String appid);
 
-    int updateByExampleSelective(@Param("record") WechatPlatform record, @Param("example") WechatPlatformExample example);
+    int updateByExampleSelective(@Param("record") WeChatPlatform record, @Param("example") WeChatPlatformExample example);
 
-    int updateByExample(@Param("record") WechatPlatform record, @Param("example") WechatPlatformExample example);
+    int updateByExample(@Param("record") WeChatPlatform record, @Param("example") WeChatPlatformExample example);
 
-    int updateByPrimaryKeySelective(WechatPlatform record);
+    int updateByPrimaryKeySelective(WeChatPlatform record);
 
-    int updateByPrimaryKey(WechatPlatform record);
+    int updateByPrimaryKey(WeChatPlatform record);
 }
