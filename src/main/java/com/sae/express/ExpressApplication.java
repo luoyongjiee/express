@@ -17,13 +17,4 @@ public class ExpressApplication extends SpringBootServletInitializer {
         SpringApplication.run(ExpressApplication.class, args);
     }
 
-
-
-  /*  @Bean
-    public CharacterEncodingFilter characterEncodingFilter() {
-        CharacterEncodingFilter filter = new CharacterEncodingFilter();
-        filter.setEncoding("UTF-8");
-        filter.setForceEncoding(true);
-        return filter;
-    }*/
 }
