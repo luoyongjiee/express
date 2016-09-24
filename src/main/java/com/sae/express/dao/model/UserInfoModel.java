@@ -5,7 +5,8 @@ public class UserInfoModel {
 
     private String nickname;
 
-    private Integer openid;
+   // private Integer openid;
+    private String openId;
 
     private String phone;
 
@@ -31,12 +32,12 @@ public class UserInfoModel {
         this.nickname = nickname == null ? null : nickname.trim();
     }
 
-    public Integer getOpenid() {
-        return openid;
+    public String getOpenId() {
+        return openId;
     }
 
-    public void setOpenid(Integer openid) {
-        this.openid = openid;
+    public void setOpenId(String openId) {
+        this.openId = openId;
     }
 
     public String getPhone() {

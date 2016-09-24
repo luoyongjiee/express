@@ -2,13 +2,24 @@ package com.sae.express.dao.model.wechat;
 
 /**
  * Created by Administrator on 2016/9/3.
+ * 公众号信息
  */
 public class WeChatPlatform {
     private String appId;
     private String appSecret;
-    private String access_token;
-    private String jsapi_ticket;
-    private long createTime;
+    private String accessToken;
+    private String jsapiTicket;
+    //private long createTime;
+
+    private Integer id;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getAppId() {
         return appId;
@@ -26,27 +37,19 @@ public class WeChatPlatform {
         this.appSecret = appSecret;
     }
 
-    public String getAccess_token() {
-        return access_token;
+    public String getAccessToken() {
+        return accessToken;
     }
 
-    public void setAccess_token(String access_token) {
-        this.access_token = access_token;
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
     }
 
-    public String getJsapi_ticket() {
-        return jsapi_ticket;
+    public String getJsapiTicket() {
+        return jsapiTicket;
     }
 
-    public void setJsapi_ticket(String jsapi_ticket) {
-        this.jsapi_ticket = jsapi_ticket;
-    }
-
-    public long getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(long createTime) {
-        this.createTime = createTime;
+    public void setJsapiTicket(String jsapiTicket) {
+        this.jsapiTicket = jsapiTicket;
     }
 }

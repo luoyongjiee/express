@@ -47,8 +47,8 @@ public class DataStatisticsTemer {
                 accessToken = WeChatUtil.getAccessToken("appID", "APP_SECRET");
                 if (accessToken != null) {
                     log.info("获取成功：APP_ID" + weChatPlatform.getAppId() + "-->>accessToken:" + accessToken.getToken());
-                    weChatPlatform.setAccess_token(accessToken.getToken());
-                    weChatPlatform.setCreateTime(nowtime);
+                    weChatPlatform.setAccessToken(accessToken.getToken());
+                    //weChatPlatform.setCreateTime(nowtime);
                     weChatPlatformService.modifyWeChatPlatform(weChatPlatform);
                     /*if (!weChatPlatformService.modifyWeChatPlatform(weChatPlatform)) {
                         weChatPlatformService.insertWeChatPlatform(weChatPlatform);
@@ -63,12 +63,12 @@ public class DataStatisticsTemer {
                     log.info("获取成功：PUBLIC_APP_ID" + weChatPlatform.getAppId() + "-->>accessToken:" + accessToken.getToken());
 
                     accessToken = WeChatUtil.getAccessToken("appid", ".PUBLIC_APP_SECRET");
-                    weChatPlatform.setAccess_token(accessToken.getToken());
+                    weChatPlatform.setAccessToken(accessToken.getToken());
                     jsapiTicket = WeChatUtil.getJsapiTicket(accessToken.getToken());
 
-                    weChatPlatform.setJsapi_ticket(jsapiTicket.getTicket());
+                    weChatPlatform.setJsapiTicket(jsapiTicket.getTicket());
                     log.info("获取成功：PUBLIC_APP_ID" + weChatPlatform.getAppId() + "-->>jsapiTicket:" + jsapiTicket.getTicket());
-                    weChatPlatform.setCreateTime(nowtime);
+                   // weChatPlatform.setCreateTime(nowtime);
                     weChatPlatformService.modifyWeChatPlatform(weChatPlatform);
                     /*if (!weChatPlatformService.updateWeChatPlatform(weChatPlatform)) {
                         weChatPlatformService.saveWeChatPlatform(weChatPlatform);

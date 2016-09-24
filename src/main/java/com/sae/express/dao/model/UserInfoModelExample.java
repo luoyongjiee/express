@@ -255,65 +255,65 @@ public class UserInfoModelExample {
         }
 
         public Criteria andOpenidIsNull() {
-            addCriterion("openid is null");
+            addCriterion("open_id is null");
             return (Criteria) this;
         }
 
         public Criteria andOpenidIsNotNull() {
-            addCriterion("openid is not null");
+            addCriterion("open_id is not null");
             return (Criteria) this;
         }
 
         public Criteria andOpenidEqualTo(Integer value) {
-            addCriterion("openid =", value, "openid");
+            addCriterion("open_id =", value, "openId");
             return (Criteria) this;
         }
         public Criteria andOpenidEqualTo(String value) {
-            addCriterion("openid =", value, "openid");
+            addCriterion("open_id =", value, "openId");
             return (Criteria) this;
         }
         public Criteria andOpenidNotEqualTo(Integer value) {
-            addCriterion("openid <>", value, "openid");
+            addCriterion("open_id <>", value, "openId");
             return (Criteria) this;
         }
 
         public Criteria andOpenidGreaterThan(Integer value) {
-            addCriterion("openid >", value, "openid");
+            addCriterion("open_id >", value, "openId");
             return (Criteria) this;
         }
 
         public Criteria andOpenidGreaterThanOrEqualTo(Integer value) {
-            addCriterion("openid >=", value, "openid");
+            addCriterion("open_id >=", value, "openId");
             return (Criteria) this;
         }
 
         public Criteria andOpenidLessThan(Integer value) {
-            addCriterion("openid <", value, "openid");
+            addCriterion("open_id <", value, "openId");
             return (Criteria) this;
         }
 
         public Criteria andOpenidLessThanOrEqualTo(Integer value) {
-            addCriterion("openid <=", value, "openid");
+            addCriterion("open_id <=", value, "openId");
             return (Criteria) this;
         }
 
         public Criteria andOpenidIn(List<Integer> values) {
-            addCriterion("openid in", values, "openid");
+            addCriterion("open_id in", values, "openId");
             return (Criteria) this;
         }
 
         public Criteria andOpenidNotIn(List<Integer> values) {
-            addCriterion("openid not in", values, "openid");
+            addCriterion("open_id not in", values, "openId");
             return (Criteria) this;
         }
 
         public Criteria andOpenidBetween(Integer value1, Integer value2) {
-            addCriterion("openid between", value1, value2, "openid");
+            addCriterion("openid between", value1, value2, "openId");
             return (Criteria) this;
         }
 
         public Criteria andOpenidNotBetween(Integer value1, Integer value2) {
-            addCriterion("openid not between", value1, value2, "openid");
+            addCriterion("open_id not between", value1, value2, "openId");
             return (Criteria) this;
         }
 

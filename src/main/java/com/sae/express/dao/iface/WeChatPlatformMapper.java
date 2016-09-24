@@ -1,7 +1,5 @@
 package com.sae.express.dao.iface;
 
-import com.sae.express.dao.model.WechatPlatform;
-import com.sae.express.dao.model.WechatPlatformExample;
 import com.sae.express.dao.model.wechat.WeChatPlatform;
 import com.sae.express.dao.model.wechat.WeChatPlatformExample;
 import org.apache.ibatis.annotations.Param;

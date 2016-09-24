@@ -31,7 +31,10 @@ public class WeChatAuthFilter implements Filter{
         HttpServletResponse response=(HttpServletResponse)servletResponse;
         String openId=(String)session.getAttribute("openId");
         System.out.println("request.getMethod()"+request.getRequestURI());
-        if ((openId!=null&&openId.equals(""))||request.getRequestURI().startsWith("/wechat")||request.getRequestURI().startsWith("/WEB-INF")){
+        //TODO 跳过微信授权测试测试使用，正式使用去除，注意：跳过授权测试则请求/wechat 下面的接口便会出错
+       /* openId="ozMTNwsdHlVstvAbGAVpX1LCDHbY";
+        session.setAttribute("openId",openId);*/
+        if ((openId!=null&&!openId.equals(""))||request.getRequestURI().startsWith("/wechat")||request.getRequestURI().startsWith("/WEB-INF")){
             filterChain.doFilter(servletRequest,servletResponse);
             return;
         }else {

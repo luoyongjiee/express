@@ -21,10 +21,12 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `user_info`;
 CREATE TABLE `user_info` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `openid` int(11) DEFAULT NULL COMMENT '用户的唯一标识',
+  `open_id` varchar(200) DEFAULT NULL COMMENT '用户的唯一标识',
   `phone` varchar(20) DEFAULT NULL COMMENT '手机',
   `building_num` varchar(2) DEFAULT NULL COMMENT '宿舍栋数',
   `building_code` varchar(10) DEFAULT NULL COMMENT '宿舍号',
   `address` varchar(200) DEFAULT NULL COMMENT '地址',
+  `nickname` varchar(200) DEFAULT NULL COMMENT '昵称',
+
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

@@ -131,8 +131,8 @@ public class WeChatController {
             AccessToken accessToken =WeChatUtil.getAccessToken(appid,appsecret);
             weChatPlatform.setAppId(appid);
             weChatPlatform.setAppSecret(appsecret);
-            weChatPlatform.setCreateTime(System.currentTimeMillis());
-            weChatPlatform.setAccess_token(accessToken.getToken());
+            //weChatPlatform.setCreateTime(System.currentTimeMillis());
+            weChatPlatform.setAccessToken(accessToken.getToken());
             weChatPlatformService.insertWeChatPlatform(weChatPlatform);
         }
         OAuthAccessToken oAuthAccessToken =  WeChatUtil.getOAuthByCode(appid,appsecret , code);
@@ -149,7 +149,7 @@ public class WeChatController {
             session.setAttribute("wechat_user",userInfoModel);
         }
 
-        return "redriect:"+sendRedirect;
+        return "redirect:"+sendRedirect;
     }
 
 }

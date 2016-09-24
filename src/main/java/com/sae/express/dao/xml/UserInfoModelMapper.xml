@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.sae.express.dao.model.UserInfoModel" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="nickname" property="nickname" jdbcType="VARCHAR" />
-    <result column="openid" property="openid" jdbcType="INTEGER" />
+    <result column="open_id" property="openId" jdbcType="VARCHAR" />
     <result column="phone" property="phone" jdbcType="VARCHAR" />
     <result column="building_num" property="buildingNum" jdbcType="VARCHAR" />
     <result column="building_code" property="buildingCode" jdbcType="VARCHAR" />
@@ -69,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, nickname, openid, phone, building_num, building_code, address
+    id, nickname, open_id, phone, building_num, building_code, address
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.sae.express.dao.model.UserInfoModelExample" >
     select
@@ -110,10 +110,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.sae.express.dao.model.UserInfoModel" >
-    insert into user_info (id, nickname, openid, 
+    insert into user_info (id, nickname, open_id,
       phone, building_num, building_code, 
       address)
-    values (#{id,jdbcType=INTEGER}, #{nickname,jdbcType=VARCHAR}, #{openid,jdbcType=INTEGER}, 
+    values (#{id,jdbcType=INTEGER}, #{nickname,jdbcType=VARCHAR}, #{openId,jdbcType=INTEGER},
       #{phone,jdbcType=VARCHAR}, #{buildingNum,jdbcType=VARCHAR}, #{buildingCode,jdbcType=VARCHAR}, 
       #{address,jdbcType=VARCHAR})
   </insert>
@@ -126,8 +126,8 @@
       <if test="nickname != null" >
         nickname,
       </if>
-      <if test="openid != null" >
-        openid,
+      <if test="openId != null" >
+        open_id,
       </if>
       <if test="phone != null" >
         phone,
@@ -149,8 +149,8 @@
       <if test="nickname != null" >
         #{nickname,jdbcType=VARCHAR},
       </if>
-      <if test="openid != null" >
-        #{openid,jdbcType=INTEGER},
+      <if test="openId != null" >
+        #{openId,jdbcType=INTEGER},
       </if>
       <if test="phone != null" >
         #{phone,jdbcType=VARCHAR},
@@ -181,8 +181,8 @@
       <if test="record.nickname != null" >
         nickname = #{record.nickname,jdbcType=VARCHAR},
       </if>
-      <if test="record.openid != null" >
-        openid = #{record.openid,jdbcType=INTEGER},
+      <if test="record.openId != null" >
+        open_id = #{record.openId,jdbcType=INTEGER},
       </if>
       <if test="record.phone != null" >
         phone = #{record.phone,jdbcType=VARCHAR},
@@ -205,7 +205,7 @@
     update user_info
     set id = #{record.id,jdbcType=INTEGER},
       nickname = #{record.nickname,jdbcType=VARCHAR},
-      openid = #{record.openid,jdbcType=INTEGER},
+      open_id = #{record.openId,jdbcType=INTEGER},
       phone = #{record.phone,jdbcType=VARCHAR},
       building_num = #{record.buildingNum,jdbcType=VARCHAR},
       building_code = #{record.buildingCode,jdbcType=VARCHAR},
@@ -220,8 +220,8 @@
       <if test="nickname != null" >
         nickname = #{nickname,jdbcType=VARCHAR},
       </if>
-      <if test="openid != null" >
-        openid = #{openid,jdbcType=INTEGER},
+      <if test="openId != null" >
+        open_id = #{openId,jdbcType=INTEGER},
       </if>
       <if test="phone != null" >
         phone = #{phone,jdbcType=VARCHAR},
@@ -241,7 +241,7 @@
   <update id="updateByPrimaryKey" parameterType="com.sae.express.dao.model.UserInfoModel" >
     update user_info
     set nickname = #{nickname,jdbcType=VARCHAR},
-      openid = #{openid,jdbcType=INTEGER},
+      open_id = #{openId,jdbcType=INTEGER},
       phone = #{phone,jdbcType=VARCHAR},
       building_num = #{buildingNum,jdbcType=VARCHAR},
       building_code = #{buildingCode,jdbcType=VARCHAR},

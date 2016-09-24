@@ -4,6 +4,8 @@ import com.sae.express.dao.iface.PickUpInfoModelMapper;
 import com.sae.express.dao.iface.PickUpModelMapper;
 import com.sae.express.dao.iface.UserInfoModelMapper;
 import com.sae.express.dao.model.*;
+import com.sae.express.dao.model.wechat.WeChatPlatform;
+import com.sae.express.dao.model.wechat.WeChatPlatformExample;
 import com.sae.express.service.PickUpService;
 import com.sae.express.service.UserInfoService;
 import com.sae.express.util.tool.StringTools;
@@ -15,6 +17,8 @@ import java.util.List;
 
 /**
  * Created by luoqi on 2016-09-19.
+ *
+ *  用户信息业务实现层
  */
 @Service
 public class UserInfoServiceImpl implements UserInfoService {
@@ -87,5 +91,16 @@ public class UserInfoServiceImpl implements UserInfoService {
         return userInfoModelMapper.selectByExample(example);
     }
 
+    /**
+     * 更新open绑定的用户信息
+     *
+     * @param userInfoModel
+     * @return
+     */
+    public UserInfoModel modifyUserInfoModel(UserInfoModel userInfoModel) {
+        userInfoModelMapper.updateByPrimaryKey(userInfoModel);
+        return userInfoModel;
+
+    }
 
 }
