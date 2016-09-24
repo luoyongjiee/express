@@ -1,5 +1,7 @@
 package com.sae.express.util.wechat;
 
+import org.springframework.beans.factory.annotation.Value;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
@@ -13,9 +15,7 @@ import javax.servlet.http.HttpServletRequest;
  * @date 2013-05-18 
  */  
 public class SignUtil {
-	// 与接口配置信息中的Token要一致  
-    private static String token = "wechat_token";
-  
+
     /** 
      * 验证签名 
      *  
@@ -23,9 +23,9 @@ public class SignUtil {
      * @param timestamp 
      * @param nonce 
      * @return 
-     */  
-    public static boolean checkSignature(String signature, String timestamp, String nonce) {  
-        String[] arr = new String[] { token, timestamp, nonce };  
+     */
+    public static boolean checkSignature(String token,String signature, String timestamp, String nonce) {
+        String[] arr = new String[] {token, timestamp, nonce };
         // 将token、timestamp、nonce三个参数进行字典序排序  
         Arrays.sort(arr);  
         StringBuilder content = new StringBuilder();  

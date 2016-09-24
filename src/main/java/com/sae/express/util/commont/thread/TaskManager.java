@@ -7,6 +7,9 @@ import org.slf4j.LoggerFactory;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
+/**
+ * 旧模式：暂时不用
+ */
 public class TaskManager implements ServletContextListener {
 	private static Logger log = LoggerFactory.getLogger(TaskManager.class);
     /**   
@@ -22,6 +25,5 @@ public class TaskManager implements ServletContextListener {
      */   
     public void contextDestroyed(ServletContextEvent event) {
 			log.info("thread:线程已结束");
-    	
-    }    
+    }
    }  

@@ -36,5 +36,6 @@ public class ExpressApplication extends SpringBootServletInitializer {
         WeChatAuthFilter headerInitFilter = new WeChatAuthFilter();
         return headerInitFilter;
     }
+
 }
 
