@@ -55,8 +55,9 @@
           $("#showInfo").append(showList.getDiv(obj.id,obj.id,content));
         })
 
-        if(param.offset>data.count ){
+        if(param.offset>=data.count ){
             $('.load_info').html("已加载全部");
+            $('.infinite-preloader').hide();
         }
         param.offset = param.offset + param.limit;
       },
@@ -84,8 +85,9 @@
             $("#showInfo").append(showList.getDiv(obj.id,obj.id,content));
           })
 
-          if(param.offset>data.count ){
-            $("#scroll").html("已经加载完毕");
+          if(param.offset>=data.count ){
+              $("#scroll").html("已经加载完毕");
+              $('.infinite-preloader').hide();
           }
 
           param.offset = param.offset + param.limit;

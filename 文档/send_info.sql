@@ -10,10 +10,9 @@ Target Server Type    : MYSQL
 Target Server Version : 50172
 File Encoding         : 65001
 
-Date: 2016-08-27 12:15:24
+Date: 2016-09-26 23:24:34
 */
-CREATE database express;
-use database express;
+
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
@@ -31,7 +30,7 @@ CREATE TABLE `send_info` (
   `receiver_phone` varchar(20) DEFAULT NULL COMMENT '收件人电话',
   `receiver_address` varchar(100) DEFAULT NULL COMMENT '收件人地址',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `update_time更新时间` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `status` int(11) DEFAULT NULL COMMENT '状态',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8;

@@ -41,7 +41,7 @@
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
-        <table  tableName="user_info" domainObjectName="UserInfoModel" />
+        <table  tableName="admin_info" domainObjectName="AdminInfoModel" />
        <!-- <table  tableName="send_info" domainObjectName="SendInfoModel" />-->
 
         <!--<table  tableName="send_info" domainObjectName="SendInfoModel" />-->

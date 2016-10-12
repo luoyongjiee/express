@@ -40,7 +40,7 @@
     </p>
   </a>
 
-  <a href="${pageContext.request.contextPath}/path/express/feedback_list;" class="weui_grid js_grid" data-id="toast">
+  <a href="${pageContext.request.contextPath}/path/express/feedback_list" class="weui_grid js_grid" data-id="toast">
     <div class="weui_grid_icon">
       <img src="${pageContext.request.contextPath}/images/icon_nav_cell.png" alt="">
     </div>

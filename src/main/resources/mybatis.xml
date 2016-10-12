@@ -11,7 +11,7 @@
 
 
 
-   <!-- <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+    <!--<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
           destroy-method="close">
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
         <property name="url" value="jdbc:mysql://igptgfhetuqg.rds.sae.sina.com.cn:10099/express" />
@@ -28,7 +28,6 @@
         &lt;!&ndash; 获取连接最大等待时间 &ndash;&gt;
         <property name="maxWait" value="60000"></property>
     </bean>-->
-
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
           destroy-method="close">
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
@@ -46,8 +45,6 @@
         <!-- 获取连接最大等待时间 -->
         <property name="maxWait" value="60000"></property>
     </bean>
-
-
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
         <property name="mapperLocations" value="classpath*:com/sae/express/dao/xml/*.xml"></property>
