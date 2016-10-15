@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -48,16 +49,17 @@ public class PickUpController {
      *
      * @param pickUpModelListJson
      * @param pickUserJson
-     * @param model
      * @return
      */
     @RequestMapping(value = "insert/pickUpOrder", method = RequestMethod.POST)
     @ResponseBody
-    public Object insertPickUpList(String pickUpModelListJson, String pickUserJson, Model model) {
+    public Object insertPickUpList(String pickUpModelListJson, String pickUserJson,HttpSession session) {
 
         List<PickUpInfoModel> pickUpModellist = GsonUtil.fromJson(pickUpModelListJson, new TypeToken<List<PickUpInfoModel>>() {
         }.getType());
         PickUpModel pickUp = GsonUtil.fromJson(pickUserJson, PickUpModel.class);
+        pickUp.setUserId((String) session.getAttribute("openId"));
+
         //录入用户信息
         pickUp = pickUpService.insertPickUpModel(pickUp);
         for (PickUpInfoModel pickUpInfoModel : pickUpModellist) {

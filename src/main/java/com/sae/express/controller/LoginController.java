@@ -1,6 +1,6 @@
 package com.sae.express.controller;
 
-import com.sae.express.dao.model.SendInfoModel;
+
 import com.sae.express.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

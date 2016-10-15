@@ -43,14 +43,14 @@ public class ExpressController {
      * 寄件
      *
      * @param sendInfo
-     * @param request
      * @param session
      * @return
      */
     @RequestMapping("addSend")
     @ResponseBody
-    public Object addSend(SendInfoModel sendInfo, HttpServletRequest request, HttpSession session) {
+    public Object addSend(SendInfoModel sendInfo,HttpSession session) {
         String openId = (String) session.getAttribute("openId");
+        sendInfo.setUserId(openId);
         SendInfoModel sendInfoModel = expressService.addSend(sendInfo);
 
         //查询微信是否已有绑定的用户信息，有则更新，没有则插入，并且更新session中存储的用户信息

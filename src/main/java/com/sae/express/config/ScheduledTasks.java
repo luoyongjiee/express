@@ -26,7 +26,7 @@ import org.springframework.stereotype.Component;
 @Configurable
 @EnableScheduling
 public class ScheduledTasks {
-    private static Logger log = LoggerFactory.getLogger(DataStatisticsTemer.class);
+    private static Logger log = LoggerFactory.getLogger(ScheduledTasks.class);
 
     @Autowired
     private WeChatPlatformService weChatPlatformService;

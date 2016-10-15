@@ -1,18 +1,12 @@
 package com.sae.express.service.impl;
 
-import com.sae.express.dao.iface.PickUpInfoModelMapper;
-import com.sae.express.dao.iface.PickUpModelMapper;
 import com.sae.express.dao.iface.UserInfoModelMapper;
-import com.sae.express.dao.model.*;
-import com.sae.express.dao.model.wechat.WeChatPlatform;
-import com.sae.express.dao.model.wechat.WeChatPlatformExample;
-import com.sae.express.service.PickUpService;
+import com.sae.express.dao.model.UserInfoModel;
+import com.sae.express.dao.model.UserInfoModelExample;
 import com.sae.express.service.UserInfoService;
-import com.sae.express.util.tool.StringTools;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
 
 /**

@@ -1,9 +1,6 @@
 package com.sae.express.service;
 
-import com.sae.express.dao.model.PickUpInfoModel;
-import com.sae.express.dao.model.PickUpModel;
 import com.sae.express.dao.model.UserInfoModel;
-import com.sae.express.dao.model.wechat.WeChatPlatform;
 
 import java.util.List;
 

@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -114,11 +116,19 @@ public class WeChatController {
     }
 
     @RequestMapping(value = "wechat/redirect", method = RequestMethod.GET)
-    public String redirect(String sendRedirect, HttpSession session, Model model) {
+    public String redirect(String sendRedirect, HttpSession session, Model model) throws UnsupportedEncodingException {
         model.addAttribute("appid", appid);
-        model.addAttribute("hostUri", hostUri);
-        model.addAttribute("sendRedirect", sendRedirect);
-        return "/express/send_redirect";
+  /*      model.addAttribute("hostUri", hostUri);*/
+      //  model.addAttribute("sendRedirect", URLEncoder.encode(hostUri+"/wechat/getuser?sendRedirect="+hostUri+sendRedirect,"UTF-8"));
+       model.addAttribute("sendRedirect", URLEncoder.encode(hostUri+sendRedirect,"UTF-8"));
+        //   model.addAttribute("sendRedirect", hostUri+sendRedirect);
+        /*return "/express/send_redirect";*/
+        String uri = "https://open.weixin.qq.com/connect/oauth2/authorize?appid="
+                +appid
+                +"&redirect_uri="
+                +URLEncoder.encode(hostUri+"/wechat/getuser?sendRedirect="+sendRedirect,"UTF-8")
+                +"&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
+        return "redirect:"+uri;
     }
 
     @RequestMapping(value = "wechat/getuser", method = RequestMethod.GET)

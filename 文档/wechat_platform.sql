@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50172
 File Encoding         : 65001
 
-Date: 2016-09-26 23:28:20
+Date: 2016-10-12 22:01:51
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -25,6 +25,6 @@ CREATE TABLE `wechat_platform` (
   `access_token` varchar(255) DEFAULT NULL,
   `jsapi_ticket` varchar(255) DEFAULT NULL,
   `create_time` datetime DEFAULT NULL,
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
