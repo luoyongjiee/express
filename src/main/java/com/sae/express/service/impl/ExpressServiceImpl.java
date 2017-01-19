@@ -1,10 +1,11 @@
 package com.sae.express.service.impl;
 
-import com.sae.express.dao.iface.PickUpInfoModelMapper;
-import com.sae.express.dao.iface.PickUpModelMapper;
+
 import com.sae.express.dao.iface.SendInfoModelMapper;
 import com.sae.express.dao.model.*;
+import com.sae.express.repository.DateRepository;
 import com.sae.express.service.ExpressService;
+import com.sae.express.util.tool.DateTool;
 import com.sae.express.util.tool.StringTools;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,14 +22,15 @@ public class ExpressServiceImpl implements ExpressService {
 
     @Autowired
     private SendInfoModelMapper sendInfoModelMapper;
-
+    @Autowired
+    private DateRepository dateRepository;
 
 
 
     public SendInfoModel addSend(SendInfoModel sendInfo) {
         sendInfo.setStatus(Integer.valueOf(0));
-        sendInfo.setCreateTime(new Date());
-        sendInfo.setUpdateTime(new Date());
+        sendInfo.setCreateTime(DateTool.parse(dateRepository.currentTime(),DateTool.YYYY_MM_DD_HH_MM_SS));
+        sendInfo.setUpdateTime(DateTool.parse(dateRepository.currentTime(),DateTool.YYYY_MM_DD_HH_MM_SS));
          sendInfoModelMapper.insertSelective(sendInfo);
         return sendInfo;
     }

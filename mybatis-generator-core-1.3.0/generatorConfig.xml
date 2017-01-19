@@ -41,13 +41,14 @@
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
-        <table  tableName="admin_info" domainObjectName="AdminInfoModel" />
+       <!-- <table  tableName="wechat_platform" domainObjectName="WechatPlatformModel" />-->
        <!-- <table  tableName="send_info" domainObjectName="SendInfoModel" />-->
 
         <!--<table  tableName="send_info" domainObjectName="SendInfoModel" />-->
-       <!-- <table  tableName="pick_up" domainObjectName="PickUpModel" />
-        <table  tableName="feedback" domainObjectName="FeedbackModel" />-->
-       <!-- <table  tableName="pick_up" domainObjectName="PickUpModel" />-->
+      <!--<table  tableName="pick_up" domainObjectName="PickUpModel" />-->
+        <table  tableName="custom_msg" domainObjectName="CustomMsgModel" />
+       <!-- <table  tableName="feedback" domainObjectName="FeedbackModel" />-->
+      <!--  <table  tableName="pick_up" domainObjectName="PickUpModel" />-->
        <!-- <table  tableName="pick_up_info" domainObjectName="PickUpInfoModel" />-->
     </context>
 </generatorConfiguration>

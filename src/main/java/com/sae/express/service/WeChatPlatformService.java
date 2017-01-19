@@ -1,6 +1,7 @@
-package com.sae.express.service.wechat;
+package com.sae.express.service;
 
-import com.sae.express.dao.model.wechat.WeChatPlatform;
+
+import com.sae.express.dao.model.WechatPlatformModel;
 
 /**
  * Created by Administrator on 2016/9/3.
@@ -12,7 +13,7 @@ public interface WeChatPlatformService {
      * @param weChatPlatform
      * @return
      */
-    WeChatPlatform insertWeChatPlatform(WeChatPlatform weChatPlatform);
+    WechatPlatformModel insertWeChatPlatform(WechatPlatformModel weChatPlatform);
 
     /**
      * 更新公众号信息
@@ -20,7 +21,7 @@ public interface WeChatPlatformService {
      * @param weChatPlatform
      * @return
      */
-    WeChatPlatform modifyWeChatPlatform(WeChatPlatform weChatPlatform);
+    WechatPlatformModel modifyWeChatPlatform(WechatPlatformModel weChatPlatform);
 
     /**
      * 根据公众号appid获取公众号信息
@@ -28,5 +29,5 @@ public interface WeChatPlatformService {
      * @param appid
      * @return
      */
-    WeChatPlatform getWeChatPlatformByAppid(String appid);
+    WechatPlatformModel getWeChatPlatformByAppid(String appid);
 }

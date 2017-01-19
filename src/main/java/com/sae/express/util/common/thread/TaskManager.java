@@ -1,4 +1,4 @@
-package com.sae.express.util.commont.thread;
+package com.sae.express.util.common.thread;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

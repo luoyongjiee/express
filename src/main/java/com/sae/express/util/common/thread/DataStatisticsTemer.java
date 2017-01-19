@@ -1,22 +1,18 @@
-package com.sae.express.util.commont.thread;
+package com.sae.express.util.common.thread;
+
+import com.sae.express.service.WeChatPlatformService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
-import com.sae.express.dao.model.wechat.AccessToken;
-import com.sae.express.dao.model.wechat.JsapiTicket;
-import com.sae.express.dao.model.wechat.WeChatPlatform;
-import com.sae.express.service.wechat.WeChatPlatformService;
-import com.sae.express.util.wechat.WeChatUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 
 
 /**
  * 定时器执行的定时方法
- *
  */
 public class DataStatisticsTemer {
     private static Logger log = LoggerFactory.getLogger(DataStatisticsTemer.class);

@@ -25,7 +25,7 @@
 </header>
 
 <div class='demos-content-padded'>
-  <a href="javascript:;" id='show-login1' class="weui_btn weui_btn_primary">(正式开放给用户的时候删除这个按钮)暂时设定用户名：admin,密码：admin</a>
+  <%--<a href="javascript:;" id='show-login1' class="weui_btn weui_btn_primary">(正式开放给用户的时候删除这个按钮)暂时设定用户名：admin,密码：admin</a>--%>
   <a href="javascript:;" id='show-login' class="weui_btn weui_btn_primary">显示登录弹窗</a>
 </div>
 

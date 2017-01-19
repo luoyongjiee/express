@@ -1,14 +1,13 @@
-package com.sae.express.service.wechat;
+package com.sae.express.service.impl;
 
 import com.sae.express.dao.form.response.TextMessage;
-import com.sae.express.dao.iface.WeChatPlatformMapper;
 import com.sae.express.dao.model.wechat.WeChatUnionUser;
+import com.sae.express.service.CoreService;
 import com.sae.express.util.wechat.EmojiExchangeUtil;
 import com.sae.express.util.wechat.MessageUtil;
 import com.sae.express.util.wechat.WeChatUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
@@ -29,8 +28,6 @@ public class CoreServiceImpl implements CoreService {
      */
     private static Logger log = LoggerFactory.getLogger(CoreServiceImpl.class);
 
-    @Autowired
-    private WeChatPlatformMapper wechatPlatformMapper;
 
     private static final String[] KEYWORD = {"快","快件","接单","件","单","接","时间","时","间","快","快递","取件","取","间"};
 

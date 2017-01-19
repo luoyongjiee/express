@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
 
+
 /**
  * Created by luoqi on 2016-08-06.
  */
@@ -18,7 +19,8 @@ public class ExpressApplication extends SpringBootServletInitializer {
 
 
     public static void main(String[] args) {
-        SpringApplication.run(ExpressApplication.class, args);
+
+       SpringApplication.run(ExpressApplication.class, args);
     }
 
 

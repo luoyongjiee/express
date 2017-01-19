@@ -9,6 +9,10 @@
     <result column="building_code" property="buildingCode" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="pay_status" property="payStatus" jdbcType="VARCHAR" />
+    <result column="money" property="money" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="order_status" property="orderStatus" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -69,7 +73,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, user_name, phone, building_num, building_code, create_time, user_id
+    id, user_name, phone, building_num, building_code, create_time, user_id, pay_status, 
+    money, remark, order_status
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.sae.express.dao.model.PickUpModelExample" >
     select
@@ -112,10 +117,12 @@
   <insert id="insert" parameterType="com.sae.express.dao.model.PickUpModel" useGeneratedKeys="true" keyProperty="id">
     insert into pick_up (id, user_name, phone, 
       building_num, building_code, create_time, 
-      user_id)
+      user_id, pay_status, money, 
+      remark, order_status)
     values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
       #{buildingNum,jdbcType=VARCHAR}, #{buildingCode,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{userId,jdbcType=VARCHAR})
+      #{userId,jdbcType=VARCHAR}, #{payStatus,jdbcType=VARCHAR}, #{money,jdbcType=INTEGER}, 
+      #{remark,jdbcType=VARCHAR}, #{orderStatus,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.sae.express.dao.model.PickUpModel" useGeneratedKeys="true" keyProperty="id">
     insert into pick_up
@@ -141,6 +148,18 @@
       <if test="userId != null" >
         user_id,
       </if>
+      <if test="payStatus != null" >
+        pay_status,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="orderStatus != null" >
+        order_status,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -163,6 +182,18 @@
       </if>
       <if test="userId != null" >
         #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="payStatus != null" >
+        #{payStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="orderStatus != null" >
+        #{orderStatus,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -196,6 +227,18 @@
       <if test="record.userId != null" >
         user_id = #{record.userId,jdbcType=VARCHAR},
       </if>
+      <if test="record.payStatus != null" >
+        pay_status = #{record.payStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.money != null" >
+        money = #{record.money,jdbcType=INTEGER},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderStatus != null" >
+        order_status = #{record.orderStatus,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -209,7 +252,11 @@
       building_num = #{record.buildingNum,jdbcType=VARCHAR},
       building_code = #{record.buildingCode,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      user_id = #{record.userId,jdbcType=VARCHAR}
+      user_id = #{record.userId,jdbcType=VARCHAR},
+      pay_status = #{record.payStatus,jdbcType=VARCHAR},
+      money = #{record.money,jdbcType=INTEGER},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      order_status = #{record.orderStatus,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -235,6 +282,18 @@
       <if test="userId != null" >
         user_id = #{userId,jdbcType=VARCHAR},
       </if>
+      <if test="payStatus != null" >
+        pay_status = #{payStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null" >
+        money = #{money,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="orderStatus != null" >
+        order_status = #{orderStatus,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -245,7 +304,11 @@
       building_num = #{buildingNum,jdbcType=VARCHAR},
       building_code = #{buildingCode,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
-      user_id = #{userId,jdbcType=VARCHAR}
+      user_id = #{userId,jdbcType=VARCHAR},
+      pay_status = #{payStatus,jdbcType=VARCHAR},
+      money = #{money,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      order_status = #{orderStatus,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

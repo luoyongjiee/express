@@ -1,10 +1,9 @@
 package com.sae.express.config;
 
+import com.sae.express.dao.model.WechatPlatformModel;
 import com.sae.express.dao.model.wechat.AccessToken;
 import com.sae.express.dao.model.wechat.JsapiTicket;
-import com.sae.express.dao.model.wechat.WeChatPlatform;
-import com.sae.express.service.wechat.WeChatPlatformService;
-import com.sae.express.util.commont.thread.DataStatisticsTemer;
+import com.sae.express.service.WeChatPlatformService;
 import com.sae.express.util.wechat.WeChatUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,9 +42,9 @@ public class ScheduledTasks {
     @Scheduled(cron = "0 0 */2 * * *")
     public void reportCurrentByCron(){
         log.info("定时器正常运行");
-        WeChatPlatform weChatPlatform = weChatPlatformService.getWeChatPlatformByAppid(appid);
+        WechatPlatformModel weChatPlatform = weChatPlatformService.getWeChatPlatformByAppid(appid);
         if (weChatPlatform==null){
-            weChatPlatform = new WeChatPlatform();
+            weChatPlatform = new WechatPlatformModel();
         }
         AccessToken accessToken  = WeChatUtil.getAccessToken(appid, appsecret);
         if (accessToken != null) {

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50172
 File Encoding         : 65001
 
-Date: 2016-09-26 23:29:46
+Date: 2016-10-16 22:21:17
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -27,5 +27,7 @@ CREATE TABLE `pick_up` (
   `building_code` varchar(10) DEFAULT NULL COMMENT '宿舍号',
   `create_time` datetime DEFAULT NULL,
   `user_id` varchar(50) DEFAULT NULL,
+  `pay_status` varchar(255) DEFAULT NULL COMMENT '0:未支付 1：已支付',
+  `money` int(8) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;

@@ -17,6 +17,14 @@ public class PickUpModel {
 
     private String userId;
 
+    private String payStatus;
+
+    private Integer money;
+
+    private String remark;
+
+    private String orderStatus;
+
     public Integer getId() {
         return id;
     }
@@ -71,5 +79,37 @@ public class PickUpModel {
 
     public void setUserId(String userId) {
         this.userId = userId == null ? null : userId.trim();
+    }
+
+    public String getPayStatus() {
+        return payStatus;
+    }
+
+    public void setPayStatus(String payStatus) {
+        this.payStatus = payStatus == null ? null : payStatus.trim();
+    }
+
+    public Integer getMoney() {
+        return money;
+    }
+
+    public void setMoney(Integer money) {
+        this.money = money;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark == null ? null : remark.trim();
+    }
+
+    public String getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(String orderStatus) {
+        this.orderStatus = orderStatus == null ? null : orderStatus.trim();
     }
 }

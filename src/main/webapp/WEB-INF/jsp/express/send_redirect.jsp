@@ -22,15 +22,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
    <script type="text/javascript">
-   var sendRedirect = '${sendRedirect}';
-   var appid = '${appid}';
-
-
-   window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='
-                          +appid
-                          +'&redirect_uri='
-                          +sendRedirect
-                          +'&response_type=code&scope=snsapi_base&state=123#wechat_redirect';
+       var sendRedirect = '${sendRedirect}';
+       window.location.href = sendRedirect;
    </script>
   </head>
   

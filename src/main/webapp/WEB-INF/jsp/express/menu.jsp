@@ -31,14 +31,6 @@
     </p>
   </a>
 
-  <a href="${pageContext.request.contextPath}/pickUp/pick_up_list" class="weui_grid js_grid" data-id="toast">
-    <div class="weui_grid_icon">
-      <img src="${pageContext.request.contextPath}/images/icon_nav_cell.png" alt="">
-    </div>
-    <p class="weui_grid_label">
-      取件列表
-    </p>
-  </a>
 
   <a href="${pageContext.request.contextPath}/path/express/feedback_list" class="weui_grid js_grid" data-id="toast">
     <div class="weui_grid_icon">
@@ -49,6 +41,113 @@
     </p>
   </a>
 
+  <a href="${pageContext.request.contextPath}/pickUp/showPickUpList?date=&express=1" class="weui_grid js_grid" data-id="toast">
+    <div class="weui_grid_icon">
+      <img src="${pageContext.request.contextPath}/images/icon_nav_cell.png" alt="">
+    </div>
+    <p class="weui_grid_label">
+      中通取件列表
+    </p>
+  </a>
+
+  <a href="${pageContext.request.contextPath}/pickUp/showPickUpList?date=&express=2" class="weui_grid js_grid" data-id="toast">
+    <div class="weui_grid_icon">
+      <img src="${pageContext.request.contextPath}/images/icon_nav_cell.png" alt="">
+    </div>
+    <p class="weui_grid_label">
+      圆通快递取件列表
+    </p>
+  </a>
+
+  <a href="${pageContext.request.contextPath}/pickUp/showPickUpList?date=&express=3" class="weui_grid js_grid" data-id="toast">
+    <div class="weui_grid_icon">
+      <img src="${pageContext.request.contextPath}/images/icon_nav_cell.png" alt="">
+    </div>
+    <p class="weui_grid_label">
+      申通快递取件列表
+    </p>
+  </a>
+
+  <a href="${pageContext.request.contextPath}/pickUp/showPickUpList?date=&express=4" class="weui_grid js_grid" data-id="toast">
+    <div class="weui_grid_icon">
+      <img src="${pageContext.request.contextPath}/images/icon_nav_cell.png" alt="">
+    </div>
+    <p class="weui_grid_label">
+      韵达快递取件列表
+    </p>
+  </a>
+
+  <a href="${pageContext.request.contextPath}/pickUp/showPickUpList?date=&express=5" class="weui_grid js_grid" data-id="toast">
+    <div class="weui_grid_icon">
+      <img src="${pageContext.request.contextPath}/images/icon_nav_cell.png" alt="">
+    </div>
+    <p class="weui_grid_label">
+      顺丰快递取件列表
+    </p>
+  </a>
+
+  <a href="${pageContext.request.contextPath}/pickUp/showPickUpList?date=&express=6" class="weui_grid js_grid" data-id="toast">
+    <div class="weui_grid_icon">
+      <img src="${pageContext.request.contextPath}/images/icon_nav_cell.png" alt="">
+    </div>
+    <p class="weui_grid_label">
+      邮政快递取件列表
+    </p>
+  </a>
+
+  <a href="${pageContext.request.contextPath}/pickUp/showPickUpList?date=&express=7" class="weui_grid js_grid" data-id="toast">
+    <div class="weui_grid_icon">
+      <img src="${pageContext.request.contextPath}/images/icon_nav_cell.png" alt="">
+    </div>
+    <p class="weui_grid_label">
+      优速快递取件列表
+    </p>
+  </a>
+
+  <a href="${pageContext.request.contextPath}/pickUp/showPickUpList?date=&express=8" class="weui_grid js_grid" data-id="toast">
+    <div class="weui_grid_icon">
+      <img src="${pageContext.request.contextPath}/images/icon_nav_cell.png" alt="">
+    </div>
+    <p class="weui_grid_label">
+      天猫取件列表
+    </p>
+  </a>
+
+  <a href="${pageContext.request.contextPath}/pickUp/showPickUpList?date=&express=9" class="weui_grid js_grid" data-id="toast">
+    <div class="weui_grid_icon">
+      <img src="${pageContext.request.contextPath}/images/icon_nav_cell.png" alt="">
+    </div>
+    <p class="weui_grid_label">
+      京东取件列表
+    </p>
+  </a>
+
+  <a href="${pageContext.request.contextPath}/pickUp/showPickUpList?date=&express=10" class="weui_grid js_grid" data-id="toast">
+    <div class="weui_grid_icon">
+      <img src="${pageContext.request.contextPath}/images/icon_nav_cell.png" alt="">
+    </div>
+    <p class="weui_grid_label">
+      百世汇通取件列表
+    </p>
+  </a>
+
+  <a href="${pageContext.request.contextPath}/pickUp/showPickUpList?date=&express=11" class="weui_grid js_grid" data-id="toast">
+    <div class="weui_grid_icon">
+      <img src="${pageContext.request.contextPath}/images/icon_nav_cell.png" alt="">
+    </div>
+    <p class="weui_grid_label">
+      国通快递取件列表
+    </p>
+  </a>
+
+  <a href="${pageContext.request.contextPath}/pickUp/showPickUpList?date=&express=12" class="weui_grid js_grid" data-id="toast">
+    <div class="weui_grid_icon">
+      <img src="${pageContext.request.contextPath}/images/icon_nav_cell.png" alt="">
+    </div>
+    <p class="weui_grid_label">
+      其他快递取件列表
+    </p>
+  </a>
 
 </div>
 

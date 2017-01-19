@@ -23,4 +23,14 @@ public interface PickUpService {
     List<PickUpModel> getPickUpModel(String search);
 
     List<PickUpModel> getPickUpModelPage(Integer offset,Integer limit);
+
+    int updatePickUpStatus(Integer pickUpId,String status);
+
+    List<PickUpModel> showPickUpModel(List<PickUpInfoModel> pickUpInfoModelList);
+
+    int updatePickUpOrderStatus(Integer pickUpId,String status);
+
+    List<PickUpModel> getPickUpModelByUserId(String userId);
+
+    List<PickUpInfoModel> getPickUpInfoModelList(String date, String express);
 }

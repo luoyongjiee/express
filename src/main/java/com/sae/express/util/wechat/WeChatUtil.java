@@ -8,6 +8,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.ConnectException;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -22,6 +23,10 @@ import com.sae.express.dao.model.wechat.*;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONException;
 import net.sf.json.JSONObject;
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.dom4j.DocumentHelper;
+import org.dom4j.Element;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -546,7 +551,7 @@ public class WeChatUtil {
 	public static String getPrepayId(String xml_body){
 		Map<String, String> map = httpRequest(unifiedorder_url,xml_body);
 		//log.info(map.toString());
-		System.out.println("====="+map.toString());
+		log.info("unifiedorder结果：" + map.toString());
 		return map.get("prepay_id");
 	}
 	/**
@@ -556,7 +561,9 @@ public class WeChatUtil {
 	 */
 	public static String refund_url = "https://api.mch.weixin.qq.com/secapi/pay/refund";
 	public static Map<String, String> refundFee(String xml_body){
-		return httpRequest(refund_url,xml_body);
+		Map<String, String> map =  httpRequest(refund_url,xml_body);
+		log.info("unifiedorder结果：" + map.toString());
+		return map;
 	}
 	/**
 	 * 查询订单
@@ -668,6 +675,70 @@ public class WeChatUtil {
 		}
 		return utf8Str;
 	}
-	
-	
+
+
+	public static Map<String, String> sendByHttps(String requestUrl, String outputStr) {
+		Map<String, String> map = new HashMap<String, String>();
+
+		try {
+			// 创建SSLContext对象，并使用我们指定的信任管理器初始化
+			TrustManager[] tm = { new MyX509TrustManager() };
+			SSLContext sslContext = SSLContext.getInstance("SSL", "SunJSSE");
+			sslContext.init(null, tm, new java.security.SecureRandom());
+			// 从上述SSLContext对象中得到SSLSocketFactory对象
+			SSLSocketFactory ssf = sslContext.getSocketFactory();
+
+			URL url = new URL(requestUrl);
+			HttpsURLConnection httpUrlConn = (HttpsURLConnection) url
+					.openConnection();
+			httpUrlConn.setSSLSocketFactory(ssf);
+
+			httpUrlConn.setDoOutput(true);
+			httpUrlConn.setDoInput(true);
+			httpUrlConn.setUseCaches(false);
+			// 设置请求方式（GET/POST）
+			httpUrlConn.setRequestMethod("POST");
+
+
+			// 当有数据需要提交时
+			if (null != outputStr) {
+				OutputStream outputStream = httpUrlConn.getOutputStream();
+				// 注意编码格式，防止中文乱码
+				outputStream.write(outputStr.getBytes("UTF-8"));
+				outputStream.close();
+			}
+
+
+			InputStream inputStream = httpUrlConn.getInputStream();
+
+			map = MessageUtil.parseXml(inputStream);
+			// 释放资源
+			inputStream.close();
+			inputStream = null;
+			httpUrlConn.disconnect();
+
+
+		} catch (ConnectException ce) {
+			log.error("Weixin server connection timed out.");
+		} catch (Exception e) {
+			log.error("https request error:{}", e);
+		}
+		return map;
+	}
+
+
+	public static Map<String,String> toMap(String xml) throws DocumentException {
+		Map<String,String> result = new HashMap<String, String>();
+		Document document = DocumentHelper.parseText(xml.toString());
+		// 得到xml根元素
+		Element root = document.getRootElement();
+		// 得到根元素的所有子节点
+		List<Element> elementList = root.elements();
+
+		// 遍历所有子节点
+		for (Element e : elementList)
+			result.put(e.getName(), e.getText());
+
+		return result;
+	}
 }

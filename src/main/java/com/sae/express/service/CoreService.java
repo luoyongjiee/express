@@ -1,12 +1,8 @@
-package com.sae.express.service.wechat;
+package com.sae.express.service;
 
 import javax.servlet.http.HttpServletRequest;
 
-/** 
- *
- *  
- *
- */  
+
 public interface CoreService {
      String processRequest(HttpServletRequest request);
      /*{

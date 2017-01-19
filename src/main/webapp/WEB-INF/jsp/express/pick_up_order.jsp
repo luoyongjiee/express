@@ -69,29 +69,29 @@
   <div class="weui_cell">
     <div class="weui_cell_hd"><label class="weui_label">姓名</label></div>
     <div class="weui_cell_bd weui_cell_primary">
-      <input class="weui_input user_name" type="text"  placeholder="请输入姓名">
+      <input class="weui_input user_name" type="text" id="userName"  placeholder="请输入姓名">
     </div>
   </div>
 
   <div class="weui_cell">
     <div class="weui_cell_hd"><label class="weui_label">电话</label></div>
     <div class="weui_cell_bd weui_cell_primary">
-      <input class="weui_input user_phone" type="text" placeholder="请输入电话">
+      <input class="weui_input user_phone" type="text" id="phone" placeholder="请输入电话">
     </div>
   </div>
 
   <div class="weui_cell ">
-    <div class="weui_cell_hd"><label class="weui_label">栋数</label></div>
+    <div class="weui_cell_hd"><label class="weui_label">宿舍栋数</label></div>
     <div class="weui_cell_bd weui_cell_primary">
-      <select class="builder_num weui_select"  >
+      <select class="builder_num weui_select"  id="buildingNum">
           <option selected="" value="0">选择</option>
-          <option value="1">6栋</option>
-          <option value="2">7栋</option>
-          <option value="1">8栋</option>
-          <option value="2">9栋</option>
-          <option value="1">10栋</option>
-          <option value="2">11栋</option>
-          <option value="2">12栋</option>
+          <option value="6">6栋</option>
+          <option value="7">7栋</option>
+          <option value="8">8栋</option>
+          <option value="9">9栋</option>
+          <option value="10">10栋</option>
+          <option value="11">11栋</option>
+          <option value="12">12栋</option>
       </select>
     </div>
   </div>
@@ -99,50 +99,64 @@
   <div class="weui_cell">
     <div class="weui_cell_hd"><label class="weui_label">宿舍号</label></div>
     <div class="weui_cell_bd weui_cell_primary">
-      <input class="weui_input room_num" type="number" placeholder="宿舍号">
+      <input class="weui_input room_num" type="number" id="buildingCode" placeholder="宿舍号">
     </div>
   </div>
 
-  <div class="box" style="padding: 0 5px;">
-    <div class="clearfix basic">
-      <p class="tt" style="border-top: 15px solid #d9d9d9;">收件信息</p>
-     <div class="pickup div1">
-      <ul class="toplist pick_up_model_i">
-        <li class="clearfix ">
-          <div>编号：<input type="text" class="code" name="" placeholder="请输入快递号"></div>
-          <div>快递：<select  name="express" class="express" >
-              <option selected="" value="0">选择</option>
-              <option value="1">中通快递</option>
-              <option value="2">圆通快递</option>
-              <option value="3">申通快递</option>
-              <option value="4">韵达快递</option>
-              <option value="5">顺丰快递</option>
-              <option value="6">邮政快递</option>
-              <option value="7">优速快递</option>
-              <option value="8">天猫</option>
-              <option value="9">京东</option>
-              <option value="10">百世汇通</option>
-              <option value="11">国通快递</option>
-          </select><span class="remove" datatype="1" onclick="removefun(1)"></span>
+    <div class="weui_cell">
+        <div class="weui_cell_hd"><label class="weui_label">备注</label></div>
+        <div class="weui_cell_bd weui_cell_primary">
+            <input class="weui_input remark" type="text"  placeholder="是否放鞋柜/门口/其他">
+        </div>
+    </div>
 
-          </div>
+    <div class="box" style="padding: 0 5px;">
+        <div class="clearfix basic">
+            <p class="tt" style="border-top: 15px solid #d9d9d9;">收件信息</p>
+            <div class="pickup div1">
+                <ul class="toplist pick_up_model_i">
+                    <span class="remove" datatype="1" onclick="removefun(1)"></span>
+                    <li >
+                        <div>编号：<input type="text" class="code" style="width: 600px;height:35px" name="" placeholder="快递信息中的编号"></div>
+                    </li>
+                    <li>
+                        <div>快递：<select  name="express" class="express" style="width: 600px;height:35px">
+                            <option selected="" value="0">选择</option>
+                            <option value="1">中通快递</option>
+                            <option value="2">圆通快递</option>
+                            <option value="3">申通快递</option>
+                            <option value="4">韵达快递</option>
+                            <option value="5">顺丰快递</option>
+                            <option value="6">邮政快递</option>
+                            <option value="7">优速快递</option>
+                            <option value="8">天猫</option>
+                            <option value="9">京东</option>
+                            <option value="10">百世汇通</option>
+                            <option value="11">国通快递</option>
+                            <option value="12">其他</option>
+                        </select>
 
-        </li>
-        <li class="clearfix">
-          <div>件数：<input type="number" class="count" placeholder="请输入件数"></div>
-          <div>时间：
-              <input type="text" class="pickUpTime"  style="width: 130px" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH-mm'});">
-             <%-- <input type="datetime-local" class="pickUpTime" placeholder="请选择时间">--%>
-          </div>
-        </li>
-      </ul>
-      <p class="tt" style="border-top: 1px solid #d9d9d9;"></p>
-       </div>
+                        </div>
+
+                    </li>
+                    <li >
+                        <div>件数：<input type="number" class="count" placeholder="请输入件数" style="width: 600px;height:35px"></div>
+                    </li>
+                    <li>
+                        <div  style="clear:both;">快递签收到达时间：
+                            <input type="text" class="pickUpTime"   onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'});" style="width: 600px;height:35px">
+                        </div>
+                    </li>
+                </ul>
+                <p class="tt" style="border-top: 1px solid #d9d9d9;"></p>
+            </div>
+
+        </div>
+
+        <span class="add" datatype="1"></span>
 
     </div>
-    <span class="add" datatype="1"></span>
 
-  </div>
 </div>
 
 
@@ -173,13 +187,36 @@ var classnum=1;
             var user_phone = $('.user_phone').val();
             var builderNum = $('.builder_num').val();
             var roomNum = $('.room_num').val();
+            var remark = $('.remark').val();
+
+            if(user_name == ''||user_name == null){
+                $.toptip("请输入姓名！");
+                return;
+            }
+
+            if(user_phone == ''||user_phone == null){
+                $.toptip("请输入电话！");
+                return;
+            }
+
+            if(builderNum == ''||builderNum == null){
+                $.toptip("请输入宿舍栋数！");
+                return;
+            }
+
+            if(roomNum == ''||roomNum == null){
+                $.toptip("请输入宿舍号！");
+                return;
+            }
 
             var pickUserJson= {
                 userName : user_name,
                 phone : user_phone,
                 buildingNum : builderNum,
-                buildingCode : roomNum
+                buildingCode : roomNum,
+                remark:remark
             };
+            var quitOut = false;
             $(".pick_up_model_i").each(function() {
                 //var id = $(this).next("input").val();
                 var count = $(this).find('.count').val();
@@ -188,14 +225,22 @@ var classnum=1;
                 var pickUpTime = $(this).find('.pickUpTime').val();
 
 
-                if(count==''||typeof(count)=='undefined'){
+                if(count==''||count==null){
                     $.toptip("件数不能为空！");
+                    quitOut = true;
+                    return;
                 } else if(express=='0'||express == 0){
                     $.toptip("快递公司不能为空！");
-                } else if(code==''||typeof(code)=='undefined'){
+                    quitOut = true;
+                    return;
+                } else if(code==''||code == null){
                     $.toptip("编号不能为空！");
-                } else if(pickUpTime==''||typeof(pickUpTime)=='undefined'){
+                    quitOut = true;
+                    return;
+                } else if(pickUpTime==''||pickUpTime == null){
                     $.toptip("日期不能为空！");
+                    quitOut = true;
+                    return;
                 }
 
                 //var userId = $("#no_" + id).val();
@@ -209,6 +254,9 @@ var classnum=1;
                 pickUpModelOrder.push(pickUpModel);
             });
 
+            if(quitOut){
+                return;
+            }
           var pickUpModelListJson=JSON.stringify(pickUpModelOrder);
           $.ajax({
              type: "post",
@@ -217,7 +265,7 @@ var classnum=1;
              dataType: "json",
               success: function(data){
 
-                  window.location.href="${pageContext.request.contextPath}/pickUp/Detail?id="+data;
+                  window.location.href="${pageContext.request.contextPath}/pay/nakeOrder/?pickUpId="+data;
               },
               complete:function(request,status){
                   $.hideLoading();
@@ -233,34 +281,68 @@ var classnum=1;
               //=Number($(this).attr('datatype'));
      $('.basic').append('<div class="pickup div'+(classnum+1)+'">'+
              ' <ul class="toplist pick_up_model_i">'+
+             '<span class="remove" onclick="removefun('+(classnum+1)+')""></span>'+
                '  <li class="clearfix ">'+
-                '   <div>编号：<input type="text" class="code" name=""></div>'+
-                '<div>快递：<select class="express"  >'+
-        '  <option selected="" value="0">选择</option>'+
-        '  <option value="1">快递一</option>'+
-        '  <option value="2">快递二</option>'+
-        '</select><span class="remove" onclick="removefun('+(classnum+1)+')""></span>'+
+                '   <div>编号：<input type="text" class="code" name="" style="width: 600px;height:35px"></div></li><li>'+
+                '<div>快递：<select class="express"  style="width: 600px;height:35px">'+
+        '  <option selected="" value="0" >选择</option> '+
+             '   <option value="1">中通快递</option>'+
+        '     <option value="2">圆通快递</option>'+
+        '    <option value="3">申通快递</option>'+
+        '     <option value="4">韵达快递</option>'+
+        '     <option value="5">顺丰快递</option>'+
+        '       <option value="6">邮政快递</option>'+
+        '       <option value="7">优速快递</option>'+
+        '      <option value="8">天猫</option>'+
+        '      <option value="9">京东</option>'+
+        '      <option value="10">百世汇通</option>'+
+        '      <option value="11">国通快递</option>'+
+        '</select>'+
         '       </div>'+
                 '       </li>'+
                '       <li class="clearfix">'+
-                '       <div>件数：<input type="number" class="count"></div>'+
-                ' <div>时间：<input type="text" class="pickUpTime"  style="width: 130px" placeholder="输入收件时间"></div>'+
+                '       <div>件数：<input type="number" class="count" style="width: 600px;height:35px"></div></li><li>'+
+                ' <div>快递签收到达时间：<input type="text" class="pickUpTime"  style="width: 600px;height:35px" placeholder="输入收件时间"></div>'+
                 ' </li>'+
                '</ul>'+
       ' <p class="tt" style="border-top: 1px solid #d9d9d9;"></p>'+
       ' </div>');
 
+
+
+
       $('.add').attr("datatype",(classnum+1));
       classnum=classnum+1;
       $('.clearfix').trigger("create");
         $('.pickUpTime').click(function(){
-            WdatePicker({dateFmt:'yyyy-MM-dd HH-mm'});
+            WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'});
         });
     });
 
+      $.ajax({
+          type: "post",
+          url: "${pageContext.request.contextPath}/pickUp/userInfo",
+          data: {},
+          dataType: "json",
+          success: function(data){
+              var result = data.data;
+              if(result!=null&&result!=undefined){
+                  $("#userName").val(result.userName);
+                  $("#phone").val(result.phone);
+                  $("#buildingCode").val(result.buildingCode);
+
+                  $("#buildingNum option").removeAttr("selected");
+                  $("#buildingNum option[value='"+result.buildingNum+"']").attr("selected", true);
+
+              }
+          },
+          complete:function(request,status){}
+      });
 
 
-  })
+  });
+
+
 function removefun(classnum){
   if(Number($('.clearfix').find('.pickup').size())==1){
     $.toptip('低于一条数不能删除')
@@ -271,9 +353,8 @@ function removefun(classnum){
 </script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/lib/My97DatePicker/WdatePicker.js"></script>
 
-<script type="text/javascript">
-
-
+<script>
+    $("#time").datetimePicker();
 </script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-package com.sae.express.util.commont;
+package com.sae.express.util.common;
 
 import com.sae.express.util.wechat.Base64Utils;
 

@@ -78,35 +78,42 @@
   <div class="weui_cell">
     <div class="weui_cell_hd"><label class="weui_label">订单号</label></div>
     <div class="weui_cell_bd weui_cell_primary">
-      <input class="weui_input id" type="text"  placeholder="请输入订单号" value="${pickUp.id}">
+      <input class="weui_input id" type="text"  placeholder="请输入订单号" value="${pickUp.id}" readonly>
     </div>
   </div>
 
   <div class="weui_cell">
     <div class="weui_cell_hd"><label class="weui_label">姓名</label></div>
     <div class="weui_cell_bd weui_cell_primary">
-      <input class="weui_input user_name" type="text"  placeholder="请输入姓名" value="${pickUp.userName}">
+      <input class="weui_input user_name" type="text"  placeholder="请输入姓名" value="${pickUp.userName}" readonly>
     </div>
   </div>
 
   <div class="weui_cell">
     <div class="weui_cell_hd"><label class="weui_label">电话</label></div>
     <div class="weui_cell_bd weui_cell_primary">
-      <input class="weui_input user_phone" type="text" placeholder="请输入电话" value="${pickUp.phone}">
+      <input class="weui_input user_phone" type="text" placeholder="请输入电话" value="${pickUp.phone}" readonly>
     </div>
   </div>
 
   <div class="weui_cell ">
     <div class="weui_cell_hd"><label class="weui_label">栋数</label></div>
     <div class="weui_cell_bd weui_cell_primary">
-      <input class="weui_input buildingNum" type="text" placeholder="请输入栋数" value="${pickUp.buildingNum}">
+      <input class="weui_input buildingNum" type="text" placeholder="请输入栋数" value="${pickUp.buildingNum}" readonly>
     </div>
   </div>
 
   <div class="weui_cell">
     <div class="weui_cell_hd"><label class="weui_label">宿舍号</label></div>
     <div class="weui_cell_bd weui_cell_primary">
-      <input class="weui_input room_num" type="number" placeholder="宿舍号" value="${pickUp.buildingCode}">
+      <input class="weui_input room_num" type="number" placeholder="宿舍号" value="${pickUp.buildingCode}" readonly>
+    </div>
+  </div>
+
+  <div class="weui_cell">
+    <div class="weui_cell_hd"><label class="weui_label">备注</label></div>
+    <div class="weui_cell_bd weui_cell_primary">
+      <input class="weui_input remark" type="text"  value="${pickUp.remark}" readonly>
     </div>
   </div>
 
@@ -133,27 +140,27 @@
         <div class="weui_cell">
           <div class="weui_cell_hd"><label class="weui_label">编号</label></div>
           <div class="weui_cell_bd weui_cell_primary">
-            <input class="weui_input room_num" type="number" placeholder="编号" value="${pickUpInfo.expressCode}">
+            <input class="weui_input room_num" type="number" placeholder="编号" value="${pickUpInfo.expressCode}" readonly>
           </div>
         </div>
 
         <div class="weui_cell">
           <div class="weui_cell_hd"><label class="weui_label">快递</label></div>
           <div class="weui_cell_bd weui_cell_primary">
-            <input class="weui_input room_num" type="text" placeholder="快递" value="${pickUpInfo.express}">
+            <input class="weui_input room_num" type="text" placeholder="快递" value="${pickUpInfo.express}" readonly>
           </div>
         </div>
 
         <div class="weui_cell">
           <div class="weui_cell_hd"><label class="weui_label">件数</label></div>
           <div class="weui_cell_bd weui_cell_primary">
-            <input class="weui_input room_num" type="text" placeholder="件数" value="${pickUpInfo.count}">
+            <input class="weui_input room_num" type="text" placeholder="件数" value="${pickUpInfo.count}" readonly>
           </div>
         </div>
 
 
         <div class="weui_cell">
-          <div class="weui_cell_hd"><label class="weui_label">时间</label></div>
+          <div class="weui_cell_hd"><label class="weui_label">快递签收到达时间</label></div>
           <div class="weui_cell_bd weui_cell_primary">
             <fmt:formatDate value="${pickUpInfo.expressDate}" pattern="yyyy-MM-dd HH:mm:ss" />
           </div>
@@ -173,6 +180,38 @@
 
   <br>
 
+  <div class="weui_cell">
+    <div class="weui_cell_hd"><label class="weui_label">订单状态</label></div>
+    <div class="weui_cell_bd weui_cell_primary">
+      <c:if test="${pickUp.orderStatus eq '0'}">
+        <input class="weui_input orderStatus" id="orderStatus" type="text"  value="待取" readonly>
+      </c:if>
+
+      <c:if test="${pickUp.orderStatus eq '1'}">
+        <input class="weui_input orderStatus" id="orderStatus" type="text"  value="已取" readonly>
+      </c:if>
+
+      <c:if test="${pickUp.orderStatus eq '2'}">
+        <input class="weui_input orderStatus" id="orderStatus" type="text"  value="已派送" readonly>
+      </c:if>
+
+      <c:if test="${pickUp.orderStatus eq '3'}">
+        <input class="weui_input orderStatus" id="orderStatus" type="text"  value="存件" readonly>
+      </c:if>
+
+      <c:if test="${pickUp.orderStatus eq '4'}">
+        <input class="weui_input orderStatus" id="orderStatus" type="text"  value="未取" readonly>
+      </c:if>
+
+      <c:if test="${pickUp.orderStatus eq '5'}">
+        <input class="weui_input orderStatus" id="orderStatus" type="text"  value="已申请退款" readonly>
+      </c:if>
+
+      <c:if test="${pickUp.orderStatus eq '6'}">
+        <input class="weui_input orderStatus" id="orderStatus" type="text"  value="申请退款失败" readonly>
+      </c:if>
+    </div>
+  </div>
 <script src="${pageContext.request.contextPath}/lib/jquery-2.1.4.js"></script>
 <script src="${pageContext.request.contextPath}/lib/fastclick.js"></script>
 

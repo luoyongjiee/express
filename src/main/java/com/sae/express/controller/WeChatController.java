@@ -1,13 +1,12 @@
 package com.sae.express.controller;
 
-import com.sae.express.dao.model.UserInfoModel;
+import com.sae.express.dao.model.WechatPlatformModel;
 import com.sae.express.dao.model.wechat.AccessToken;
 import com.sae.express.dao.model.wechat.OAuthAccessToken;
-import com.sae.express.dao.model.wechat.WeChatPlatform;
-import com.sae.express.service.CommonService;
 import com.sae.express.service.UserInfoService;
-import com.sae.express.service.impl.UserInfoServiceImpl;
-import com.sae.express.service.wechat.WeChatPlatformService;
+import com.sae.express.service.CoreService;
+import com.sae.express.service.WeChatPlatformService;
+import com.sae.express.util.wechat.SignUtil;
 import com.sae.express.util.wechat.WeChatUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -15,19 +14,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import com.sae.express.service.wechat.CoreService;
-import com.sae.express.util.wechat.SignUtil;
 
 /**
  * Created by luoqi on 2016-08-09.
@@ -56,13 +51,7 @@ public class WeChatController {
     @Value("${wechat.token}")
     private  String token ;
 
-    /**
-     * 确认请求来自微信服务器
-     *
-     * @param request
-     * @param response
-     * @throws IOException
-     */
+    //确认请求来自微信服务器
     @RequestMapping(value = "wechat/accessWeChat", method = RequestMethod.GET)
     public void accessWeChatGet(HttpServletRequest request,
                                 HttpServletResponse response) throws IOException {
@@ -86,13 +75,7 @@ public class WeChatController {
         }
     }
 
-    /**
-     * 处理微信服务器发来的消息
-     *
-     * @param request
-     * @param response
-     * @throws IOException
-     */
+    //处理微信服务器发来的消息
     @RequestMapping(value = "wechat", method = RequestMethod.POST)
     public void accessWeChatPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         // 将请求、响应的编码均设置为UTF-8（防止中文乱码）
@@ -116,19 +99,17 @@ public class WeChatController {
     }
 
     @RequestMapping(value = "wechat/redirect", method = RequestMethod.GET)
-    public String redirect(String sendRedirect, HttpSession session, Model model) throws UnsupportedEncodingException {
-        model.addAttribute("appid", appid);
-  /*      model.addAttribute("hostUri", hostUri);*/
-      //  model.addAttribute("sendRedirect", URLEncoder.encode(hostUri+"/wechat/getuser?sendRedirect="+hostUri+sendRedirect,"UTF-8"));
-       model.addAttribute("sendRedirect", URLEncoder.encode(hostUri+sendRedirect,"UTF-8"));
-        //   model.addAttribute("sendRedirect", hostUri+sendRedirect);
-        /*return "/express/send_redirect";*/
+    public String redirect(String sendRedirect, Model model) throws UnsupportedEncodingException {
         String uri = "https://open.weixin.qq.com/connect/oauth2/authorize?appid="
                 +appid
                 +"&redirect_uri="
                 +URLEncoder.encode(hostUri+"/wechat/getuser?sendRedirect="+sendRedirect,"UTF-8")
-                +"&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
-        return "redirect:"+uri;
+                +"&response_type=code&scope=snsapi_base&state=123#wechat_redirect";
+       model.addAttribute("sendRedirect", uri);
+
+
+
+      return "/express/send_redirect";
     }
 
     @RequestMapping(value = "wechat/getuser", method = RequestMethod.GET)
@@ -137,9 +118,9 @@ public class WeChatController {
         if (sendRedirect == null || sendRedirect.equals("") || sendRedirect.contains("wechat/getuser")) {
             return "/express/error";
         }
-        WeChatPlatform weChatPlatform = weChatPlatformService.getWeChatPlatformByAppid(appid);
+        WechatPlatformModel weChatPlatform = weChatPlatformService.getWeChatPlatformByAppid(appid);
         if (weChatPlatform == null) {
-            weChatPlatform = new WeChatPlatform();
+            weChatPlatform = new WechatPlatformModel();
             AccessToken accessToken = WeChatUtil.getAccessToken(appid, appsecret);
             weChatPlatform.setAppId(appid);
             weChatPlatform.setAppSecret(appsecret);
@@ -156,11 +137,13 @@ public class WeChatController {
             session.setAttribute("openId", openId);
         }
 
-        UserInfoModel userInfoModel = userInfoService.getUserInfoModelByOpenId(openId);
+ /*       UserInfoModel userInfoModel = userInfoService.getUserInfoModelByOpenId(openId);
         if (userInfoModel != null) {
             session.setAttribute("wechat_user", userInfoModel);
-        }
+        }*/
         return "redirect:" + sendRedirect;
     }
+
+
 
 }

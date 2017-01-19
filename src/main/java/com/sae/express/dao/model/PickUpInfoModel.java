@@ -14,6 +14,7 @@ public class PickUpInfoModel {
     private Integer count;
 
     private Date expressDate;
+
     private String expressDateStr;
 
     private Date createTime;
